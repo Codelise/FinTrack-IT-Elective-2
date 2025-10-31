@@ -1,96 +1,84 @@
-"use client";
 import Link from "next/link";
-
-export default function Home() {
+import Header from "./components/Header";
+export default function LandingPage() {
   return (
-    <div
-      className="relative flex size-full min-h-screen flex-col bg-[#111a22] dark group/design-root overflow-x-hidden"
-      style={{ fontFamily: 'Inter, "Noto Sans", sans-serif' }}
-    >
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#21121e] dark group/design-root overflow-x-hidden">
       <div className="layout-container flex h-full grow flex-col">
-        <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#233648] px-4 sm:px-6 lg:px-10 py-3">
-          <div className="flex items-center gap-4 text-white">
-            <div className="size-4">
-              <svg
-                viewBox="0 0 48 48"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clipPath="url(#clip0_6_535)">
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z"
-                    fill="currentColor"
-                  ></path>
-                </g>
-                <defs>
-                  <clipPath id="clip0_6_535">
-                    <rect width="48" height="48" fill="white"></rect>
-                  </clipPath>
-                </defs>
-              </svg>
-            </div>
-            <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em]">
-              FinTrack
-            </h2>
-          </div>
-          <div className="flex flex-1 justify-end gap-4 sm:gap-8">
-            <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#1383eb] text-white text-sm font-bold leading-normal tracking-[0.015em]">
-              <Link href="/pages/signup">
-                <span className="truncate">Sign Up</span>
-              </Link>
-            </button>
-            <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#1383eb] text-white text-sm font-bold leading-normal tracking-[0.015em]">
-              <Link href="/pages/login">
-                <span className="truncate">Login</span>
-              </Link>
-            </button>
-          </div>
-        </header>
-
-        <div className="px-4 sm:px-8 lg:px-40 flex flex-1 justify-center py-5">
+        <Header />
+        <div className="px-10 flex flex-1 justify-center py-5">
           <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
-            <div className="w-full">
-              <div className="sm:p-4">
+            <div className="@container">
+              <div className="@[480px]:p-4">
                 <div
-                  className="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat sm:gap-8 sm:rounded-xl items-center justify-center p-4 rounded-lg"
+                  className="flex min-h-[480px] flex-col gap-6 bg-cover bg-center bg-no-repeat @[480px]:gap-8 @[480px]:rounded-lg items-center justify-center p-4"
                   style={{
                     backgroundImage:
-                      'linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuDgWZRI2iqPP3N3Ptf_vp-CcPxv8YWmN4JrPn6_gQpuD0y3CPywcF-AseCRSD1MzK1Csai1U63aa41S-9KM4B2J6TM7VitTGWZaBDj-m5RCqjjhdcRAjWELsuU95LhwY6wyDD9ix_z-w5r8Qofp6XLulscAsV-hCvUBG2MsTON4W4WJYSlmUkZt7aIXdhD1YuLeMXqji8yketeBpErAieB_ZBJJrM9D_6rBL9lFP0RHDUWC4hntTztX90mQKH3SCGo7esZdzYOb9aM")',
+                      'linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%), url("/money-background.jpeg")',
                   }}
                 >
                   <div className="flex flex-col gap-2 text-center">
-                    <h1 className="text-white text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em]">
+                    <h1 className="text-white text-4xl font-black leading-tight tracking-[-0.033em] @[480px]:text-5xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em]">
                       Take Control of Your Finances
                     </h1>
-                    <h2 className="text-white text-sm sm:text-base font-normal leading-normal">
-                      BudgetWise helps you track your spending, set financial
-                      goals, and achieve financial freedom with ease.
+                    <h2 className="text-white text-sm font-normal leading-normal @[480px]:text-base @[480px]:font-normal @[480px]:leading-normal">
+                      FinTrack helps you track your spending, set financial
+                      goals, and achieve financial freedom. Start managing your
+                      money effectively today.
                     </h2>
                   </div>
-                  <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 sm:h-12 px-4 sm:px-5 bg-[#1383eb] text-white text-sm sm:text-base font-bold leading-normal tracking-[0.015em]">
-                    <Link href="/pages/login">
+                  <Link href="/pages/login">
+                    <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 @[480px]:h-12 @[480px]:px-5 bg-[#9c167f] text-white text-sm font-bold leading-normal tracking-[0.015em] @[480px]:text-base @[480px]:font-bold @[480px]:leading-normal @[480px]:tracking-[0.015em]">
                       <span className="truncate">Get Started</span>
-                    </Link>
-                  </button>
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
-
-            <div className="flex flex-col gap-8 sm:gap-10 px-4 py-8 sm:py-10">
+            <div className="flex flex-col gap-10 px-4 py-10 @container">
               <div className="flex flex-col gap-4">
-                <h1 className="text-white text-2xl sm:text-[32px] font-bold leading-tight max-w-[720px]">
+                <h1 className="text-white tracking-light text-[32px] font-bold leading-tight @[480px]:text-4xl @[480px]:font-black @[480px]:leading-tight @[480px]:tracking-[-0.033em] max-w-[720px]">
                   Key Features
                 </h1>
                 <p className="text-white text-base font-normal leading-normal max-w-[720px]">
-                  Explore the powerful tools that BudgetWise offers to help you
-                  manage your finances effectively.
+                  FinTrack offers a range of features to help you manage your
+                  finances effectively.
                 </p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-0">
-                <div className="flex flex-1 gap-3 rounded-lg border border-[#324d67] bg-[#192733] p-4 flex-col">
-                  <div className="text-white">
+              <div className="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-0">
+                <div className="flex flex-1 gap-3 rounded-lg border border-[#63365a] bg-[#321b2d] p-4 flex-col">
+                  <div
+                    className="text-white"
+                    data-icon="CurrencyDollar"
+                    data-size="24px"
+                    data-weight="regular"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24px"
+                      height="24px"
+                      fill="currentColor"
+                      viewBox="0 0 256 256"
+                    >
+                      <path d="M152,120H136V56h8a32,32,0,0,1,32,32,8,8,0,0,0,16,0,48.05,48.05,0,0,0-48-48h-8V24a8,8,0,0,0-16,0V40h-8a48,48,0,0,0,0,96h8v64H104a32,32,0,0,1-32-32,8,8,0,0,0-16,0,48.05,48.05,0,0,0,48,48h16v16a8,8,0,0,0,16,0V216h16a48,48,0,0,0,0-96Zm-40,0a32,32,0,0,1,0-64h8v64Zm40,80H136V136h16a32,32,0,0,1,0,64Z"></path>
+                    </svg>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <h2 className="text-white text-base font-bold leading-tight">
+                      Expense Tracking
+                    </h2>
+                    <p className="text-[#c695bb] text-sm font-normal leading-normal">
+                      Easily track your income and expenses with our intuitive
+                      interface.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex flex-1 gap-3 rounded-lg border border-[#63365a] bg-[#321b2d] p-4 flex-col">
+                  <div
+                    className="text-white"
+                    data-icon="ChartLine"
+                    data-size="24px"
+                    data-weight="regular"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24px"
@@ -103,40 +91,21 @@ export default function Home() {
                   </div>
                   <div className="flex flex-col gap-1">
                     <h2 className="text-white text-base font-bold leading-tight">
-                      Expense Tracking
-                    </h2>
-                    <p className="text-[#92aec9] text-sm font-normal leading-normal">
-                      Easily monitor your daily expenses and categorize your
-                      spending to understand where your money goes.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex flex-1 gap-3 rounded-lg border border-[#324d67] bg-[#192733] p-4 flex-col">
-                  <div className="text-white">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24px"
-                      height="24px"
-                      fill="currentColor"
-                      viewBox="0 0 256 256"
-                    >
-                      <path d="M221.87,83.16A104.1,104.1,0,1,1,195.67,49l22.67-22.68a8,8,0,0,1,11.32,11.32l-96,96a8,8,0,0,1-11.32-11.32l27.72-27.72a40,40,0,1,0,17.87,31.09,8,8,0,0,1,16-.9,56,56,0,1,1-22.38-41.65L184.3,60.39a87.88,87.88,0,1,0,23.13,29.67,8,8,0,0,1,14.44-6.9Z"></path>
-                    </svg>
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <h2 className="text-white text-base font-bold leading-tight">
                       Goal Setting
                     </h2>
-                    <p className="text-[#92aec9] text-sm font-normal leading-normal">
-                      Set personalized financial goals, track your progress, and
-                      stay motivated to achieve your targets.
+                    <p className="text-[#c695bb] text-sm font-normal leading-normal">
+                      Set financial goals and monitor your progress in
+                      real-time.
                     </p>
                   </div>
                 </div>
-
-                <div className="flex flex-1 gap-3 rounded-lg border border-[#324d67] bg-[#192733] p-4 flex-col">
-                  <div className="text-white">
+                <div className="flex flex-1 gap-3 rounded-lg border border-[#63365a] bg-[#321b2d] p-4 flex-col">
+                  <div
+                    className="text-white"
+                    data-icon="ShieldCheck"
+                    data-size="24px"
+                    data-weight="regular"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24px"
@@ -149,70 +118,25 @@ export default function Home() {
                   </div>
                   <div className="flex flex-col gap-1">
                     <h2 className="text-white text-base font-bold leading-tight">
-                      Secure & Private
+                      Secure &amp; Private
                     </h2>
-                    <p className="text-[#92aec9] text-sm font-normal leading-normal">
-                      Your data is protected with top-notch security measures,
-                      ensuring your financial information remains private and
-                      safe.
+                    <p className="text-[#c695bb] text-sm font-normal leading-normal">
+                      Your data is encrypted and stored securely, ensuring your
+                      privacy.
                     </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="w-full">
-              <div className="flex flex-col justify-end gap-6 px-4 py-8 sm:py-10 sm:gap-8 sm:px-10">
-                <div className="flex flex-col gap-2 text-center">
-                  <h1 className="text-white text-2xl sm:text-[32px] font-bold leading-tight max-w-[720px] mx-auto">
-                    Ready to Transform Your Financial Future?
-                  </h1>
-                  <p className="text-white text-base font-normal leading-normal max-w-[720px] mx-auto">
-                    Join thousands of users who are already benefiting from
-                    BudgetWise's intuitive and effective budgeting tools.
-                  </p>
-                </div>
-                <div className="flex flex-1 justify-center">
-                  <div className="flex justify-center w-full max-w-[200px]">
-                    <button className="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 sm:h-12 px-4 sm:px-5 bg-[#1383eb] text-white text-sm sm:text-base font-bold leading-normal tracking-[0.015em]">
-                      <Link href="/pages/signup">
-                        <span className="truncate">Sign Up Now</span>
-                      </Link>
-                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
         <footer className="flex justify-center">
           <div className="flex max-w-[960px] flex-1 flex-col">
-            <div className="flex flex-col gap-6 px-5 py-8 sm:py-10 text-center">
-              <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
-                <a
-                  className="text-[#92aec9] text-sm sm:text-base font-normal leading-normal min-w-32 sm:min-w-40"
-                  href="#"
-                >
-                  Privacy Policy
-                </a>
-                <a
-                  className="text-[#92aec9] text-sm sm:text-base font-normal leading-normal min-w-32 sm:min-w-40"
-                  href="#"
-                >
-                  Terms of Service
-                </a>
-                <a
-                  className="text-[#92aec9] text-sm sm:text-base font-normal leading-normal min-w-32 sm:min-w-40"
-                  href="#"
-                >
-                  Contact Us
-                </a>
-              </div>
-              <p className="text-[#92aec9] text-sm sm:text-base font-normal leading-normal">
+            <footer className="flex flex-col gap-6 px-5 py-10 text-center @container">
+              <p className="text-[#c695bb] text-base font-normal leading-normal">
                 © 2025 FinTrack. All rights reserved.
               </p>
-            </div>
+            </footer>
           </div>
         </footer>
       </div>
