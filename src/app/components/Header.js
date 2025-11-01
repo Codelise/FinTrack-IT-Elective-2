@@ -1,5 +1,12 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 export default function Header() {
+  const pathname = usePathname();
+
+  const hideLoginPages = ["/login", "/signup"];
+  const showLoginButton = !hideLoginPages.includes(pathname);
   return (
     <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#46253f] px-10 py-3">
       <div className="flex items-center gap-4 text-white">
@@ -22,14 +29,17 @@ export default function Header() {
           </svg>
         </div>
         <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em]">
-          FinTrack
+          <Link href="/">FinTrack</Link>
         </h2>
       </div>
-      <Link href="/pages/login">
-        <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#9c167f] text-white text-sm font-bold leading-normal tracking-[0.015em]">
-          <span className="truncate">Login</span>
-        </button>
-      </Link>
+
+      {showLoginButton && (
+        <Link href="/pages/login">
+          <button className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#9c167f] text-white text-sm font-bold leading-normal tracking-[0.015em]">
+            <span className="truncate">Login</span>
+          </button>
+        </Link>
+      )}
     </header>
   );
 }

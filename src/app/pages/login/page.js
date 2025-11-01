@@ -80,7 +80,10 @@ export default function Login() {
               </button>
             </div>
             <p className="text-[#b79eb0] text-lg font-normal leading-normal pb-3 pt-1 px-4 text-center cursor-pointer ">
-              Don't have an account? Sign up
+              Don't have an account?
+              <Link href="./signup" className="text-blue-700">
+                Sign up
+              </Link>
             </p>
           </div>
         </div>
