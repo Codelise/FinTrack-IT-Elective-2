@@ -1,0 +1,8 @@
+Nov 6
+- created FinTrack database with all the tables
+- created .env.local with credentials
+- lib/supabase.js = connects to .env.local
+- util/supabase-client.js = CRUD operations on supabase
+- sign up page
+
+Nov 7 TODO: LOGIN, BUDGETS, DASHBOARD
