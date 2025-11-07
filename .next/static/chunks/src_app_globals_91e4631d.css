@@ -79,6 +79,8 @@
     --leading-normal: 1.5;
     --radius-lg: .5rem;
     --radius-xl: .75rem;
+    --default-transition-duration: .15s;
+    --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -452,6 +454,10 @@
 
   .relative {
     position: relative;
+  }
+
+  .static {
+    position: static;
   }
 
   .flex {
@@ -894,12 +900,12 @@
     padding-block: calc(var(--spacing) * 10);
   }
 
-  .py-30 {
-    padding-block: calc(var(--spacing) * 30);
+  .py-20 {
+    padding-block: calc(var(--spacing) * 20);
   }
 
-  .py-50 {
-    padding-block: calc(var(--spacing) * 50);
+  .py-30 {
+    padding-block: calc(var(--spacing) * 30);
   }
 
   .pt-1 {
@@ -1070,8 +1076,20 @@
     color: var(--color-white);
   }
 
+  .transition-colors {
+    transition-property: color, background-color, border-color, outline-color, -webkit-text-decoration-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+
   .placeholder\:text-\[\#b79eb0\]::placeholder {
     color: #b79eb0;
+  }
+
+  @media (hover: hover) {
+    .hover\:bg-\[\#2d212a\]:hover {
+      background-color: #2d212a;
+    }
   }
 
   .focus\:border-\[\#523d4c\]:focus {

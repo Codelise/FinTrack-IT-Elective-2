@@ -6,3 +6,15 @@ Nov 6
 - sign up page
 
 Nov 7 TODO: LOGIN, BUDGETS, DASHBOARD
+- api/user-profile/route.js  = for LOGIN
+- modified login page 
+- modified signup page with password visibility toggle icon
+- lib/supabase.js
+- utils/auth.js
+- componentes/AuthGuard.js
+- utils/validation.js
+- lib/api-auth.js
+- lib/rate-limit.js = protects from attacks 
+- Implemented AuthGuard on dashboard page 
+- api/transactions/route.js =  Secure server-side API for handling financial transactions.
+- next.config.js
