@@ -1,8 +1,35 @@
+"use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
 export default function Navbar() {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      // Sign out from Supabase
+      const { error } = await supabase.auth.signOut();
+
+      if (error) {
+        alert("Logout error:", error);
+        return;
+      }
+
+      // Clear all session storage
+      sessionStorage.removeItem("fintrack_visited");
+      sessionStorage.removeItem("supabase.auth.token");
+      localStorage.removeItem("supabase.auth.token");
+
+      // Redirect to login page
+      router.push("/pages/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return (
-    <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#382935] px-10 py-5">
+    <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-darkBorder px-4 py-3 sm:px-6 md:px-10">
       <div className="flex items-center gap-4 text-white">
         <div className="size-4">
           <svg
@@ -22,31 +49,37 @@ export default function Navbar() {
             ></path>
           </svg>
         </div>
-        <h2 className="text-white text-xl font-extrabold leading-tight tracking-[-0.015em]">
+        <h2 className="text-white text-lg font-bold leading-tight tracking-[-0.015em] md:text-xl">
           FinTrack
         </h2>
       </div>
-      <div className="flex flex-1 justify-end gap-8">
-        <div className="flex items-center gap-9">
+      <div className="flex flex-1 justify-end gap-4 md:gap-8">
+        <nav className="flex items-center gap-4 md:gap-9">
           <Link
-            className="text-white text-md font-bold leading-normal"
-            href="#"
+            className="text-white text-sm font-medium leading-normal hover:text-lightText transition-colors md:text-base"
+            href="/pages/dashboard"
           >
             Dashboard
           </Link>
           <Link
-            className="text-white text-md font-bold leading-normal"
-            href="#"
+            className="text-white text-sm font-medium leading-normal hover:text-lightText transition-colors md:text-base"
+            href="/pages/transactions"
           >
             Transactions
           </Link>
           <Link
-            className="text-white text-md font-bold leading-normal"
-            href="#"
+            className="text-white text-sm font-medium leading-normal hover:text-lightText transition-colors md:text-base"
+            href="/pages/reports"
           >
             Reports
           </Link>
-        </div>
+          <button
+            onClick={handleLogout}
+            className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center  outline-0 rounded-lg h-10 px-4 bg-[#9c167f] text-white text-sm font-bold leading-normal tracking-[0.015em] transition-colors"
+          >
+            <span className="truncate">Logout</span>
+          </button>
+        </nav>
       </div>
     </header>
   );
