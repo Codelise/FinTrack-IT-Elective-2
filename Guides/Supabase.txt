@@ -1,3 +1,6 @@
+npm install @supabase/supabase-js
+
+
 GitHub account
 Database Name: FinTrack
 Password: FinTrack123

@@ -61,15 +61,15 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js
 ;
 ;
 const publicRoutes = [
-    "/login",
-    "/signup",
-    "/forgot-password",
-    "/"
+    "/",
+    "/pages/login",
+    "/pages/signup",
+    "/pages/forgot-password"
 ];
 const authRoutes = [
-    "/login",
-    "/signup",
-    "/forgot-password"
+    "/pages/login",
+    "/pages/signup",
+    "/pages/forgot-password"
 ];
 function AuthGuard({ children }) {
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
@@ -108,9 +108,9 @@ function AuthGuard({ children }) {
         const isPublicRoute = publicRoutes.includes(currentPath);
         const isAuthRoute = authRoutes.includes(currentPath);
         if (isAuthenticated && isAuthRoute) {
-            router.push("/dashboard");
+            router.push("/pages/dashboard");
         } else if (!isAuthenticated && !isPublicRoute) {
-            router.push("/login");
+            router.push("/pages/login");
         }
     };
     if (loading) {
@@ -121,12 +121,12 @@ function AuthGuard({ children }) {
                 children: "Loading..."
             }, void 0, false, {
                 fileName: "[project]/src/app/components/AuthGuard.js",
-                lineNumber: 63,
+                lineNumber: 68,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/components/AuthGuard.js",
-            lineNumber: 62,
+            lineNumber: 67,
             columnNumber: 7
         }, this);
     }

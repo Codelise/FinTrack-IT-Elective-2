@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
-const publicRoutes = ["/login", "/signup", "/forgot-password", "/"];
-const authRoutes = ["/login", "/signup", "/forgot-password"];
+const publicRoutes = [
+  "/",
+  "/pages/login",
+  "/pages/signup",
+  "/pages/forgot-password",
+];
+const authRoutes = ["/pages/login", "/pages/signup", "/pages/forgot-password"];
 
 export default function AuthGuard({ children }) {
   const [loading, setLoading] = useState(true);
@@ -51,9 +56,9 @@ export default function AuthGuard({ children }) {
     const isAuthRoute = authRoutes.includes(currentPath);
 
     if (isAuthenticated && isAuthRoute) {
-      router.push("/dashboard");
+      router.push("/pages/dashboard");
     } else if (!isAuthenticated && !isPublicRoute) {
-      router.push("/login");
+      router.push("/pages/login");
     }
   };
 

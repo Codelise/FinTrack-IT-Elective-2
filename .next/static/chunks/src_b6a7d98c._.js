@@ -42,15 +42,15 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 const publicRoutes = [
-    "/login",
-    "/signup",
-    "/forgot-password",
-    "/"
+    "/",
+    "/pages/login",
+    "/pages/signup",
+    "/pages/forgot-password"
 ];
 const authRoutes = [
-    "/login",
-    "/signup",
-    "/forgot-password"
+    "/pages/login",
+    "/pages/signup",
+    "/pages/forgot-password"
 ];
 function AuthGuard(param) {
     let { children } = param;
@@ -97,9 +97,9 @@ function AuthGuard(param) {
         const isPublicRoute = publicRoutes.includes(currentPath);
         const isAuthRoute = authRoutes.includes(currentPath);
         if (isAuthenticated && isAuthRoute) {
-            router.push("/dashboard");
+            router.push("/pages/dashboard");
         } else if (!isAuthenticated && !isPublicRoute) {
-            router.push("/login");
+            router.push("/pages/login");
         }
     };
     if (loading) {
@@ -110,12 +110,12 @@ function AuthGuard(param) {
                 children: "Loading..."
             }, void 0, false, {
                 fileName: "[project]/src/app/components/AuthGuard.js",
-                lineNumber: 63,
+                lineNumber: 68,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/components/AuthGuard.js",
-            lineNumber: 62,
+            lineNumber: 67,
             columnNumber: 7
         }, this);
     }
