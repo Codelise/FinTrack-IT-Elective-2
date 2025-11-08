@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
-const publicRoutes = ["/login", "/signup", "/forgot-password", "/"];
+const publicRoutes = ["/pages/login", "/pages/signup", "/forgot-password", "/"];
 const authRoutes = ["/login", "/signup", "/forgot-password"];
 
 export default function AuthGuard({ children }) {

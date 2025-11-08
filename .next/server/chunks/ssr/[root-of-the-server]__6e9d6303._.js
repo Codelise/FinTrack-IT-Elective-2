@@ -61,8 +61,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js
 ;
 ;
 const publicRoutes = [
-    "/login",
-    "/signup",
+    "/pages/login",
+    "/pages/signup",
     "/forgot-password",
     "/"
 ];

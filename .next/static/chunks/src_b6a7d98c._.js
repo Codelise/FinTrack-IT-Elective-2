@@ -42,8 +42,8 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 const publicRoutes = [
-    "/login",
-    "/signup",
+    "/pages/login",
+    "/pages/signup",
     "/forgot-password",
     "/"
 ];
