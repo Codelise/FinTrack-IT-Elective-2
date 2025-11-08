@@ -11,19 +11,23 @@ export async function middleware(request) {
 
   const { pathname } = request.nextUrl;
 
-  if (["/login", "/signup", "/forgot-password"].includes(pathname)) {
+  if (
+    ["/pages/login", "/pages/signup", "/pages/forgot-password"].includes(
+      pathname
+    )
+  ) {
     if (session) {
-      return NextResponse.redirect(new URL("/dashboard", request.url));
+      return NextResponse.redirect(new URL("/pages/dashboard", request.url));
     }
     return res;
   }
 
   if (
-    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/pages/dashboard") ||
     pathname.startsWith("/api/protected")
   ) {
     if (!session) {
-      return NextResponse.redirect(new URL("/login", request.url));
+      return NextResponse.redirect(new URL("/pages/login", request.url));
     }
   }
 
@@ -32,10 +36,9 @@ export async function middleware(request) {
 
 export const config = {
   matcher: [
-    "/dashboard/:path*",
-    "/login",
-    "/signup",
-    "/forgot-password",
-    "/api/protected/:path*",
+    "/pages/dashboard/:path*",
+    "/pages/login",
+    "/pages/signup",
+    "/pages/forgot-password",
   ],
 };

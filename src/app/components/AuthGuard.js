@@ -1,31 +1,42 @@
 "use client";
 import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
-const publicRoutes = ["/pages/login", "/pages/signup", "/forgot-password", "/"];
-const authRoutes = ["/login", "/signup", "/forgot-password"];
+const publicRoutes = [
+  "/",
+  "/pages/login",
+  "/pages/signup",
+  "/pages/forgot-password",
+];
+const authRoutes = ["/pages/login", "/pages/signup", "/pages/forgot-password"];
+const protectedRoutes = ["/pages/dashboard"];
 
 export default function AuthGuard({ children }) {
   const [loading, setLoading] = useState(true);
-  const [authenticated, setAuthenticated] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
-    checkAuth();
+    const initializeAuth = async () => {
+      // Only clear session on FIRST VISIT to the site in this browser session
+      const hasVisited = sessionStorage.getItem("fintrack_visited");
+
+      if (!hasVisited) {
+        // First visit in this browser session
+        sessionStorage.setItem("fintrack_visited", "true");
+        await supabase.auth.signOut();
+      }
+
+      await checkAuth();
+    };
+
+    initializeAuth();
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
-      if (event === "SIGNED_IN") {
-        setAuthenticated(true);
-        handleAuthRedirect(pathname, true);
-      } else if (event === "SIGNED_OUT") {
-        setAuthenticated(false);
-        handleAuthRedirect(pathname, false);
-      }
-      setLoading(false);
+      await checkAuth();
     });
 
     return () => subscription.unsubscribe();
@@ -36,31 +47,43 @@ export default function AuthGuard({ children }) {
       const {
         data: { session },
       } = await supabase.auth.getSession();
-      setAuthenticated(!!session);
-      handleAuthRedirect(pathname, !!session);
+      const isAuthenticated = !!session;
+
+      const isPublicRoute = publicRoutes.includes(pathname);
+      const isAuthRoute = authRoutes.includes(pathname);
+      const isProtectedRoute = protectedRoutes.some((route) =>
+        pathname.startsWith(route)
+      );
+
+      // Rule 1: If authenticated but on auth page, redirect to dashboard
+      if (isAuthenticated && isAuthRoute) {
+        router.push("/pages/dashboard");
+        return;
+      }
+
+      // Rule 2: If not authenticated but on protected page, redirect to login
+      if (!isAuthenticated && isProtectedRoute) {
+        router.push("/pages/login");
+        return;
+      }
+
+      // Rule 3: Allow public routes (like landing page) for everyone
+      // No redirect needed for public routes
     } catch (error) {
       console.error("Auth check failed:", error);
-      handleAuthRedirect(pathname, false);
+      // Only redirect if on protected route
+      if (protectedRoutes.some((route) => pathname.startsWith(route))) {
+        router.push("/pages/login");
+      }
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleAuthRedirect = (currentPath, isAuthenticated) => {
-    const isPublicRoute = publicRoutes.includes(currentPath);
-    const isAuthRoute = authRoutes.includes(currentPath);
-
-    if (isAuthenticated && isAuthRoute) {
-      router.push("/dashboard");
-    } else if (!isAuthenticated && !isPublicRoute) {
-      router.push("/login");
     }
   };
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-darkBg">
-        <div className="text-white text-lg">Loading...</div>
+        <div className="text-white">Loading...</div>
       </div>
     );
   }
