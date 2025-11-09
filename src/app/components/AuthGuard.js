@@ -19,11 +19,9 @@ export default function AuthGuard({ children }) {
 
   useEffect(() => {
     const initializeAuth = async () => {
-      // Only clear session on FIRST VISIT to the site in this browser session
       const hasVisited = sessionStorage.getItem("fintrack_visited");
 
       if (!hasVisited) {
-        // First visit in this browser session
         sessionStorage.setItem("fintrack_visited", "true");
         await supabase.auth.signOut();
       }
@@ -55,23 +53,18 @@ export default function AuthGuard({ children }) {
         pathname.startsWith(route)
       );
 
-      // Rule 1: If authenticated but on auth page, redirect to dashboard
       if (isAuthenticated && isAuthRoute) {
         router.push("/pages/dashboard");
         return;
       }
 
-      // Rule 2: If not authenticated but on protected page, redirect to login
       if (!isAuthenticated && isProtectedRoute) {
         router.push("/pages/login");
         return;
       }
-
-      // Rule 3: Allow public routes (like landing page) for everyone
-      // No redirect needed for public routes
     } catch (error) {
       console.error("Auth check failed:", error);
-      // Only redirect if on protected route
+
       if (protectedRoutes.some((route) => pathname.startsWith(route))) {
         router.push("/pages/login");
       }

@@ -21,3 +21,18 @@ Nov 7 TODO: LOGIN, BUDGETS, DASHBOARD
 
 Nov 8:
 - fixed AuthGuard issue
+api - for heavy query
+constants - api endpoints for each query
+service - business logic
+hooks - container for services functions
+
+- constants folder will use api url to access the api folder
+- service will be like the functions of the project (getTransactions, calculate)
+- custom hooks will be used for example, sign up, login, display Users, display transactions?
+
+Nov 9:
+- rename category.js to route.js
+- services/auth-service.js = for signUp and Login functions
+- hooks/useAuth = for auth-service.js container hooks
+- signup page imported useAuth hook
+- login page import useAuth hook

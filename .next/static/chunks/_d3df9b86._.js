@@ -44,7 +44,6 @@ async function signUp(email, password, userData) {
                 error: authError
             };
         }
-        // 2. Create user profile
         if (authData.user) {
             const { data: profileResult, error: profileError } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("users").insert([
                 {
@@ -652,7 +651,7 @@ function Login() {
         columnNumber: 5
     }, this);
 }
-_s(Login, "3QoOJUOBhuqAvY6XUT5lMJyr9AI=", false, function() {
+_s(Login, "lrW2z19GmxHxNPSovQuMP4P+C1I=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
     ];

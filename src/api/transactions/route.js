@@ -1,42 +1,31 @@
-import { NextResponse } from "next/server";
-import { requireAuth } from "@/lib/api-auth";
-import { rateLimit } from "@/lib/rate-limit";
-import { InputValidator } from "@/utils/validation";
+import { httpService } from "./http-service";
 
-export async function POST(request) {
-  try {
-    const { user, supabase } = await requireAuth();
+class TransactionService {
+  async getAllTransactions(filters = {}) {
+    return httpService.get("/api/transactions", { data: filters });
+  }
 
-    rateLimit(`api:${user.id}`, 50);
+  async getTransactionById(id) {
+    return httpService.get(`/api/transactions/${id}`);
+  }
 
-    const body = await request.json();
+  async createTransaction(transactionData) {
+    return httpService.post("/api/transactions", transactionData);
+  }
 
-    if (!InputValidator.validateTransactionData(body)) {
-      return NextResponse.json(
-        { error: "Invalid transaction data" },
-        { status: 400 }
-      );
-    }
+  async updateTransaction(id, transactionData) {
+    return httpService.put(`/api/transactions/${id}`, transactionData);
+  }
 
-    const sanitizedData = {
-      ...body,
-      description: InputValidator.sanitizeInput(body.description),
-      user_id: user.id,
-    };
+  async deleteTransaction(id) {
+    return httpService.delete(`/api/transactions/${id}`);
+  }
 
-    const { data, error } = await supabase
-      .from("transactions")
-      .insert([sanitizedData])
-      .select();
-
-    if (error) throw error;
-
-    return NextResponse.json({ data });
-  } catch (error) {
-    console.error("API Error: ", error);
-    return NextResponse.json(
-      { error: error.message || "Internal server error" },
-      { status: error.message === "Unauthorized" ? 401 : 500 }
-    );
+  async getTransactionsByDateRange(startDate, endDate) {
+    return httpService.get("/api/transactions/range", {
+      data: { startDate, endDate },
+    });
   }
 }
+
+export const transactionService = new TransactionService();

@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { signUp } from "@/utils/supabase-client";
 import Header from "@/app/components/Header";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -14,8 +14,7 @@ export default function SignUp() {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const { signUp, loading, error, clearError } = useAuth();
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -23,6 +22,7 @@ export default function SignUp() {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    if (error) clearError();
   };
 
   const togglePasswordVisibility = () => {
@@ -35,49 +35,17 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
 
-    if (!formData.firstName?.trim() || !formData.lastName?.trim()) {
-      setError("First name and last name are required");
-      setLoading(false);
-      return;
-    }
+    const result = await signUp(formData);
 
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match");
-      setLoading(false);
-      return;
-    }
-
-    if (formData.password.length < 6) {
-      setError("Password must be at least 6 characters");
-      setLoading(false);
-      return;
-    }
-
-    try {
-      const { data, error } = await signUp(formData.email, formData.password, {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-      });
-
-      if (error) {
-        setError(error.message);
+    if (result.success) {
+      if (result.profileCreated === false) {
+        alert("Account created but profile creation failed");
+        setTimeout(() => router.push("./login"), 3000);
       } else {
-        if (data.profileCreated === false) {
-          setError(`Account created successfully!`);
-          setTimeout(() => router.push("./login"), 2000);
-        } else {
-          alert("Account created successfully! You can now login.");
-          router.push("./login");
-        }
+        alert("Account created successfully! You can now login");
+        router.push("./login");
       }
-    } catch (err) {
-      setError("An unexpected error occured");
-      console.error("Signup error: ", err);
-    } finally {
-      setLoading(false);
     }
   };
 

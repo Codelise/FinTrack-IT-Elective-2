@@ -65,10 +65,8 @@ function AuthGuard(param) {
         "AuthGuard.useEffect": ()=>{
             const initializeAuth = {
                 "AuthGuard.useEffect.initializeAuth": async ()=>{
-                    // Only clear session on FIRST VISIT to the site in this browser session
                     const hasVisited = sessionStorage.getItem("fintrack_visited");
                     if (!hasVisited) {
-                        // First visit in this browser session
                         sessionStorage.setItem("fintrack_visited", "true");
                         await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.signOut();
                     }
@@ -95,21 +93,16 @@ function AuthGuard(param) {
             const isPublicRoute = publicRoutes.includes(pathname);
             const isAuthRoute = authRoutes.includes(pathname);
             const isProtectedRoute = protectedRoutes.some((route)=>pathname.startsWith(route));
-            // Rule 1: If authenticated but on auth page, redirect to dashboard
             if (isAuthenticated && isAuthRoute) {
                 router.push("/pages/dashboard");
                 return;
             }
-            // Rule 2: If not authenticated but on protected page, redirect to login
             if (!isAuthenticated && isProtectedRoute) {
                 router.push("/pages/login");
                 return;
             }
-        // Rule 3: Allow public routes (like landing page) for everyone
-        // No redirect needed for public routes
         } catch (error) {
             console.error("Auth check failed:", error);
-            // Only redirect if on protected route
             if (protectedRoutes.some((route)=>pathname.startsWith(route))) {
                 router.push("/pages/login");
             }
@@ -125,12 +118,12 @@ function AuthGuard(param) {
                 children: "Loading..."
             }, void 0, false, {
                 fileName: "[project]/src/app/components/AuthGuard.js",
-                lineNumber: 86,
+                lineNumber: 79,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/src/app/components/AuthGuard.js",
-            lineNumber: 85,
+            lineNumber: 78,
             columnNumber: 7
         }, this);
     }

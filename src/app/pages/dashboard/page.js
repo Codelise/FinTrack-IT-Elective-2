@@ -52,7 +52,7 @@ export default function Dashboard() {
                 <h1 className="text-white tracking-light text-2xl font-bold leading-tight md:text-[32px]">
                   Dashboard
                 </h1>
-                <p className="text-[#b79eb2] text-sm font-normal leading-normal">
+                <p className="text-[#b79eb2] text-lg font-normal leading-normal">
                   Overview of your financial health
                 </p>
               </div>
@@ -180,7 +180,7 @@ export default function Dashboard() {
                         className="border-[#b79eb2] bg-[#382935] border-t-2 w-full"
                         style={{ height: item.height }}
                       ></div>
-                      <p className="text-[#b79eb2] text-[13px] font-bold leading-normal tracking-[0.015em]">
+                      <p className="text-[#b79eb2] text-sm font-bold leading-normal tracking-[0.015em]">
                         {item.name}
                       </p>
                     </div>
@@ -189,14 +189,14 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <h2 className="text-white text-xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 md:text-[22px]">
+            <h2 className="text-white text-2xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 md:text-[22px]">
               Recent Transactions
             </h2>
 
             <div className="px-4 py-3">
               <label className="flex flex-col min-w-40 h-12 w-full">
                 <div className="flex w-full flex-1 items-stretch rounded-lg h-full">
-                  <div className="text-lightText flex border-none bg-darkCard items-center justify-center pl-4 rounded-l-lg border-r-0">
+                  <div className="text-[#b79eb2] flex border-none bg-[#382935] items-center justify-center pl-4 rounded-l-lg border-r-0">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24px"
@@ -211,7 +211,7 @@ export default function Dashboard() {
                     placeholder="Search transactions"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-darkCard focus:border-none h-full placeholder:text-lightText px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
+                    className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-[#382935] focus:border-none h-full placeholder:text-[#b79eb2] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
                   />
                 </div>
               </label>
@@ -222,23 +222,23 @@ export default function Dashboard() {
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
-                  className={`flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg px-4 transition-colors ${
+                  className={`flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg px-4  transition-colors cursor-pointer ${
                     activeFilter === filter
-                      ? "bg-berry text-white"
-                      : "bg-darkCard text-white hover:bg-darkCard/80"
+                      ? "bg-[#382935] text-white"
+                      : "bg-transparet text-white"
                   }`}
                 >
-                  <p className="text-sm font-medium leading-normal">{filter}</p>
+                  <p className="text-md font-medium leading-normal">{filter}</p>
                 </button>
               ))}
             </div>
 
             <div className="px-4 py-3">
-              <div className="flex overflow-hidden rounded-lg border border-darkBorder bg-darkBg">
+              <div className="flex overflow-hidden rounded-lg border border-[#523d4d] bg-[#171116]">
                 <div className="flex-1 overflow-x-auto">
                   <table className="w-full">
                     <thead>
-                      <tr className="bg-darkCard">
+                      <tr className="bg-[#261c24]">
                         <th className="px-4 py-3 text-left text-white text-sm font-medium leading-normal min-w-[120px]">
                           Date
                         </th>
@@ -255,21 +255,18 @@ export default function Dashboard() {
                     </thead>
                     <tbody>
                       {transactions.map((transaction, index) => (
-                        <tr
-                          key={index}
-                          className="border-t border-t-darkBorder"
-                        >
-                          <td className="h-[72px] px-4 py-2 text-lightText text-sm font-normal leading-normal">
+                        <tr key={index} className="border-t border-t-[#523d4d]">
+                          <td className="h-[72px] px-4 py-2 text-[#b79eb2] text-md font-normal leading-normal">
                             {transaction.date}
                           </td>
-                          <td className="h-[72px] px-4 py-2 text-lightText text-sm font-normal leading-normal">
+                          <td className="h-[72px] px-4 py-2 text-[#b79eb2] text-md font-normal leading-normal">
                             {transaction.category}
                           </td>
-                          <td className="h-[72px] px-4 py-2 text-lightText text-sm font-normal leading-normal">
+                          <td className="h-[72px] px-4 py-2 text-[#b79eb2] text-md font-normal leading-normal">
                             {transaction.description}
                           </td>
                           <td
-                            className={`h-[72px] px-4 py-2 text-sm font-normal leading-normal ${
+                            className={`h-[72px] px-4 py-2 text-md font-normal leading-normal ${
                               transaction.amount.startsWith("+")
                                 ? "text-green-500"
                                 : "text-red-500"
