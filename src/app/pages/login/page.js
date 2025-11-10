@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "@/utils/supabase-client";
 import Header from "@/app/components/Header";
 import AuthGuard from "@/app/components/AuthGuard";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -12,8 +13,7 @@ export default function Login() {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const { signIn, loading, error, clearError } = useAuth();
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -21,6 +21,7 @@ export default function Login() {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    if (error) clearError();
   };
 
   const togglePasswordVisibility = () => {
@@ -29,28 +30,12 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
 
-    if (!formData.email || !formData.password) {
-      setError("Please fill in all fields");
-      setLoading(false);
-      return;
-    }
-    try {
-      const { data, error } = await signIn(formData.email, formData.password);
+    const result = await signIn(formData.email, formData.password);
 
-      if (error) {
-        setError(error.message);
-      } else {
-        console.log("Login successful: ", data.user);
-        router.push("./dashboard");
-      }
-    } catch (err) {
-      setError("An unexpected error occured");
-      console.error("Login error: ", err);
-    } finally {
-      setLoading(false);
+    if (result.success) {
+      alert("Login successful: ", result.data.user);
+      router.push("./dashboard");
     }
   };
 

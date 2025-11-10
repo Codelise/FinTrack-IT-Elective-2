@@ -17,7 +17,6 @@ export async function signUp(email, password, userData) {
       return { data: null, error: authError };
     }
 
-    // 2. Create user profile
     if (authData.user) {
       const { data: profileResult, error: profileError } = await supabase
         .from("users")

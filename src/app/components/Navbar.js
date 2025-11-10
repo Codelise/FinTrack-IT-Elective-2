@@ -8,7 +8,6 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     try {
-      // Sign out from Supabase
       const { error } = await supabase.auth.signOut();
 
       if (error) {
@@ -16,12 +15,10 @@ export default function Navbar() {
         return;
       }
 
-      // Clear all session storage
       sessionStorage.removeItem("fintrack_visited");
       sessionStorage.removeItem("supabase.auth.token");
       localStorage.removeItem("supabase.auth.token");
 
-      // Redirect to login page
       router.push("/pages/login");
     } catch (error) {
       console.error("Logout failed:", error);

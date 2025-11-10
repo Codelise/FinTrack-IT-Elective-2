@@ -21,17 +21,14 @@ function Navbar() {
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const handleLogout = async ()=>{
         try {
-            // Sign out from Supabase
             const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.signOut();
             if (error) {
                 alert("Logout error:", error);
                 return;
             }
-            // Clear all session storage
             sessionStorage.removeItem("fintrack_visited");
             sessionStorage.removeItem("supabase.auth.token");
             localStorage.removeItem("supabase.auth.token");
-            // Redirect to login page
             router.push("/pages/login");
         } catch (error) {
             console.error("Logout failed:", error);
@@ -55,7 +52,7 @@ function Navbar() {
                                     fill: "currentColor"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/components/Navbar.js",
-                                    lineNumber: 40,
+                                    lineNumber: 37,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -65,18 +62,18 @@ function Navbar() {
                                     fill: "currentColor"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/components/Navbar.js",
-                                    lineNumber: 44,
+                                    lineNumber: 41,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/components/Navbar.js",
-                            lineNumber: 35,
+                            lineNumber: 32,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/app/components/Navbar.js",
-                        lineNumber: 34,
+                        lineNumber: 31,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -84,13 +81,13 @@ function Navbar() {
                         children: "FinTrack"
                     }, void 0, false, {
                         fileName: "[project]/src/app/components/Navbar.js",
-                        lineNumber: 52,
+                        lineNumber: 49,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/components/Navbar.js",
-                lineNumber: 33,
+                lineNumber: 30,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -104,7 +101,7 @@ function Navbar() {
                             children: "Dashboard"
                         }, void 0, false, {
                             fileName: "[project]/src/app/components/Navbar.js",
-                            lineNumber: 58,
+                            lineNumber: 55,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -113,7 +110,7 @@ function Navbar() {
                             children: "Transactions"
                         }, void 0, false, {
                             fileName: "[project]/src/app/components/Navbar.js",
-                            lineNumber: 64,
+                            lineNumber: 61,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -122,7 +119,7 @@ function Navbar() {
                             children: "Reports"
                         }, void 0, false, {
                             fileName: "[project]/src/app/components/Navbar.js",
-                            lineNumber: 70,
+                            lineNumber: 67,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -133,29 +130,29 @@ function Navbar() {
                                 children: "Logout"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/components/Navbar.js",
-                                lineNumber: 80,
+                                lineNumber: 77,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/components/Navbar.js",
-                            lineNumber: 76,
+                            lineNumber: 73,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/components/Navbar.js",
-                    lineNumber: 57,
+                    lineNumber: 54,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/components/Navbar.js",
-                lineNumber: 56,
+                lineNumber: 53,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/components/Navbar.js",
-        lineNumber: 32,
+        lineNumber: 29,
         columnNumber: 5
     }, this);
 }
@@ -256,7 +253,7 @@ function Dashboard() {
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-[#b79eb2] text-sm font-normal leading-normal",
+                                            className: "text-[#b79eb2] text-lg font-normal leading-normal",
                                             children: "Overview of your financial health"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/dashboard/page.js",
@@ -582,7 +579,7 @@ function Dashboard() {
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                                                className: "text-[#b79eb2] text-[13px] font-bold leading-normal tracking-[0.015em]",
+                                                                className: "text-[#b79eb2] text-sm font-bold leading-normal tracking-[0.015em]",
                                                                 children: item.name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
@@ -613,7 +610,7 @@ function Dashboard() {
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                className: "text-white text-xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 md:text-[22px]",
+                                className: "text-white text-2xl font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5 md:text-[22px]",
                                 children: "Recent Transactions"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/pages/dashboard/page.js",
@@ -628,7 +625,7 @@ function Dashboard() {
                                         className: "flex w-full flex-1 items-stretch rounded-lg h-full",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-lightText flex border-none bg-darkCard items-center justify-center pl-4 rounded-l-lg border-r-0",
+                                                className: "text-[#b79eb2] flex border-none bg-[#382935] items-center justify-center pl-4 rounded-l-lg border-r-0",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
                                                     xmlns: "http://www.w3.org/2000/svg",
                                                     width: "24px",
@@ -656,7 +653,7 @@ function Dashboard() {
                                                 placeholder: "Search transactions",
                                                 value: searchQuery,
                                                 onChange: (e)=>setSearchQuery(e.target.value),
-                                                className: "form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-darkCard focus:border-none h-full placeholder:text-lightText px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
+                                                className: "form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-[#382935] focus:border-none h-full placeholder:text-[#b79eb2] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
                                                 lineNumber: 210,
@@ -682,9 +679,9 @@ function Dashboard() {
                                 className: "flex gap-3 p-3 flex-wrap pr-4",
                                 children: filters.map((filter)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>setActiveFilter(filter),
-                                        className: "flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg px-4 transition-colors ".concat(activeFilter === filter ? "bg-berry text-white" : "bg-darkCard text-white hover:bg-darkCard/80"),
+                                        className: "flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-lg px-4  transition-colors cursor-pointer ".concat(activeFilter === filter ? "bg-[#382935] text-white" : "bg-transparet text-white"),
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-sm font-medium leading-normal",
+                                            className: "text-md font-medium leading-normal",
                                             children: filter
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/dashboard/page.js",
@@ -704,7 +701,7 @@ function Dashboard() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "px-4 py-3",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "flex overflow-hidden rounded-lg border border-darkBorder bg-darkBg",
+                                    className: "flex overflow-hidden rounded-lg border border-[#523d4d] bg-[#171116]",
                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex-1 overflow-x-auto",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("table", {
@@ -712,7 +709,7 @@ function Dashboard() {
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("thead", {
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                        className: "bg-darkCard",
+                                                        className: "bg-[#261c24]",
                                                         children: [
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
                                                                 className: "px-4 py-3 text-left text-white text-sm font-medium leading-normal min-w-[120px]",
@@ -759,38 +756,38 @@ function Dashboard() {
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
                                                     children: transactions.map((transaction, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tr", {
-                                                            className: "border-t border-t-darkBorder",
+                                                            className: "border-t border-t-[#523d4d]",
                                                             children: [
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                    className: "h-[72px] px-4 py-2 text-lightText text-sm font-normal leading-normal",
+                                                                    className: "h-[72px] px-4 py-2 text-[#b79eb2] text-md font-normal leading-normal",
                                                                     children: transaction.date
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/pages/dashboard/page.js",
+                                                                    lineNumber: 259,
+                                                                    columnNumber: 27
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
+                                                                    className: "h-[72px] px-4 py-2 text-[#b79eb2] text-md font-normal leading-normal",
+                                                                    children: transaction.category
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/pages/dashboard/page.js",
                                                                     lineNumber: 262,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                    className: "h-[72px] px-4 py-2 text-lightText text-sm font-normal leading-normal",
-                                                                    children: transaction.category
+                                                                    className: "h-[72px] px-4 py-2 text-[#b79eb2] text-md font-normal leading-normal",
+                                                                    children: transaction.description
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/pages/dashboard/page.js",
                                                                     lineNumber: 265,
                                                                     columnNumber: 27
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                    className: "h-[72px] px-4 py-2 text-lightText text-sm font-normal leading-normal",
-                                                                    children: transaction.description
-                                                                }, void 0, false, {
-                                                                    fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                    lineNumber: 268,
-                                                                    columnNumber: 27
-                                                                }, this),
-                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
-                                                                    className: "h-[72px] px-4 py-2 text-sm font-normal leading-normal ".concat(transaction.amount.startsWith("+") ? "text-green-500" : "text-red-500"),
+                                                                    className: "h-[72px] px-4 py-2 text-md font-normal leading-normal ".concat(transaction.amount.startsWith("+") ? "text-green-500" : "text-red-500"),
                                                                     children: transaction.amount
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                    lineNumber: 271,
+                                                                    lineNumber: 268,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             ]
