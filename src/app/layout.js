@@ -1,5 +1,5 @@
 import "./globals.css";
-import AuthGuard from "./components/AuthGuard";
+// import AuthGuard from "./components/AuthGuard";
 
 export const metadata = {
   title: "FinTrack",
@@ -9,9 +9,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="font-sans">
-        <AuthGuard>{children}</AuthGuard>
-      </body>
+      <body className="font-sans">{children}</body>
     </html>
   );
 }

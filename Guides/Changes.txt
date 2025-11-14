@@ -36,3 +36,25 @@ Nov 9:
 - hooks/useAuth = for auth-service.js container hooks
 - signup page imported useAuth hook
 - login page import useAuth hook
+
+
+Nov 14:
+- add is_onboarded column in users table = to check for user's first time logged in
+- temporarily disabled AuthGuard and modified main layout.js
+- disbaled authguard in login.js
+- setBudget page = for setting budget after the user's first time logged in
+- setGoal page = for setting goal after the user's first time logged in
+- created services/onboarding-service.js = to check if the user was onboard or not (for setBuget and setGoal)
+- created hooks/useOnboarding.js = to import services/onboarding-services
+- implement useOnboarding on useAuth hook
+- modified  login page to use onboard to check if the user's first time logged in or not
+- context/UserContext.js = to manage global user state
+- modified api/budget/route.js to add budget query
+- created services/budget-service.js = functions for setting budget
+- created hooks/useBudget.js
+- add budget_name to budgets table
+- modified api/goal/route.js  = new queries
+- created services/goal-service.js = function for goal queries (first time log in)
+- created hooks/useGoal.js = for services/goal-service.js
+- update Navbar.js component to be responsive and add a logout confirm modal
+- made dashboard a bit responsive hehehe

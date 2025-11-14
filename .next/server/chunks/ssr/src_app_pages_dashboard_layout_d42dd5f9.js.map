@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///home/champorado/Desktop/FinTrack-IT-Elective-2/src/app/pages/dashboard/layout.js"],"sourcesContent":["export const metadata = {\n  title: \"FinTrack\",\n  description: \"Finance Tracker\",\n};\n\nexport default function RootLayout({ children }) {\n  return (\n    <html lang=\"en\">\n      <body className=\"font-sans\">{children}</body>\n    </html>\n  );\n}\n"],"names":[],"mappings":";;;;;;;;AAAO,MAAM,WAAW;IACtB,OAAO;IACP,aAAa;AACf;AAEe,SAAS,WAAW,EAAE,QAAQ,EAAE;IAC7C,qBACE,8OAAC;QAAK,MAAK;kBACT,cAAA,8OAAC;YAAK,WAAU;sBAAa;;;;;;;;;;;AAGnC","debugId":null}}]
+}
