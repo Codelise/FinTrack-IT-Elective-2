@@ -42,7 +42,6 @@ export const useAuth = () => {
         setError(result.error.message);
         return { success: false, error: result.error, profileCreated: false };
       } else {
-        // Set user state after successful signup
         if (result.data?.user) {
           setUser(result.data.user);
         }
@@ -71,11 +70,9 @@ export const useAuth = () => {
         setError(result.error.message);
         return { success: false, error: result.error };
       } else {
-        // Set user state after successful login
         if (result.data?.user) {
           setUser(result.data.user);
 
-          // Check onboarding status for this user
           const onboardingResult = await checkOnboardingStatus(
             result.data.user.id
           );
@@ -101,7 +98,7 @@ export const useAuth = () => {
     setLoading(true);
     try {
       const result = await authService.signOut();
-      setUser(null); // Clear user state on signout
+      setUser(null);
       return { success: true, error: result.error };
     } catch (err) {
       return { success: false, error: err };

@@ -395,7 +395,6 @@ const useAuth = ()=>{
                     profileCreated: false
                 };
             } else {
-                // Set user state after successful signup
                 if (result.data?.user) {
                     setUser(result.data.user);
                 }
@@ -431,10 +430,8 @@ const useAuth = ()=>{
                     error: result.error
                 };
             } else {
-                // Set user state after successful login
                 if (result.data?.user) {
                     setUser(result.data.user);
-                    // Check onboarding status for this user
                     const onboardingResult = await checkOnboardingStatus(result.data.user.id);
                     return {
                         success: true,
@@ -462,7 +459,7 @@ const useAuth = ()=>{
         setLoading(true);
         try {
             const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["authService"].signOut();
-            setUser(null); // Clear user state on signout
+            setUser(null);
             return {
                 success: true,
                 error: result.error

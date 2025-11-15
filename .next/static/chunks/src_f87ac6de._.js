@@ -303,7 +303,7 @@ class OnBoardingService {
         try {
             const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("users").select("is_onboarded").eq("user_id", userId).single();
             if (error) {
-                console.error("Error checking onboarding status: ", error);
+                console.error("Error checking onboarding status:", error);
                 return {
                     isOnboarded: false,
                     error
@@ -314,7 +314,7 @@ class OnBoardingService {
                 error: null
             };
         } catch (error) {
-            console.error("Exception checking onboarding status: ", error);
+            console.error("Exception checking onboarding status:", error);
             return {
                 isOnboarded: false,
                 error
@@ -323,23 +323,26 @@ class OnBoardingService {
     }
     async markAsOnboarded(userId) {
         try {
+            console.log("🔧 DEBUG: Attempting to mark user as onboarded, user_id:", userId);
             const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].from("users").update({
                 is_onboarded: true
-            }).eq("user_id", userId).select().single();
+            }).eq("user_id", userId).select();
+            // .single();
             if (error) {
-                console.error("Error making user as onboarded: ", error);
+                console.error("❌ Error marking user as onboarded:", error);
                 return {
                     success: false,
                     error
                 };
             }
+            console.log("✅ Successfully marked user as onboarded, data:", data);
             return {
                 success: true,
                 data,
                 error: null
             };
         } catch (error) {
-            console.error("Exception marking user as onboarded: ", error);
+            console.error("❌ Exception marking user as onboarded:", error);
             return {
                 success: false,
                 error
@@ -398,7 +401,7 @@ const useOnboarding = ()=>{
             setLoading(true);
             setError(null);
             try {
-                const result = await onboardingService.checkOnboardingStatus(userId);
+                const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$onboarding$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["onBoardingService"].checkOnboardingStatus(userId);
                 if (result.error) {
                     setError(result.error.message);
                     return {
@@ -431,7 +434,7 @@ const useOnboarding = ()=>{
             setLoading(true);
             setError(null);
             try {
-                const result = await onboardingService.markAsOnboarded(userId);
+                const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$onboarding$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["onBoardingService"].markAsOnboarded(userId);
                 if (result.error) {
                     setError(result.error.message);
                     return {
@@ -486,7 +489,9 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/auth-service.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useOnboarding.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/supabase.js [app-client] (ecmascript)");
 var _s = __turbopack_context__.k.signature();
+;
 ;
 ;
 ;
@@ -496,6 +501,23 @@ const useAuth = ()=>{
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const { checkOnboardingStatus, markAsOnboarded, loading: onboardingLoading, error: onboardingError } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useOnboarding"])();
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "useAuth.useEffect": ()=>{
+            const checkUserSession = {
+                "useAuth.useEffect.checkUserSession": async ()=>{
+                    try {
+                        const { data: { session } } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["supabase"].auth.getSession();
+                        if (session === null || session === void 0 ? void 0 : session.user) {
+                            setUser(session.user);
+                        }
+                    } catch (error) {
+                        console.error("Error checking user session:", error);
+                    }
+                }
+            }["useAuth.useEffect.checkUserSession"];
+            checkUserSession();
+        }
+    }["useAuth.useEffect"], []);
     const signUp = async (formData)=>{
         setLoading(true);
         setError(null);
@@ -549,12 +571,17 @@ const useAuth = ()=>{
                 var _result_data;
                 if ((_result_data = result.data) === null || _result_data === void 0 ? void 0 : _result_data.user) {
                     setUser(result.data.user);
+                    const onboardingResult = await checkOnboardingStatus(result.data.user.id);
+                    return {
+                        success: true,
+                        data: result.data,
+                        isOnboarded: onboardingResult.isOnboarded
+                    };
                 }
-                const onboardingResult = await checkOnboardingStatus(result.data.user.id);
                 return {
                     success: true,
                     data: result.data,
-                    isOnboarded: onboardingResult.isOnboarded
+                    isOnboarded: false
                 };
             }
         } catch (err) {
@@ -603,7 +630,7 @@ const useAuth = ()=>{
         user
     };
 };
-_s(useAuth, "Eo+Gb+lVD2S3OKTnwWz2ZGmgC30=", false, function() {
+_s(useAuth, "imUjdslvfT3h+7EszBDRAIuccUQ=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useOnboarding"]
     ];
@@ -662,7 +689,7 @@ function SignUp() {
         const result = await signUp(formData);
         if (result.success) {
             if (result.profileCreated === false) {
-                alert("Account created but profile creation failed");
+                alert("Account created successfully! You can now login");
                 setTimeout(()=>router.push("./login"), 3000);
             } else {
                 alert("Account created successfully! You can now login");

@@ -1,7 +1,11 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/page": "app/page.js",
+  "/pages/dashboard/budget/page": "app/pages/dashboard/budget/page.js",
   "/pages/dashboard/page": "app/pages/dashboard/page.js",
   "/pages/login/page": "app/pages/login/page.js",
   "/pages/setBudget/page": "app/pages/setBudget/page.js",
-  "/pages/setGoal/page": "app/pages/setGoal/page.js"
+  "/pages/setGoal/page": "app/pages/setGoal/page.js",
+  "/pages/signup/page": "app/pages/signup/page.js"
 }

@@ -58,3 +58,9 @@ Nov 14:
 - created hooks/useGoal.js = for services/goal-service.js
 - update Navbar.js component to be responsive and add a logout confirm modal
 - made dashboard a bit responsive hehehe
+
+Nov 15:
+- added life to landing page
+- remove Header.js from sign up and login
+- added budget and goal links to dashboard Navbar.js
+- created Budget page

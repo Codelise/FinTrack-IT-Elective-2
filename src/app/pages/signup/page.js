@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Header from "@/app/components/Header";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function SignUp() {
@@ -40,7 +39,7 @@ export default function SignUp() {
 
     if (result.success) {
       if (result.profileCreated === false) {
-        alert("Account created but profile creation failed");
+        alert("Account created successfully! You can now login");
         setTimeout(() => router.push("./login"), 3000);
       } else {
         alert("Account created successfully! You can now login");
@@ -52,8 +51,7 @@ export default function SignUp() {
   return (
     <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#171116] dark group/design-root overflow-x-hidden">
       <div className="layout-container flex h-full grow flex-col">
-        <Header showLoginButton />
-        <div className="px-10 flex flex-1 justify-center align-center py-20">
+        <div className="px-10 flex flex-1 justify-center align-center py-30">
           <div className="layout-content-container flex flex-col w-lg  max-w-lg  flex-1">
             <h2 className="text-white tracking-light text-4xl font-bold leading-tight px-4 text-center pb-10 pt-5">
               Create your account

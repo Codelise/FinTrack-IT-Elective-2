@@ -70,15 +70,27 @@ export default function Navbar() {
             </Link>
             <Link
               className="text-white text-base font-medium leading-normal hover:text-lightText transition-colors"
-              href="/pages/transactions"
+              href="/pages/dashboard/transactions"
             >
               Transactions
             </Link>
             <Link
               className="text-white text-base font-medium leading-normal hover:text-lightText transition-colors"
-              href="/pages/reports"
+              href="/pages/dashboard/reports"
             >
               Reports
+            </Link>
+            <Link
+              className="text-white text-base font-medium leading-normal hover:text-lightText transition-colors"
+              href="/pages/dashboard/budget"
+            >
+              Budget
+            </Link>
+            <Link
+              className="text-white text-base font-medium leading-normal hover:text-lightText transition-colors"
+              href="/pages/dashboard/goal"
+            >
+              Goal
             </Link>
             <button
               onClick={() => setShowLogoutModal(true)}
