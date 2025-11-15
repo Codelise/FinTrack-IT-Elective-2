@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
+import Link from "next/link";
 
 export default function SignUp() {
   const [formData, setFormData] = useState({
@@ -49,27 +50,31 @@ export default function SignUp() {
   };
 
   return (
-    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#171116] dark group/design-root overflow-x-hidden">
-      <div className="layout-container flex h-full grow flex-col">
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#171116] overflow-x-hidden">
+      <div className="absolute top-1/4 left-10 w-40 h-40 bg-[#9c1676]/10 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-1/3 right-10 w-32 h-32 bg-[#9c1676]/5 rounded-full blur-2xl animate-pulse-slow animation-delay-2000"></div>
+      <div className="absolute top-2/3 left-1/4 w-24 h-24 bg-[#9c1676]/8 rounded-full blur-xl animate-pulse-slow animation-delay-1000"></div>
+
+      <div className="layout-container flex h-full grow flex-col z-10">
         <div className="px-10 flex flex-1 justify-center align-center py-30">
-          <div className="layout-content-container flex flex-col w-lg  max-w-lg  flex-1">
-            <h2 className="text-white tracking-light text-4xl font-bold leading-tight px-4 text-center pb-10 pt-5">
+          <div className="layout-content-container flex flex-col w-lg max-w-lg flex-1">
+            <h2 className="text-white tracking-light text-4xl font-bold leading-tight px-4 text-center pb-10 pt-5 animate-fade-in-up">
               Create your account
             </h2>
 
             <form onSubmit={handleSubmit}>
               {error && (
-                <div className="bg-red-500/20 border border-red-500 text-white px-4 py-3 rounded">
+                <div className="bg-red-500/20 border border-red-500 text-white px-4 py-3 rounded animate-shake mb-4">
                   {error}
                 </div>
               )}
 
-              <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 py-3">
+              <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 py-3 animate-fade-in-up animation-delay-200">
                 <label
                   htmlFor="firstName"
-                  className="flex flex-col min-w-40 flex-1"
+                  className="group flex flex-col min-w-40 flex-1"
                 >
-                  <p className="text-white text-xl font-medium leading-normal pb-2">
+                  <p className="text-white text-xl font-medium leading-normal pb-2 transition-all duration-300 group-hover:text-[#e5a5d1]">
                     First Name
                   </p>
                   <input
@@ -80,14 +85,14 @@ export default function SignUp() {
                     value={formData.firstName}
                     onChange={handleChange}
                     placeholder="Enter your first name"
-                    className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#523d4c] h-14 placeholder:text-[#b79eb0] p-[15px]  pr-2 text-lg font-normal leading-normal"
+                    className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#9c1676] h-14 placeholder:text-[#b79eb0] p-[15px] pr-2 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c1676]/20 hover:border-[#63365a]"
                   />
                 </label>
                 <label
                   htmlFor="lastName"
-                  className="flex flex-col min-w-40 flex-1"
+                  className="group flex flex-col min-w-40 flex-1"
                 >
-                  <p className="text-white text-xl font-medium leading-normal pb-2">
+                  <p className="text-white text-xl font-medium leading-normal pb-2 transition-all duration-300 group-hover:text-[#e5a5d1]">
                     Last Name
                   </p>
                   <input
@@ -98,16 +103,17 @@ export default function SignUp() {
                     value={formData.lastName}
                     onChange={handleChange}
                     placeholder="Enter your last name"
-                    className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#523d4c] h-14 placeholder:text-[#b79eb0] p-[15px]  pr-2 text-lg font-normal leading-normal"
+                    className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#9c1676] h-14 placeholder:text-[#b79eb0] p-[15px] pr-2 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c1676]/20 hover:border-[#63365a]"
                   />
                 </label>
               </div>
-              <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 py-3">
+
+              <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 py-3 animate-fade-in-up animation-delay-400">
                 <label
                   htmlFor="email"
-                  className="flex flex-col min-w-40 flex-1"
+                  className="group flex flex-col min-w-40 flex-1"
                 >
-                  <p className="text-white text-xl font-medium leading-normal pb-2">
+                  <p className="text-white text-xl font-medium leading-normal pb-2 transition-all duration-300 group-hover:text-[#e5a5d1]">
                     Email
                   </p>
                   <input
@@ -119,19 +125,20 @@ export default function SignUp() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Enter your email"
-                    className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#523d4c] h-14 placeholder:text-[#b79eb0] p-[15px] pr-2 text-lg font-normal leading-normal"
+                    className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#9c1676] h-14 placeholder:text-[#b79eb0] p-[15px] pr-2 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c1676]/20 hover:border-[#63365a]"
                   />
                 </label>
               </div>
-              <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 py-3">
+
+              <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 py-3 animate-fade-in-up animation-delay-600">
                 <label
                   htmlFor="password"
-                  className="flex flex-col min-w-40 flex-1"
+                  className="group flex flex-col min-w-40 flex-1"
                 >
-                  <p className="text-white text-xl font-medium leading-normal pb-2">
+                  <p className="text-white text-xl font-medium leading-normal pb-2 transition-all duration-300 group-hover:text-[#e5a5d1]">
                     Password
                   </p>
-                  <div className="flex w-full flex-1 items-stretch rounded-lg">
+                  <div className="flex w-full flex-1 items-stretch rounded-lg group/password">
                     <input
                       id="password"
                       name="password"
@@ -141,12 +148,12 @@ export default function SignUp() {
                       value={formData.password}
                       onChange={handleChange}
                       placeholder="Enter your password"
-                      className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#523d4c] h-14 placeholder:text-[#b79eb0] p-[15px] rounded-r-none border-r-0 text-lg font-normal leading-normal"
+                      className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#9c1676] h-14 placeholder:text-[#b79eb0] p-[15px] rounded-r-none border-r-0 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c1676]/20 hover:border-[#63365a]"
                     />
                     <button
                       type="button"
                       onClick={togglePasswordVisibility}
-                      className="text-[#b79eb0] flex border border-[#523d4c] bg-[#261c23] items-center justify-center px-4 rounded-r-lg border-l-0 hover:bg-[#2d212a] transition-colors"
+                      className="text-[#b79eb0] flex border border-[#523d4c] bg-[#261c23] items-center justify-center px-4 rounded-r-lg border-l-0 hover:bg-[#2d212a] transition-all duration-300 hover:scale-110 hover:text-white group-hover/password:border-[#63365a]"
                     >
                       {showPassword ? (
                         <svg
@@ -173,15 +180,16 @@ export default function SignUp() {
                   </div>
                 </label>
               </div>
-              <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 py-3">
+
+              <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 py-3 animate-fade-in-up animation-delay-800">
                 <label
                   htmlFor="confirmPassword"
-                  className="flex flex-col min-w-40 flex-1"
+                  className="group flex flex-col min-w-40 flex-1"
                 >
-                  <p className="text-white text-xl font-medium leading-normal pb-2">
+                  <p className="text-white text-xl font-medium leading-normal pb-2 transition-all duration-300 group-hover:text-[#e5a5d1]">
                     Confirm Password
                   </p>
-                  <div className="flex w-full flex-1 items-stretch rounded-lg">
+                  <div className="flex w-full flex-1 items-stretch rounded-lg group/confirm">
                     <input
                       id="confirmPassword"
                       name="confirmPassword"
@@ -191,12 +199,12 @@ export default function SignUp() {
                       value={formData.confirmPassword}
                       onChange={handleChange}
                       placeholder="Confirm password"
-                      className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#523d4c] h-14 placeholder:text-[#b79eb0] p-[15px] rounded-r-none border-r-0 text-lg font-normal leading-normal"
+                      className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#9c1676] h-14 placeholder:text-[#b79eb0] p-[15px] rounded-r-none border-r-0 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c1676]/20 hover:border-[#63365a]"
                     />
                     <button
                       type="button"
                       onClick={toggleConfirmPasswordVisibility}
-                      className="text-[#b79eb0] flex border border-[#523d4c] bg-[#261c23] items-center justify-center px-4 rounded-r-lg border-l-0 hover:bg-[#2d212a] transition-colors"
+                      className="text-[#b79eb0] flex border border-[#523d4c] bg-[#261c23] items-center justify-center px-4 rounded-r-lg border-l-0 hover:bg-[#2d212a] transition-all duration-300 hover:scale-110 hover:text-white group-hover/confirm:border-[#63365a]"
                     >
                       {showConfirmPassword ? (
                         <svg
@@ -223,21 +231,132 @@ export default function SignUp() {
                   </div>
                 </label>
               </div>
-              <div className="flex px-4 py-5">
+
+              <div className="flex px-4 py-5 animate-fade-in-up animation-delay-1000">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-[#9c1676] text-white text-base font-bold leading-normal tracking-[0.015em]"
+                  className="group relative flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-[#9c1676] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[#9c1676]/40"
                 >
-                  <span className="truncate text-xl font-extrabold">
-                    {loading ? "Creating account..." : "Create Account"}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+                  <span className="truncate text-xl font-extrabold relative z-10 flex items-center gap-2">
+                    {loading ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Creating account...
+                      </>
+                    ) : (
+                      "Create Account"
+                    )}
                   </span>
                 </button>
               </div>
             </form>
+
+            <p className="text-[#b79eb0] text-lg font-normal leading-normal pb-3 pt-1 px-4 text-center animate-fade-in animation-delay-1200">
+              Already have an account?{" "}
+              <Link
+                href="./login"
+                className="text-[#9c1676] hover:text-[#e5a5d1] transition-all duration-300 hover:underline hover:scale-105 inline-block"
+              >
+                Log in
+              </Link>
+            </p>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes shake {
+          0%,
+          100% {
+            transform: translateX(0);
+          }
+          25% {
+            transform: translateX(-5px);
+          }
+          75% {
+            transform: translateX(5px);
+          }
+        }
+
+        @keyframes pulse-slow {
+          0%,
+          100% {
+            opacity: 0.1;
+          }
+          50% {
+            opacity: 0.2;
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.4s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-shake {
+          animation: shake 0.5s ease-in-out;
+        }
+
+        .animate-pulse-slow {
+          animation: pulse-slow 3s ease-in-out infinite;
+        }
+
+        .animation-delay-200 {
+          animation-delay: 0.2s;
+        }
+
+        .animation-delay-400 {
+          animation-delay: 0.4s;
+        }
+
+        .animation-delay-600 {
+          animation-delay: 0.6s;
+        }
+
+        .animation-delay-800 {
+          animation-delay: 0.8s;
+        }
+
+        .animation-delay-1000 {
+          animation-delay: 1s;
+        }
+
+        .animation-delay-1200 {
+          animation-delay: 1.2s;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+      `}</style>
     </div>
   );
 }

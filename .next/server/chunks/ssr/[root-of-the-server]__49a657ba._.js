@@ -1,0 +1,1032 @@
+module.exports = [
+"[externals]/next/dist/server/app-render/action-async-storage.external.js [external] (next/dist/server/app-render/action-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/server/app-render/action-async-storage.external.js", () => require("next/dist/server/app-render/action-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/app-render/work-unit-async-storage.external.js [external] (next/dist/server/app-render/work-unit-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/server/app-render/work-unit-async-storage.external.js", () => require("next/dist/server/app-render/work-unit-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[externals]/next/dist/server/app-render/work-async-storage.external.js [external] (next/dist/server/app-render/work-async-storage.external.js, cjs)", ((__turbopack_context__, module, exports) => {
+
+const mod = __turbopack_context__.x("next/dist/server/app-render/work-async-storage.external.js", () => require("next/dist/server/app-render/work-async-storage.external.js"));
+
+module.exports = mod;
+}),
+"[project]/src/lib/supabase.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "supabase",
+    ()=>supabase
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/@supabase/supabase-js/dist/module/index.js [app-ssr] (ecmascript) <locals>");
+;
+const supabaseUrl = ("TURBOPACK compile-time value", "https://xluxxuyionzsocdvinax.supabase.co");
+const supabaseAnonKey = ("TURBOPACK compile-time value", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhsdXh4dXlpb256c29jZHZpbmF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzODMwNjcsImV4cCI6MjA3Nzk1OTA2N30.iOzYJKNYpIfpdht3V8PX_EU0KgYmuH-c8NaQKjvMIG0");
+const supabase = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$supabase$2f$supabase$2d$js$2f$dist$2f$module$2f$index$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$locals$3e$__["createClient"])(supabaseUrl, supabaseAnonKey, {
+    auth: {
+        autoRefreshToken: true,
+        persistSession: true,
+        detectSessionInUrl: true,
+        flowType: "pkce",
+        debug: false
+    }
+});
+}),
+"[project]/src/api/auth/route.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "signIn",
+    ()=>signIn,
+    "signOut",
+    ()=>signOut,
+    "signUp",
+    ()=>signUp
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/supabase.js [app-ssr] (ecmascript)");
+;
+async function signUp(email, password, userData) {
+    try {
+        const { data: authData, error: authError } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].auth.signUp({
+            email,
+            password,
+            options: {
+                data: {
+                    first_name: userData.firstName,
+                    last_name: userData.lastName
+                }
+            }
+        });
+        if (authError) {
+            return {
+                data: null,
+                error: authError
+            };
+        }
+        if (authData.user) {
+            const { data: profileResult, error: profileError } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("users").insert([
+                {
+                    user_id: authData.user.id,
+                    first_name: userData.firstName,
+                    last_name: userData.lastName,
+                    email: email
+                }
+            ]).select();
+            if (profileError) {
+                console.warn("Profile creation had issues, but auth user created:", profileError);
+                return {
+                    data: {
+                        user: authData.user,
+                        profileCreated: false
+                    },
+                    error: null
+                };
+            }
+            return {
+                data: {
+                    user: authData.user,
+                    profile: profileResult[0],
+                    profileCreated: true
+                },
+                error: null
+            };
+        }
+        return {
+            data: authData,
+            error: null
+        };
+    } catch (error) {
+        console.error("Signup error:", error);
+        return {
+            data: null,
+            error
+        };
+    }
+}
+async function signIn(email, password) {
+    const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].auth.signInWithPassword({
+        email,
+        password
+    });
+    return {
+        data,
+        error
+    };
+}
+async function signOut() {
+    const { error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].auth.signOut();
+    return {
+        error
+    };
+}
+}),
+"[project]/src/services/auth-service.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "AuthService",
+    ()=>AuthService,
+    "authService",
+    ()=>authService
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$auth$2f$route$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/api/auth/route.js [app-ssr] (ecmascript)");
+;
+class AuthService {
+    async signUp(userData) {
+        if (!userData.firstName?.trim() || !userData.lastName?.trim()) {
+            throw new Error("First name and last name are required");
+        }
+        if (userData.password !== userData.confirmPassword) {
+            throw new Error("Passwords do not match");
+        }
+        if (userData.password.length < 6) {
+            throw new Error("Password must be at least 6 characters");
+        }
+        const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$auth$2f$route$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["signUp"])(userData.email, userData.password, {
+            firstName: userData.firstName,
+            lastName: userData.lastName
+        });
+        return result;
+    }
+    async signIn(credentials) {
+        if (!credentials.email || !credentials.password) {
+            throw new Error("Email and password are required");
+        }
+        const result = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$auth$2f$route$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["signIn"])(credentials.email, credentials.password);
+        return result;
+    }
+    async signOut() {
+        return await (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$api$2f$auth$2f$route$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["signOut"])();
+    }
+}
+const authService = new AuthService();
+}),
+"[project]/src/services/onboarding-service.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "OnBoardingService",
+    ()=>OnBoardingService,
+    "onBoardingService",
+    ()=>onBoardingService
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/supabase.js [app-ssr] (ecmascript)");
+;
+class OnBoardingService {
+    async checkOnboardingStatus(userId) {
+        try {
+            const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("users").select("is_onboarded").eq("user_id", userId).single();
+            if (error) {
+                console.error("Error checking onboarding status:", error);
+                return {
+                    isOnboarded: false,
+                    error
+                };
+            }
+            return {
+                isOnboarded: data?.is_onboarded || false,
+                error: null
+            };
+        } catch (error) {
+            console.error("Exception checking onboarding status:", error);
+            return {
+                isOnboarded: false,
+                error
+            };
+        }
+    }
+    async markAsOnboarded(userId) {
+        try {
+            console.log("🔧 DEBUG: Attempting to mark user as onboarded, user_id:", userId);
+            const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("users").update({
+                is_onboarded: true
+            }).eq("user_id", userId).select().single();
+            if (error) {
+                console.error("❌ Error marking user as onboarded:", error);
+                return {
+                    success: false,
+                    error
+                };
+            }
+            console.log("✅ Successfully marked user as onboarded, data:", data);
+            return {
+                success: true,
+                data,
+                error: null
+            };
+        } catch (error) {
+            console.error("❌ Exception marking user as onboarded:", error);
+            return {
+                success: false,
+                error
+            };
+        }
+    }
+    async getOnboardingProgress(userId) {
+        try {
+            const { data, error } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].from("users").select("is_onboarded").eq("user_id", userId).single();
+            if (error) {
+                return {
+                    isOnboarded: false,
+                    error
+                };
+            }
+            return {
+                isOnboarded: data?.is_onboarded || false,
+                error: null
+            };
+        } catch (error) {
+            return {
+                isOnboarded: false,
+                error
+            };
+        }
+    }
+}
+const onBoardingService = new OnBoardingService();
+}),
+"[project]/src/hooks/useOnboarding.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "useOnboarding",
+    ()=>useOnboarding
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$onboarding$2d$service$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/onboarding-service.js [app-ssr] (ecmascript)");
+;
+;
+const useOnboarding = ()=>{
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [onboardingStatus, setOnboardingStatus] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const checkOnboardingStatus = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async (userId)=>{
+        if (!userId) return {
+            isOnboarded: false,
+            error: "No user ID provided"
+        };
+        setLoading(true);
+        setError(null);
+        try {
+            const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$onboarding$2d$service$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["onBoardingService"].checkOnboardingStatus(userId);
+            if (result.error) {
+                setError(result.error.message);
+                return {
+                    isOnboarded: false,
+                    error: result.error
+                };
+            }
+            setOnboardingStatus(result.isOnboarded);
+            return {
+                isOnboarded: result.isOnboarded,
+                error: null
+            };
+        } catch (err) {
+            setError(err.message);
+            return {
+                isOnboarded: false,
+                error: err
+            };
+        } finally{
+            setLoading(false);
+        }
+    }, []);
+    const markAsOnboarded = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(async (userId)=>{
+        if (!userId) return {
+            success: false,
+            error: "No user ID provided"
+        };
+        setLoading(true);
+        setError(null);
+        try {
+            const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$onboarding$2d$service$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["onBoardingService"].markAsOnboarded(userId);
+            if (result.error) {
+                setError(result.error.message);
+                return {
+                    success: false,
+                    error: result.error
+                };
+            }
+            setOnboardingStatus(true);
+            return {
+                success: true,
+                error: null
+            };
+        } catch (err) {
+            setError(err.message);
+            return {
+                success: false,
+                error: err
+            };
+        } finally{
+            setLoading(false);
+        }
+    }, []);
+    const clearError = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
+        setError(null);
+    }, []);
+    return {
+        // Methods
+        checkOnboardingStatus,
+        markAsOnboarded,
+        clearError,
+        // State
+        loading,
+        error,
+        onboardingStatus
+    };
+};
+}),
+"[project]/src/hooks/useAuth.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "useAuth",
+    ()=>useAuth
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/auth-service.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useOnboarding.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/supabase.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/useMutation.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$react$2d$query$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/react-query.js [app-ssr] (ecmascript)");
+;
+;
+;
+;
+;
+;
+const useAuth = ()=>{
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const { checkOnboardingStatus, markAsOnboarded, loading: onboardingLoading, error: onboardingError } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useOnboarding"])();
+    const signUpMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["authService"].signUp,
+        onSuccess: (result)=>{
+            if (result.data?.user) {
+                setUser(result.data.user);
+            }
+        }
+    });
+    const signInMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["authService"].signIn,
+        onSuccess: (result)=>{
+            if (result.data?.user) {
+                setUser(result.data.user);
+            }
+        }
+    });
+    const signOutMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["authService"].signOut,
+        onSuccess: ()=>{
+            setUser(null);
+            __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$react$2d$query$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["queryClient"].clear();
+        }
+    });
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const checkUserSession = async ()=>{
+            try {
+                const { data: { session } } = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["supabase"].auth.getSession();
+                if (session?.user) {
+                    setUser(session.user);
+                }
+            } catch (error) {
+                console.error("Error checking user session:", error);
+            }
+        };
+        checkUserSession();
+    }, []);
+    const signUp = async (formData)=>{
+        setLoading(true);
+        setError(null);
+        try {
+            const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["authService"].signUp(formData);
+            if (result.error) {
+                setError(result.error.message);
+                return {
+                    success: false,
+                    error: result.error,
+                    profileCreated: false
+                };
+            } else {
+                if (result.data?.user) {
+                    setUser(result.data.user);
+                }
+                return {
+                    success: true,
+                    data: result.data,
+                    profileCreated: result.data?.profileCreated ?? false
+                };
+            }
+        } catch (err) {
+            setError(err.message);
+            return {
+                success: false,
+                error: err,
+                profileCreated: false
+            };
+        } finally{
+            setLoading(false);
+        }
+    };
+    const signIn = async (email, password)=>{
+        setLoading(true);
+        setError(null);
+        try {
+            const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["authService"].signIn({
+                email,
+                password
+            });
+            if (result.error) {
+                setError(result.error.message);
+                return {
+                    success: false,
+                    error: result.error
+                };
+            } else {
+                if (result.data?.user) {
+                    setUser(result.data.user);
+                    const onboardingResult = await checkOnboardingStatus(result.data.user.id);
+                    return {
+                        success: true,
+                        data: result.data,
+                        isOnboarded: onboardingResult.isOnboarded
+                    };
+                }
+                return {
+                    success: true,
+                    data: result.data,
+                    isOnboarded: false
+                };
+            }
+        } catch (err) {
+            setError(err.message);
+            return {
+                success: false,
+                error: err
+            };
+        } finally{
+            setLoading(false);
+        }
+    };
+    const signOut = async ()=>{
+        setLoading(true);
+        try {
+            const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["authService"].signOut();
+            setUser(null);
+            return {
+                success: true,
+                error: result.error
+            };
+        } catch (err) {
+            return {
+                success: false,
+                error: err
+            };
+        } finally{
+            setLoading(false);
+        }
+    };
+    const clearError = ()=>{
+        setError(null);
+    };
+    return {
+        // Auth Methods
+        signUp,
+        signIn,
+        signOut,
+        clearError,
+        // Onboarding Methods
+        checkOnboardingStatus,
+        markAsOnboarded,
+        // State
+        loading: loading || onboardingLoading,
+        error: error || onboardingError,
+        user
+    };
+};
+}),
+"[project]/src/app/pages/signup/page.js [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>SignUp
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/styled-jsx/style.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useAuth$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useAuth.js [app-ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/client/app-dir/link.js [app-ssr] (ecmascript)");
+"use client";
+;
+;
+;
+;
+;
+;
+function SignUp() {
+    const [formData, setFormData] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        confirmPassword: ""
+    });
+    const [showPassword, setShowPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [showConfirmPassword, setShowConfirmPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    const { signUp, loading, error, clearError } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useAuth$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useAuth"])();
+    const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
+    const handleChange = (e)=>{
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+        if (error) clearError();
+    };
+    const togglePasswordVisibility = ()=>{
+        setShowPassword(!showPassword);
+    };
+    const toggleConfirmPasswordVisibility = ()=>{
+        setShowConfirmPassword(!showConfirmPassword);
+    };
+    const handleSubmit = async (e)=>{
+        e.preventDefault();
+        const result = await signUp(formData);
+        if (result.success) {
+            if (result.profileCreated === false) {
+                alert("Account created successfully! You can now login");
+                setTimeout(()=>router.push("./login"), 3000);
+            } else {
+                alert("Account created successfully! You can now login");
+                router.push("./login");
+            }
+        }
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "jsx-b68d371ecc189582" + " " + "relative flex h-auto min-h-screen w-full flex-col bg-[#171116] overflow-x-hidden",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-b68d371ecc189582" + " " + "absolute top-1/4 left-10 w-40 h-40 bg-[#9c1676]/10 rounded-full blur-3xl animate-pulse-slow"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/signup/page.js",
+                lineNumber: 54,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-b68d371ecc189582" + " " + "absolute bottom-1/3 right-10 w-32 h-32 bg-[#9c1676]/5 rounded-full blur-2xl animate-pulse-slow animation-delay-2000"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/signup/page.js",
+                lineNumber: 55,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-b68d371ecc189582" + " " + "absolute top-2/3 left-1/4 w-24 h-24 bg-[#9c1676]/8 rounded-full blur-xl animate-pulse-slow animation-delay-1000"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/signup/page.js",
+                lineNumber: 56,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-b68d371ecc189582" + " " + "layout-container flex h-full grow flex-col z-10",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "jsx-b68d371ecc189582" + " " + "px-10 flex flex-1 justify-center align-center py-30",
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "jsx-b68d371ecc189582" + " " + "layout-content-container flex flex-col w-lg max-w-lg flex-1",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                className: "jsx-b68d371ecc189582" + " " + "text-white tracking-light text-4xl font-bold leading-tight px-4 text-center pb-10 pt-5 animate-fade-in-up",
+                                children: "Create your account"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/pages/signup/page.js",
+                                lineNumber: 61,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                                onSubmit: handleSubmit,
+                                className: "jsx-b68d371ecc189582",
+                                children: [
+                                    error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "jsx-b68d371ecc189582" + " " + "bg-red-500/20 border border-red-500 text-white px-4 py-3 rounded animate-shake mb-4",
+                                        children: error
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/signup/page.js",
+                                        lineNumber: 67,
+                                        columnNumber: 17
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "jsx-b68d371ecc189582" + " " + "flex max-w-auto flex-wrap items-end gap-4 px-4 py-3 animate-fade-in-up animation-delay-200",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                htmlFor: "firstName",
+                                                className: "jsx-b68d371ecc189582" + " " + "group flex flex-col min-w-40 flex-1",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "jsx-b68d371ecc189582" + " " + "text-white text-xl font-medium leading-normal pb-2 transition-all duration-300 group-hover:text-[#e5a5d1]",
+                                                        children: "First Name"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/pages/signup/page.js",
+                                                        lineNumber: 77,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                        id: "firstName",
+                                                        name: "firstName",
+                                                        type: "text",
+                                                        required: true,
+                                                        value: formData.firstName,
+                                                        onChange: handleChange,
+                                                        placeholder: "Enter your first name",
+                                                        className: "jsx-b68d371ecc189582" + " " + "form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#9c1676] h-14 placeholder:text-[#b79eb0] p-[15px] pr-2 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c1676]/20 hover:border-[#63365a]"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/pages/signup/page.js",
+                                                        lineNumber: 80,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/pages/signup/page.js",
+                                                lineNumber: 73,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                htmlFor: "lastName",
+                                                className: "jsx-b68d371ecc189582" + " " + "group flex flex-col min-w-40 flex-1",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "jsx-b68d371ecc189582" + " " + "text-white text-xl font-medium leading-normal pb-2 transition-all duration-300 group-hover:text-[#e5a5d1]",
+                                                        children: "Last Name"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/pages/signup/page.js",
+                                                        lineNumber: 95,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                        id: "lastName",
+                                                        name: "lastName",
+                                                        type: "text",
+                                                        required: true,
+                                                        value: formData.lastName,
+                                                        onChange: handleChange,
+                                                        placeholder: "Enter your last name",
+                                                        className: "jsx-b68d371ecc189582" + " " + "form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#9c1676] h-14 placeholder:text-[#b79eb0] p-[15px] pr-2 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c1676]/20 hover:border-[#63365a]"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/pages/signup/page.js",
+                                                        lineNumber: 98,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/pages/signup/page.js",
+                                                lineNumber: 91,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/pages/signup/page.js",
+                                        lineNumber: 72,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "jsx-b68d371ecc189582" + " " + "flex max-w-auto flex-wrap items-end gap-4 px-4 py-3 animate-fade-in-up animation-delay-400",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            htmlFor: "email",
+                                            className: "jsx-b68d371ecc189582" + " " + "group flex flex-col min-w-40 flex-1",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "jsx-b68d371ecc189582" + " " + "text-white text-xl font-medium leading-normal pb-2 transition-all duration-300 group-hover:text-[#e5a5d1]",
+                                                    children: "Email"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/signup/page.js",
+                                                    lineNumber: 116,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                    id: "email",
+                                                    name: "email",
+                                                    type: "email",
+                                                    autoComplete: "email",
+                                                    required: true,
+                                                    value: formData.email,
+                                                    onChange: handleChange,
+                                                    placeholder: "Enter your email",
+                                                    className: "jsx-b68d371ecc189582" + " " + "form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#9c1676] h-14 placeholder:text-[#b79eb0] p-[15px] pr-2 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c1676]/20 hover:border-[#63365a]"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/signup/page.js",
+                                                    lineNumber: 119,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/pages/signup/page.js",
+                                            lineNumber: 112,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/signup/page.js",
+                                        lineNumber: 111,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "jsx-b68d371ecc189582" + " " + "flex max-w-auto flex-wrap items-end gap-4 px-4 py-3 animate-fade-in-up animation-delay-600",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            htmlFor: "password",
+                                            className: "jsx-b68d371ecc189582" + " " + "group flex flex-col min-w-40 flex-1",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "jsx-b68d371ecc189582" + " " + "text-white text-xl font-medium leading-normal pb-2 transition-all duration-300 group-hover:text-[#e5a5d1]",
+                                                    children: "Password"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/signup/page.js",
+                                                    lineNumber: 138,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "jsx-b68d371ecc189582" + " " + "flex w-full flex-1 items-stretch rounded-lg group/password",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                            id: "password",
+                                                            name: "password",
+                                                            type: showPassword ? "text" : "password",
+                                                            autoComplete: "new-password",
+                                                            required: true,
+                                                            value: formData.password,
+                                                            onChange: handleChange,
+                                                            placeholder: "Enter your password",
+                                                            className: "jsx-b68d371ecc189582" + " " + "form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#9c1676] h-14 placeholder:text-[#b79eb0] p-[15px] rounded-r-none border-r-0 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c1676]/20 hover:border-[#63365a]"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/pages/signup/page.js",
+                                                            lineNumber: 142,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            type: "button",
+                                                            onClick: togglePasswordVisibility,
+                                                            className: "jsx-b68d371ecc189582" + " " + "text-[#b79eb0] flex border border-[#523d4c] bg-[#261c23] items-center justify-center px-4 rounded-r-lg border-l-0 hover:bg-[#2d212a] transition-all duration-300 hover:scale-110 hover:text-white group-hover/password:border-[#63365a]",
+                                                            children: showPassword ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                                xmlns: "http://www.w3.org/2000/svg",
+                                                                width: "20",
+                                                                height: "20",
+                                                                fill: "currentColor",
+                                                                viewBox: "0 0 256 256",
+                                                                className: "jsx-b68d371ecc189582",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                    d: "M53.92,34.62A8,8,0,1,0,42.08,45.38L61.32,66.55C25,88.84,9.38,123.2,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208a127.11,127.11,0,0,0,52.07-10.83l22,24.21a8,8,0,1,0,11.84-10.76Zm47.33,75.84,41.67,45.85a32,32,0,0,1-41.67-45.85ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.16,133.16,0,0,1,25,128c4.69-8.79,19.66-33.39,47.35-49.38l18,19.75a48,48,0,0,0,63.66,70l14.73,16.2A112,112,0,0,1,128,192Zm6-95.43a8,8,0,0,1,3-15.72,48.16,48.16,0,0,1,38.77,42.64,8,8,0,0,1-7.22,8.71,6.39,6.39,0,0,1-.75,0,8,8,0,0,1-8-7.26A32.09,32.09,0,0,0,134,96.57Zm113.28,34.69c-.35.79-8.82,19.57-27.65,38.4-1.18,1.18-2.38,2.34-3.59,3.47a8,8,0,0,1-10.93-11.67c1-1,2-2,3-3A133.16,133.16,0,0,0,231,128c-4.69-8.79-19.66-33.39-47.35-49.38a8,8,0,1,1,8.7-13.53C216.94,77.67,231.94,102.27,236.63,111.06A8,8,0,0,1,234.71,117,8.13,8.13,0,0,1,231,119.26Z",
+                                                                    className: "jsx-b68d371ecc189582"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/pages/signup/page.js",
+                                                                    lineNumber: 166,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/pages/signup/page.js",
+                                                                lineNumber: 159,
+                                                                columnNumber: 25
+                                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                                xmlns: "http://www.w3.org/2000/svg",
+                                                                width: "20",
+                                                                height: "20",
+                                                                fill: "currentColor",
+                                                                viewBox: "0 0 256 256",
+                                                                className: "jsx-b68d371ecc189582",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                    d: "M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.45,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z",
+                                                                    className: "jsx-b68d371ecc189582"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/pages/signup/page.js",
+                                                                    lineNumber: 176,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/pages/signup/page.js",
+                                                                lineNumber: 169,
+                                                                columnNumber: 25
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/pages/signup/page.js",
+                                                            lineNumber: 153,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/app/pages/signup/page.js",
+                                                    lineNumber: 141,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/pages/signup/page.js",
+                                            lineNumber: 134,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/signup/page.js",
+                                        lineNumber: 133,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "jsx-b68d371ecc189582" + " " + "flex max-w-auto flex-wrap items-end gap-4 px-4 py-3 animate-fade-in-up animation-delay-800",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                            htmlFor: "confirmPassword",
+                                            className: "jsx-b68d371ecc189582" + " " + "group flex flex-col min-w-40 flex-1",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "jsx-b68d371ecc189582" + " " + "text-white text-xl font-medium leading-normal pb-2 transition-all duration-300 group-hover:text-[#e5a5d1]",
+                                                    children: "Confirm Password"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/signup/page.js",
+                                                    lineNumber: 189,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "jsx-b68d371ecc189582" + " " + "flex w-full flex-1 items-stretch rounded-lg group/confirm",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                            id: "confirmPassword",
+                                                            name: "confirmPassword",
+                                                            type: showConfirmPassword ? "text" : "password",
+                                                            autoComplete: "new-password",
+                                                            required: true,
+                                                            value: formData.confirmPassword,
+                                                            onChange: handleChange,
+                                                            placeholder: "Confirm password",
+                                                            className: "jsx-b68d371ecc189582" + " " + "form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#9c1676] h-14 placeholder:text-[#b79eb0] p-[15px] rounded-r-none border-r-0 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c1676]/20 hover:border-[#63365a]"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/pages/signup/page.js",
+                                                            lineNumber: 193,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                            type: "button",
+                                                            onClick: toggleConfirmPasswordVisibility,
+                                                            className: "jsx-b68d371ecc189582" + " " + "text-[#b79eb0] flex border border-[#523d4c] bg-[#261c23] items-center justify-center px-4 rounded-r-lg border-l-0 hover:bg-[#2d212a] transition-all duration-300 hover:scale-110 hover:text-white group-hover/confirm:border-[#63365a]",
+                                                            children: showConfirmPassword ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                                xmlns: "http://www.w3.org/2000/svg",
+                                                                width: "20",
+                                                                height: "20",
+                                                                fill: "currentColor",
+                                                                viewBox: "0 0 256 256",
+                                                                className: "jsx-b68d371ecc189582",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                    d: "M53.92,34.62A8,8,0,1,0,42.08,45.38L61.32,66.55C25,88.84,9.38,123.2,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208a127.11,127.11,0,0,0,52.07-10.83l22,24.21a8,8,0,1,0,11.84-10.76Zm47.33,75.84,41.67,45.85a32,32,0,0,1-41.67-45.85ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.16,133.16,0,0,1,25,128c4.69-8.79,19.66-33.39,47.35-49.38l18,19.75a48,48,0,0,0,63.66,70l14.73,16.2A112,112,0,0,1,128,192Zm6-95.43a8,8,0,0,1,3-15.72,48.16,48.16,0,0,1,38.77,42.64,8,8,0,0,1-7.22,8.71,6.39,6.39,0,0,1-.75,0,8,8,0,0,1-8-7.26A32.09,32.09,0,0,0,134,96.57Zm113.28,34.69c-.35.79-8.82,19.57-27.65,38.4-1.18,1.18-2.38,2.34-3.59,3.47a8,8,0,0,1-10.93-11.67c1-1,2-2,3-3A133.16,133.16,0,0,0,231,128c-4.69-8.79-19.66-33.39-47.35-49.38a8,8,0,1,1,8.7-13.53C216.94,77.67,231.94,102.27,236.63,111.06A8,8,0,0,1,234.71,117,8.13,8.13,0,0,1,231,119.26Z",
+                                                                    className: "jsx-b68d371ecc189582"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/pages/signup/page.js",
+                                                                    lineNumber: 217,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/pages/signup/page.js",
+                                                                lineNumber: 210,
+                                                                columnNumber: 25
+                                                            }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                                xmlns: "http://www.w3.org/2000/svg",
+                                                                width: "20",
+                                                                height: "20",
+                                                                fill: "currentColor",
+                                                                viewBox: "0 0 256 256",
+                                                                className: "jsx-b68d371ecc189582",
+                                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                                    d: "M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.45,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z",
+                                                                    className: "jsx-b68d371ecc189582"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/src/app/pages/signup/page.js",
+                                                                    lineNumber: 227,
+                                                                    columnNumber: 27
+                                                                }, this)
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/pages/signup/page.js",
+                                                                lineNumber: 220,
+                                                                columnNumber: 25
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/pages/signup/page.js",
+                                                            lineNumber: 204,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/app/pages/signup/page.js",
+                                                    lineNumber: 192,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/pages/signup/page.js",
+                                            lineNumber: 185,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/signup/page.js",
+                                        lineNumber: 184,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "jsx-b68d371ecc189582" + " " + "flex px-4 py-5 animate-fade-in-up animation-delay-1000",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "submit",
+                                            disabled: loading,
+                                            className: "jsx-b68d371ecc189582" + " " + "group relative flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-[#9c1676] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[#9c1676]/40",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "jsx-b68d371ecc189582" + " " + "absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/signup/page.js",
+                                                    lineNumber: 241,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "jsx-b68d371ecc189582" + " " + "truncate text-xl font-extrabold relative z-10 flex items-center gap-2",
+                                                    children: loading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "jsx-b68d371ecc189582" + " " + "w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/pages/signup/page.js",
+                                                                lineNumber: 246,
+                                                                columnNumber: 25
+                                                            }, this),
+                                                            "Creating account..."
+                                                        ]
+                                                    }, void 0, true) : "Create Account"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/signup/page.js",
+                                                    lineNumber: 243,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/pages/signup/page.js",
+                                            lineNumber: 236,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/signup/page.js",
+                                        lineNumber: 235,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/pages/signup/page.js",
+                                lineNumber: 65,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "jsx-b68d371ecc189582" + " " + "text-[#b79eb0] text-lg font-normal leading-normal pb-3 pt-1 px-4 text-center animate-fade-in animation-delay-1200",
+                                children: [
+                                    "Already have an account?",
+                                    " ",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                        href: "./login",
+                                        className: "text-[#9c1676] hover:text-[#e5a5d1] transition-all duration-300 hover:underline hover:scale-105 inline-block",
+                                        children: "Log in"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/pages/signup/page.js",
+                                        lineNumber: 259,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/pages/signup/page.js",
+                                lineNumber: 257,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/pages/signup/page.js",
+                        lineNumber: 60,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/app/pages/signup/page.js",
+                    lineNumber: 59,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/signup/page.js",
+                lineNumber: 58,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
+                id: "b68d371ecc189582",
+                children: "@keyframes fadeInUp{0%{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes shake{0%,to{transform:translate(0)}25%{transform:translate(-5px)}75%{transform:translate(5px)}}@keyframes pulse-slow{0%,to{opacity:.1}50%{opacity:.2}}.animate-fade-in-up.jsx-b68d371ecc189582{opacity:0;animation:.6s ease-out forwards fadeInUp}.animate-fade-in.jsx-b68d371ecc189582{opacity:0;animation:.4s ease-out forwards fadeIn}.animate-shake.jsx-b68d371ecc189582{animation:.5s ease-in-out shake}.animate-pulse-slow.jsx-b68d371ecc189582{animation:3s ease-in-out infinite pulse-slow}.animation-delay-200.jsx-b68d371ecc189582{animation-delay:.2s}.animation-delay-400.jsx-b68d371ecc189582{animation-delay:.4s}.animation-delay-600.jsx-b68d371ecc189582{animation-delay:.6s}.animation-delay-800.jsx-b68d371ecc189582{animation-delay:.8s}.animation-delay-1000.jsx-b68d371ecc189582{animation-delay:1s}.animation-delay-1200.jsx-b68d371ecc189582{animation-delay:1.2s}.animation-delay-2000.jsx-b68d371ecc189582{animation-delay:2s}"
+            }, void 0, false, void 0, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/app/pages/signup/page.js",
+        lineNumber: 53,
+        columnNumber: 5
+    }, this);
+}
+}),
+];
+
+//# sourceMappingURL=%5Broot-of-the-server%5D__49a657ba._.js.map

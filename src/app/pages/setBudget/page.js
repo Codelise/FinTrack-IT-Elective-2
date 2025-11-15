@@ -8,14 +8,13 @@ export default function SetBudget() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [budgetAmount, setBudgetAmount] = useState("");
   const [budgets, setBudgets] = useState({});
-  const [saving, setSaving] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const router = useRouter();
   const { user, markAsOnboarded } = useAuth();
   const {
     createMultipleBudgets,
-    loading: budgetLoading,
-    error: budgetError,
+    mutations: { createMultipleBudgets: createMutation },
   } = useBudget();
 
   const categories = [
@@ -186,6 +185,7 @@ export default function SetBudget() {
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     setBudgetAmount(budgets[category] || "");
+    setIsModalOpen(true);
   };
 
   const handleSaveBudget = () => {
@@ -197,6 +197,7 @@ export default function SetBudget() {
     }
     setSelectedCategory(null);
     setBudgetAmount("");
+    setIsModalOpen(false);
   };
 
   const handleSetAllBudgets = async () => {
@@ -204,8 +205,6 @@ export default function SetBudget() {
       console.error("No user found");
       return;
     }
-
-    setSaving(true);
 
     try {
       const budgetsArray = Object.entries(budgets).map(
@@ -223,29 +222,25 @@ export default function SetBudget() {
 
         if (result.error) {
           console.error("Error saving budgets:", result.error);
+          return;
         } else {
           console.log("Budgets saved successfully:", result.data);
         }
       }
 
-      console.log("🔧 Setting budgets - marking user as onboarded");
+      console.log("Setting budgets - marking user as onboarded");
       const onboardResult = await markAsOnboarded(user.id);
-      console.log("🔧 markAsOnboarded result:", onboardResult);
+      console.log("markAsOnboarded result:", onboardResult);
 
       if (onboardResult.success) {
-        console.log("✅ User successfully marked as onboarded");
+        console.log("User successfully marked as onboarded");
+        router.push("./setGoal");
       } else {
-        console.error(
-          "❌ Failed to mark user as onboarded:",
-          onboardResult.error
-        );
+        console.error("Failed to mark user as onboarded:", onboardResult.error);
+        router.push("./setGoal");
       }
-
-      router.push("./setGoal");
     } catch (error) {
       console.error("Error in budget saving:", error);
-    } finally {
-      setSaving(false);
     }
   };
 
@@ -255,100 +250,141 @@ export default function SetBudget() {
       return;
     }
 
-    console.log("🔧 Skipping budgets - marking user as onboarded");
+    console.log("Skipping budgets - marking user as onboarded");
     const onboardResult = await markAsOnboarded(user.id);
-    console.log("🔧 markAsOnboarded result:", onboardResult);
+    console.log("markAsOnboarded result:", onboardResult);
 
     if (onboardResult.success) {
-      console.log("✅ User successfully marked as onboarded");
+      console.log("User successfully marked as onboarded");
     } else {
-      console.error(
-        "❌ Failed to mark user as onboarded:",
-        onboardResult.error
-      );
+      console.error("Failed to mark user as onboarded:", onboardResult.error);
     }
 
-    router.push("./setGoals");
+    router.push("./setGoal");
   };
 
+  const saving = createMutation.isPending;
+
   return (
-    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#171116] dark group/design-root overflow-x-hidden">
-      <div className="layout-container flex h-full grow flex-col">
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#171116] overflow-x-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-[#9b177e]/10 rounded-full blur-xl animate-pulse-slow"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-[#9b177e]/5 rounded-full blur-lg animate-pulse-slow animation-delay-1000"></div>
+
+      <div className="layout-container flex h-full grow flex-col z-10">
         <div className="flex flex-1 justify-center px-5 py-50">
           <div className="flex flex-col w-full max-w-2xl mx-auto px-4">
-            <h3 className="text-white tracking-light text-3xl font-bold leading-tight text-center pb-2">
+            {/* Animated Headers */}
+            <h3 className="text-white tracking-light text-3xl font-bold leading-tight text-center pb-2 animate-fade-in-up">
               Step 1 of 2
             </h3>
-            <h2 className="text-white tracking-light text-2xl font-medium leading-tight text-center pb-8">
+            <h2 className="text-white tracking-light text-2xl font-medium leading-tight text-center pb-8 animate-fade-in-up animation-delay-200">
               Set Your Monthly Budgets
             </h2>
 
-            {budgetError && (
-              <div className="bg-red-500/20 border border-red-500 text-white px-4 py-3 rounded text-sm mb-4">
-                Error saving budgets: {budgetError}
+            {createMutation.error && (
+              <div className="bg-red-500/20 border border-red-500 text-white px-4 py-3 rounded text-sm mb-4 animate-shake">
+                Error saving budgets: {createMutation.error.message}
               </div>
             )}
 
-            <p className="text-[#b79eb0] text-center mb-8">
+            <p className="text-[#b79eb0] text-center mb-8 animate-fade-in-up animation-delay-400">
               Set spending limits for different categories (optional)
             </p>
 
+            {/* Enhanced Category Grid with Animations */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              {categories.map((category) => (
+              {categories.map((category, index) => (
                 <button
                   key={category.name}
                   onClick={() => handleCategorySelect(category.name)}
-                  className={`flex flex-col items-center justify-center p-4 rounded-lg border-2 transition-all ${
+                  className={`group relative flex flex-col items-center justify-center p-4 rounded-lg border-2 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[#9b177e]/20 ${
                     budgets[category.name]
-                      ? "border-[#9b177e] bg-[#9b177e]/20"
+                      ? "border-[#9b177e] bg-[#9b177e]/20 shadow-lg shadow-[#9b177e]/30"
                       : "border-[#382935] bg-[#382935] hover:border-[#9b177e]"
-                  }`}
+                  } animate-fade-in-up`}
+                  style={{ animationDelay: `${index * 100 + 600}ms` }}
                 >
-                  <span className="text-2xl mb-2">{category.icon}</span>
-                  <span className="text-white text-sm font-medium text-center">
+                  {/* Hover Effect Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-[#9b177e]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+
+                  <span className="text-2xl mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    {category.icon}
+                  </span>
+                  <span className="text-white text-sm font-medium text-center relative z-10">
                     {category.name}
                   </span>
                   {budgets[category.name] && (
-                    <span className="text-[#9b177e] text-xs mt-1">
+                    <span className="text-[#9b177e] text-xs mt-1 font-semibold relative z-10 animate-pulse">
                       ₱{budgets[category.name]}
                     </span>
+                  )}
+
+                  {/* Selection Indicator */}
+                  {budgets[category.name] && (
+                    <div className="absolute -top-2 -right-2 w-6 h-6 bg-[#9b177e] rounded-full flex items-center justify-center animate-bounce">
+                      <svg
+                        className="w-3 h-3 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
                   )}
                 </button>
               ))}
             </div>
 
+            {/* Enhanced Action Buttons */}
             <div className="flex justify-center gap-3 mt-8 px-10">
               <button
                 onClick={handleSetAllBudgets}
-                disabled={
-                  Object.keys(budgets).length === 0 || saving || budgetLoading
-                }
-                className="flex cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-[#9b177e] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={Object.keys(budgets).length === 0 || saving}
+                className="group relative flex cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-[#9b177e] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[#9b177e]/40 overflow-hidden"
               >
-                <span>
-                  {saving || budgetLoading ? "Saving..." : "Continue to Goals"}
+                {/* Button Shimmer Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+                <span className="relative z-10 flex items-center gap-2">
+                  {saving ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Saving...
+                    </>
+                  ) : (
+                    "Continue to Goals"
+                  )}
                 </span>
               </button>
+
               <button
                 onClick={handleSkip}
-                disabled={saving || budgetLoading}
-                className="flex cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-[#382935] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50"
+                disabled={saving}
+                className="group flex cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-[#382935] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 transition-all duration-300 transform hover:scale-105 hover:bg-[#4a3547] border border-transparent hover:border-[#9b177e]/30"
               >
                 <span>Skip Budgeting</span>
               </button>
             </div>
 
-            <p className="text-[#b79eb0] text-center mt-4 text-sm">
+            <p className="text-[#b79eb0] text-center mt-4 text-sm animate-fade-in animation-delay-1200">
               You can always set budgets later in settings
             </p>
           </div>
         </div>
       </div>
 
-      {/* Budget Amount Modal */}
-      {selectedCategory && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-[#261c23] rounded-lg p-6 max-w-md w-full border border-[#523d4c]">
+      {/* Enhanced Modal with Animations */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 animate-fade-in">
+          <div
+            className="bg-[#261c23] rounded-xl p-6 max-w-md w-full border border-[#523d4c] shadow-2xl shadow-black/50 transform animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
+          >
             <h3 className="text-white text-xl font-bold mb-2">
               Set Budget for {selectedCategory}
             </h3>
@@ -362,7 +398,7 @@ export default function SetBudget() {
                 placeholder="₱0"
                 value={budgetAmount}
                 onChange={(e) => setBudgetAmount(e.target.value)}
-                className="form-input flex w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#382935] focus:border-[#9b177e] h-14 placeholder:text-[#b79eb2] p-4 text-lg font-normal leading-normal"
+                className="form-input flex w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#382935] focus:border-[#9b177e] h-14 placeholder:text-[#b79eb2] p-4 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9b177e]/20"
                 autoFocus
               />
             </div>
@@ -371,13 +407,14 @@ export default function SetBudget() {
               <button
                 onClick={handleSaveBudget}
                 disabled={!budgetAmount}
-                className="flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#9b177e] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="group flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#9b177e] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-[#9b177e]/30 overflow-hidden"
               >
-                Save Amount
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                <span className="relative z-10">Save Amount</span>
               </button>
               <button
-                onClick={() => setSelectedCategory(null)}
-                className="flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#382935] text-white text-base font-bold leading-normal tracking-[0.015em]"
+                onClick={() => setIsModalOpen(false)}
+                className="flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#382935] text-white text-base font-bold leading-normal tracking-[0.015em] transition-all duration-300 transform hover:scale-105 hover:bg-[#4a3547]"
               >
                 Cancel
               </button>
@@ -385,6 +422,104 @@ export default function SetBudget() {
           </div>
         </div>
       )}
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes shake {
+          0%,
+          100% {
+            transform: translateX(0);
+          }
+          25% {
+            transform: translateX(-5px);
+          }
+          75% {
+            transform: translateX(5px);
+          }
+        }
+
+        @keyframes pulse-slow {
+          0%,
+          100% {
+            opacity: 0.1;
+          }
+          50% {
+            opacity: 0.2;
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.4s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-scale-in {
+          animation: scaleIn 0.3s ease-out forwards;
+        }
+
+        .animate-shake {
+          animation: shake 0.5s ease-in-out;
+        }
+
+        .animate-pulse-slow {
+          animation: pulse-slow 3s ease-in-out infinite;
+        }
+
+        .animation-delay-200 {
+          animation-delay: 0.2s;
+        }
+
+        .animation-delay-400 {
+          animation-delay: 0.4s;
+        }
+
+        .animation-delay-600 {
+          animation-delay: 0.6s;
+        }
+
+        .animation-delay-1200 {
+          animation-delay: 1.2s;
+        }
+
+        .animation-delay-1000 {
+          animation-delay: 1s;
+        }
+      `}</style>
     </div>
   );
 }
