@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-// import AuthGuard from "@/app/components/AuthGuard";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function Login() {
@@ -43,31 +42,34 @@ export default function Login() {
   };
 
   return (
-    // <AuthGuard requireAuth={false}>
-    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#171116] dark group/design-root overflow-x-hidden">
-      <div className="layout-container flex h-full grow flex-col">
+    <div className="relative flex h-auto min-h-screen w-full flex-col bg-[#171116] overflow-x-hidden">
+      <div className="absolute top-1/3 right-10 w-36 h-36 bg-[#9c1674]/10 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute bottom-1/4 left-10 w-28 h-28 bg-[#9c1674]/5 rounded-full blur-2xl animate-pulse-slow animation-delay-1500"></div>
+      <div className="absolute top-1/2 right-1/4 w-20 h-20 bg-[#9c1674]/8 rounded-full blur-xl animate-pulse-slow animation-delay-1000"></div>
+
+      <div className="layout-container flex h-full grow flex-col z-10">
         <div className="px-10 flex flex-1 justify-center align-center py-50">
           <div className="layout-content-container flex flex-col w-lg py-5 max-w-lg flex-1">
-            <h2 className="text-white tracking-light text-4xl font-bold leading-tight px-4  text-center pb-10 ">
+            <h2 className="text-white tracking-light text-4xl font-bold leading-tight px-4 text-center pb-10 animate-fade-in-up">
               Welcome back
             </h2>
 
             <form onSubmit={handleSubmit}>
               {error && (
-                <div className="bg-red-500/20 border border-red-500 text-white px-4 py-3 rounded text-sm">
+                <div className="bg-red-500/20 border border-red-500 text-white px-4 py-3 rounded text-sm animate-shake mb-4">
                   {error}
                 </div>
               )}
 
-              <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 ">
+              <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 animate-fade-in-up animation-delay-200">
                 <label
                   htmlFor="email"
-                  className="flex flex-col min-w-40 flex-1"
+                  className="group flex flex-col min-w-40 flex-1"
                 >
-                  <p className="text-white text-xl font-medium leading-normal pb-2">
+                  <p className="text-white text-xl font-medium leading-normal pb-2 transition-all duration-300 group-hover:text-[#e5a5d1]">
                     Email
                   </p>
-                  <div className="flex w-full flex-1 items-stretch rounded-lg">
+                  <div className="flex w-full flex-1 items-stretch rounded-lg group/email">
                     <input
                       name="email"
                       type="email"
@@ -75,10 +77,10 @@ export default function Login() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#523d4c] h-14 placeholder:text-[#b79eb0] p-[15px] rounded-r-none border-r-0 pr-2 text-lg font-normal leading-normal"
+                      className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#9c1674] h-14 placeholder:text-[#b79eb0] p-[15px] rounded-r-none border-r-0 pr-2 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c1674]/20 hover:border-[#63365a]"
                     />
                     <div
-                      className="text-[#b79eb0] flex border border-[#523d4c] bg-[#261c23] items-center justify-center pr-[15px] rounded-r-lg border-l-0"
+                      className="text-[#b79eb0] flex border border-[#523d4c] bg-[#261c23] items-center justify-center pr-[15px] rounded-r-lg border-l-0 transition-all duration-300 group-hover/email:border-[#63365a] group-hover/email:text-white"
                       data-icon="User"
                       data-size="24px"
                       data-weight="regular"
@@ -96,15 +98,16 @@ export default function Login() {
                   </div>
                 </label>
               </div>
-              <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 py-3">
+
+              <div className="flex max-w-auto flex-wrap items-end gap-4 px-4 py-3 animate-fade-in-up animation-delay-400">
                 <label
                   htmlFor="password"
-                  className="flex flex-col min-w-40 flex-1"
+                  className="group flex flex-col min-w-40 flex-1"
                 >
-                  <p className="text-white text-xl font-medium leading-normal pb-2">
+                  <p className="text-white text-xl font-medium leading-normal pb-2 transition-all duration-300 group-hover:text-[#e5a5d1]">
                     Password
                   </p>
-                  <div className="flex w-full flex-1 items-stretch rounded-lg">
+                  <div className="flex w-full flex-1 items-stretch rounded-lg group/password">
                     <input
                       name="password"
                       type={showPassword ? "text" : "password"}
@@ -112,13 +115,13 @@ export default function Login() {
                       onChange={handleChange}
                       required
                       placeholder="Enter your password"
-                      className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#523d4c] h-14 placeholder:text-[#b79eb0] p-[15px] rounded-r-none border-r-0 pr-2 text-lg font-normal leading-normal"
+                      className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#261c23] focus:border-[#9c1674] h-14 placeholder:text-[#b79eb0] p-[15px] rounded-r-none border-r-0 pr-2 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9c1674]/20 hover:border-[#63365a]"
                     />
 
                     <button
                       type="button"
                       onClick={togglePasswordVisibility}
-                      className="text-lightText flex border border-[#523d4c]  bg-[#261c23] text-white items-center justify-center px-4 rounded-r-lg border-l-0  transition-colors"
+                      className="text-lightText flex border border-[#523d4c] bg-[#261c23] text-white items-center justify-center px-4 rounded-r-lg border-l-0 transition-all duration-300 hover:scale-110 hover:bg-[#2d212a] group-hover/password:border-[#63365a]"
                     >
                       {showPassword ? (
                         <svg
@@ -145,23 +148,38 @@ export default function Login() {
                   </div>
                 </label>
               </div>
-              <p className="text-[#b79eb0] text-lg font-normal leading-normal pb-1 pt-3 px-4 text-left cursor-pointer ">
+
+              <p className="text-[#b79eb0] text-lg font-normal leading-normal pb-1 pt-3 px-4 text-left cursor-pointer animate-fade-in-up animation-delay-600 transition-all duration-300 hover:text-[#e5a5d1] hover:underline hover:scale-105 inline-block">
                 Forgot password?
               </p>
-              <div className="flex px-4 py-3">
+
+              <div className="flex px-4 py-3 animate-fade-in-up animation-delay-800">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-[#9c1674] text-white text-base font-bold leading-normal tracking-[0.015em]"
+                  className="group relative flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-[#9c1674] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[#9c1674]/40"
                 >
-                  <span className="truncate text-xl font-extrabold">
-                    {loading ? "Signing in.." : "Log in"}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+                  <span className="truncate text-xl font-extrabold relative z-10 flex items-center gap-2">
+                    {loading ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        Signing in...
+                      </>
+                    ) : (
+                      "Log in"
+                    )}
                   </span>
                 </button>
               </div>
-              <p className="text-[#b79eb0] text-lg font-normal leading-normal pb-3 pt-1 px-4 text-center cursor-pointer ">
-                Don't have an account?
-                <Link href="./signup" className="text-blue-700">
+
+              <p className="text-[#b79eb0] text-lg font-normal leading-normal pb-3 pt-1 px-4 text-center animate-fade-in animation-delay-1000">
+                Don't have an account?{" "}
+                <Link
+                  href="./signup"
+                  className="text-[#9c1674] hover:text-[#e5a5d1] transition-all duration-300 hover:underline hover:scale-105 inline-block"
+                >
                   Sign up
                 </Link>
               </p>
@@ -169,7 +187,93 @@ export default function Login() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes shake {
+          0%,
+          100% {
+            transform: translateX(0);
+          }
+          25% {
+            transform: translateX(-5px);
+          }
+          75% {
+            transform: translateX(5px);
+          }
+        }
+
+        @keyframes pulse-slow {
+          0%,
+          100% {
+            opacity: 0.1;
+          }
+          50% {
+            opacity: 0.2;
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.6s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.4s ease-out forwards;
+          opacity: 0;
+        }
+
+        .animate-shake {
+          animation: shake 0.5s ease-in-out;
+        }
+
+        .animate-pulse-slow {
+          animation: pulse-slow 3s ease-in-out infinite;
+        }
+
+        .animation-delay-200 {
+          animation-delay: 0.2s;
+        }
+
+        .animation-delay-400 {
+          animation-delay: 0.4s;
+        }
+
+        .animation-delay-600 {
+          animation-delay: 0.6s;
+        }
+
+        .animation-delay-800 {
+          animation-delay: 0.8s;
+        }
+
+        .animation-delay-1000 {
+          animation-delay: 1s;
+        }
+
+        .animation-delay-1500 {
+          animation-delay: 1.5s;
+        }
+      `}</style>
     </div>
-    // </AuthGuard>
   );
 }

@@ -1,151 +1,107 @@
-import { useState, useCallback } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { goalService } from "@/services/goal-service";
 
+export const goalKeys = {
+  all: ["goals"],
+  lists: () => [...goalKeys.all, "list"],
+  list: (filters) => [...goalKeys.lists(), { filters }],
+  details: () => [...goalKeys.all, "detail"],
+  detail: (id) => [...goalKeys.details(), id],
+};
+
 export const useGoal = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [goals, setGoals] = useState([]);
+  const queryClient = useQueryClient();
 
-  const getGoals = useCallback(async (userId) => {
-    if (!userId) return { data: null, error: "No user ID provided" };
+  const getGoals = (userId) => {
+    return useQuery({
+      queryKey: goalKeys.list({ userId }),
+      queryFn: () => goalService.getGoals(userId),
+      enabled: !!userId,
+      staleTime: 2 * 60 * 1000,
+    });
+  };
 
-    setLoading(true);
-    setError(null);
-
-    try {
-      const result = await goalService.getGoals(userId);
-
-      if (result.error) {
-        setError(result.error.message);
-        return { data: null, error: result.error };
-      }
-
-      setGoals(result.data || []);
-      return { data: result.data, error: null };
-    } catch (err) {
-      setError(err.message);
-      return { data: null, error: err };
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const createGoal = useCallback(async (goalData) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const result = await goalService.createGoal(goalData);
-
-      if (result.error) {
-        setError(result.error.message);
-        return { data: null, error: result.error };
-      }
-
+  const createGoalMutation = useMutation({
+    mutationFn: goalService.createGoal,
+    onSuccess: (result) => {
       if (result.data) {
-        setGoals((prev) => [...prev, result.data[0]]);
+        queryClient.invalidateQueries({ queryKey: goalKeys.lists() });
       }
+    },
+  });
 
-      return { data: result.data, error: null };
-    } catch (err) {
-      setError(err.message);
-      return { data: null, error: err };
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const createMultipleGoals = useCallback(async (goalsArray) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const result = await goalService.createMultipleGoals(goalsArray);
-
-      if (result.error) {
-        setError(result.error.message);
-        return { data: null, error: result.error };
-      }
-
+  const createMultipleGoalsMutation = useMutation({
+    mutationFn: goalService.createMultipleGoals,
+    onSuccess: (result) => {
       if (result.data) {
-        setGoals((prev) => [...prev, ...result.data]);
+        queryClient.invalidateQueries({ queryKey: goalKeys.lists() });
       }
+    },
+  });
 
-      return { data: result.data, error: null };
-    } catch (err) {
-      setError(err.message);
-      return { data: null, error: err };
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const updateGoal = useCallback(async (goalId, updates) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const result = await goalService.updateGoal(goalId, updates);
-
-      if (result.error) {
-        setError(result.error.message);
-        return { data: null, error: result.error };
-      }
-
+  const updateGoalMutation = useMutation({
+    mutationFn: ({ goalId, updates }) =>
+      goalService.updateGoal(goalId, updates),
+    onSuccess: (result, variables) => {
       if (result.data) {
-        setGoals((prev) =>
-          prev.map((goal) => (goal.id === goalId ? result.data[0] : goal))
+        queryClient.setQueryData(goalKeys.lists(), (old) =>
+          old?.map((goal) =>
+            goal.id === variables.goalId ? result.data[0] : goal
+          )
         );
       }
+    },
+  });
 
-      return { data: result.data, error: null };
-    } catch (err) {
-      setError(err.message);
-      return { data: null, error: err };
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const deleteGoalMutation = useMutation({
+    mutationFn: goalService.deleteGoal,
+    onSuccess: (result, variables) => {
+      queryClient.setQueryData(goalKeys.lists(), (old) =>
+        old?.filter((goal) => goal.id !== variables)
+      );
+    },
+  });
 
-  const deleteGoal = useCallback(async (goalId) => {
-    setLoading(true);
-    setError(null);
+  const createGoal = (goalData) => {
+    return createGoalMutation.mutateAsync(goalData);
+  };
 
-    try {
-      const result = await goalService.deleteGoal(goalId);
+  const createMultipleGoals = (goalsArray) => {
+    return createMultipleGoalsMutation.mutateAsync(goalsArray);
+  };
 
-      if (result.error) {
-        setError(result.error.message);
-        return { error: result.error };
-      }
+  const updateGoal = (goalId, updates) => {
+    return updateGoalMutation.mutateAsync({ goalId, updates });
+  };
 
-      setGoals((prev) => prev.filter((goal) => goal.id !== goalId));
+  const deleteGoal = (goalId) => {
+    return deleteGoalMutation.mutateAsync(goalId);
+  };
 
-      return { error: null };
-    } catch (err) {
-      setError(err.message);
-      return { error: err };
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const clearError = useCallback(() => {
-    setError(null);
-  }, []);
+  const clearError = () => {
+    createGoalMutation.reset();
+    createMultipleGoalsMutation.reset();
+    updateGoalMutation.reset();
+    deleteGoalMutation.reset();
+  };
 
   return {
-    // Methods
+    // Query methods
     getGoals,
+
+    // Mutation methods
     createGoal,
     createMultipleGoals,
     updateGoal,
     deleteGoal,
     clearError,
 
-    // State
-    loading,
-    error,
-    goals,
+    // Mutation states
+    mutations: {
+      createGoal: createGoalMutation,
+      createMultipleGoals: createMultipleGoalsMutation,
+      updateGoal: updateGoalMutation,
+      deleteGoal: deleteGoalMutation,
+    },
   };
 };

@@ -706,7 +706,7 @@ function Dashboard() {
                                             children: "Dashboard"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                            lineNumber: 82,
+                                            lineNumber: 81,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -714,18 +714,18 @@ function Dashboard() {
                                             children: "Overview of your financial health"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                            lineNumber: 85,
+                                            lineNumber: 84,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/pages/dashboard/page.js",
-                                    lineNumber: 81,
+                                    lineNumber: 80,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                lineNumber: 74,
+                                lineNumber: 73,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -739,7 +739,7 @@ function Dashboard() {
                                                 children: "Total Income"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 100,
+                                                lineNumber: 98,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -747,7 +747,7 @@ function Dashboard() {
                                                 children: "$5,500"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 103,
+                                                lineNumber: 101,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -755,13 +755,13 @@ function Dashboard() {
                                                 children: "+10%"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 106,
+                                                lineNumber: 104,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                        lineNumber: 93,
+                                        lineNumber: 91,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -772,7 +772,7 @@ function Dashboard() {
                                                 children: "Total Expenses"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 117,
+                                                lineNumber: 115,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -780,7 +780,7 @@ function Dashboard() {
                                                 children: "$3,200"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 120,
+                                                lineNumber: 118,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -788,19 +788,19 @@ function Dashboard() {
                                                 children: "-5%"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 123,
+                                                lineNumber: 121,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                        lineNumber: 110,
+                                        lineNumber: 108,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                lineNumber: 92,
+                                lineNumber: 90,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -814,7 +814,7 @@ function Dashboard() {
                                                 children: "Spending Over Time"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 139,
+                                                lineNumber: 135,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -822,7 +822,7 @@ function Dashboard() {
                                                 children: "$3,200"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 142,
+                                                lineNumber: 138,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -833,7 +833,7 @@ function Dashboard() {
                                                         children: "Last 6 Months"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 146,
+                                                        lineNumber: 142,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -841,13 +841,13 @@ function Dashboard() {
                                                         children: "-5%"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 149,
+                                                        lineNumber: 145,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 145,
+                                                lineNumber: 141,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -868,7 +868,7 @@ function Dashboard() {
                                                                 className: "jsx-80b7db41fdf29c9d"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 163,
+                                                                lineNumber: 159,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -879,7 +879,7 @@ function Dashboard() {
                                                                 className: "jsx-80b7db41fdf29c9d"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 167,
+                                                                lineNumber: 163,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("defs", {
@@ -898,7 +898,7 @@ function Dashboard() {
                                                                             className: "jsx-80b7db41fdf29c9d"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                            lineNumber: 182,
+                                                                            lineNumber: 178,
                                                                             columnNumber: 25
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
@@ -908,24 +908,24 @@ function Dashboard() {
                                                                             className: "jsx-80b7db41fdf29c9d"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                            lineNumber: 183,
+                                                                            lineNumber: 179,
                                                                             columnNumber: 25
                                                                         }, this)
                                                                     ]
                                                                 }, void 0, true, {
                                                                     fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                    lineNumber: 174,
+                                                                    lineNumber: 170,
                                                                     columnNumber: 23
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 173,
+                                                                lineNumber: 169,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 154,
+                                                        lineNumber: 150,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -945,24 +945,24 @@ function Dashboard() {
                                                                 children: month
                                                             }, month, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 194,
+                                                                lineNumber: 190,
                                                                 columnNumber: 25
                                                             }, this))
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 191,
+                                                        lineNumber: 187,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 153,
+                                                lineNumber: 149,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                        lineNumber: 132,
+                                        lineNumber: 128,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -973,7 +973,7 @@ function Dashboard() {
                                                 children: "Spending by Category"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 215,
+                                                lineNumber: 210,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -981,7 +981,7 @@ function Dashboard() {
                                                 children: "$3,200"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 218,
+                                                lineNumber: 213,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -992,7 +992,7 @@ function Dashboard() {
                                                         children: "This Month"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 222,
+                                                        lineNumber: 217,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1000,13 +1000,13 @@ function Dashboard() {
                                                         children: "-10%"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 225,
+                                                        lineNumber: 220,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 221,
+                                                lineNumber: 216,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1043,7 +1043,7 @@ function Dashboard() {
                                                                 className: "jsx-80b7db41fdf29c9d" + " " + "border-[#b79eb2] bg-gradient-to-t from-[#9c167f] to-[#382935] border-t-2 w-full max-w-[40px] sm:max-w-[50px] rounded-t-lg transition-all duration-1000 ease-out"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 241,
+                                                                lineNumber: 236,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1054,30 +1054,30 @@ function Dashboard() {
                                                                 children: item.name
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 248,
+                                                                lineNumber: 243,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, index, true, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 237,
+                                                        lineNumber: 232,
                                                         columnNumber: 21
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 229,
+                                                lineNumber: 224,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                        lineNumber: 208,
+                                        lineNumber: 203,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                lineNumber: 130,
+                                lineNumber: 127,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1097,7 +1097,7 @@ function Dashboard() {
                                                                 children: "Monthly Spending"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 272,
+                                                                lineNumber: 265,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1105,13 +1105,13 @@ function Dashboard() {
                                                                 children: "$3,200"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 275,
+                                                                lineNumber: 268,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 271,
+                                                        lineNumber: 264,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1122,7 +1122,7 @@ function Dashboard() {
                                                                 children: "Last 6 Months"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 280,
+                                                                lineNumber: 273,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1130,19 +1130,19 @@ function Dashboard() {
                                                                 children: "-5%"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 281,
+                                                                lineNumber: 274,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 279,
+                                                        lineNumber: 272,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 270,
+                                                lineNumber: 263,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1160,7 +1160,7 @@ function Dashboard() {
                                                                         children: "Month"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                        lineNumber: 289,
+                                                                        lineNumber: 282,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1168,7 +1168,7 @@ function Dashboard() {
                                                                         children: "Amount"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                        lineNumber: 292,
+                                                                        lineNumber: 285,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1176,18 +1176,18 @@ function Dashboard() {
                                                                         children: "Trend"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                        lineNumber: 295,
+                                                                        lineNumber: 288,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 288,
+                                                                lineNumber: 281,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                            lineNumber: 287,
+                                                            lineNumber: 280,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -1204,7 +1204,7 @@ function Dashboard() {
                                                                             children: item.month
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                            lineNumber: 314,
+                                                                            lineNumber: 307,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1215,7 +1215,7 @@ function Dashboard() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                            lineNumber: 317,
+                                                                            lineNumber: 310,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1225,40 +1225,40 @@ function Dashboard() {
                                                                                 children: index > 0 && item.amount > spendingData[index - 1].amount ? "↑" : "↓"
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                                lineNumber: 321,
+                                                                                lineNumber: 314,
                                                                                 columnNumber: 29
                                                                             }, this)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                            lineNumber: 320,
+                                                                            lineNumber: 313,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, index, true, {
                                                                     fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                    lineNumber: 302,
+                                                                    lineNumber: 295,
                                                                     columnNumber: 25
                                                                 }, this))
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                            lineNumber: 300,
+                                                            lineNumber: 293,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                    lineNumber: 286,
+                                                    lineNumber: 279,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 285,
+                                                lineNumber: 278,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                        lineNumber: 263,
+                                        lineNumber: 256,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1275,7 +1275,7 @@ function Dashboard() {
                                                                 children: "Category Spending"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 352,
+                                                                lineNumber: 344,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1283,13 +1283,13 @@ function Dashboard() {
                                                                 children: "$3,200"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 355,
+                                                                lineNumber: 347,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 351,
+                                                        lineNumber: 343,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1300,7 +1300,7 @@ function Dashboard() {
                                                                 children: "This Month"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 360,
+                                                                lineNumber: 352,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1308,19 +1308,19 @@ function Dashboard() {
                                                                 children: "-10%"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 361,
+                                                                lineNumber: 353,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 359,
+                                                        lineNumber: 351,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 350,
+                                                lineNumber: 342,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1338,7 +1338,7 @@ function Dashboard() {
                                                                         children: "Category"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                        lineNumber: 369,
+                                                                        lineNumber: 361,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1346,7 +1346,7 @@ function Dashboard() {
                                                                         children: "Amount"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                        lineNumber: 372,
+                                                                        lineNumber: 364,
                                                                         columnNumber: 25
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1354,18 +1354,18 @@ function Dashboard() {
                                                                         children: "%"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                        lineNumber: 375,
+                                                                        lineNumber: 367,
                                                                         columnNumber: 25
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 368,
+                                                                lineNumber: 360,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                            lineNumber: 367,
+                                                            lineNumber: 359,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -1382,7 +1382,7 @@ function Dashboard() {
                                                                             children: item.name
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                            lineNumber: 394,
+                                                                            lineNumber: 386,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1393,7 +1393,7 @@ function Dashboard() {
                                                                             ]
                                                                         }, void 0, true, {
                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                            lineNumber: 397,
+                                                                            lineNumber: 389,
                                                                             columnNumber: 27
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1411,12 +1411,12 @@ function Dashboard() {
                                                                                             className: "jsx-80b7db41fdf29c9d" + " " + "bg-gradient-to-r from-[#9c167f] to-[#fa7538] h-2 rounded-full transition-all duration-1000"
                                                                                         }, void 0, false, {
                                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                                            lineNumber: 403,
+                                                                                            lineNumber: 395,
                                                                                             columnNumber: 33
                                                                                         }, this)
                                                                                     }, void 0, false, {
                                                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                                        lineNumber: 402,
+                                                                                        lineNumber: 394,
                                                                                         columnNumber: 31
                                                                                     }, this),
                                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1427,52 +1427,52 @@ function Dashboard() {
                                                                                         ]
                                                                                     }, void 0, true, {
                                                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                                        lineNumber: 413,
+                                                                                        lineNumber: 405,
                                                                                         columnNumber: 31
                                                                                     }, this)
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                                lineNumber: 401,
+                                                                                lineNumber: 393,
                                                                                 columnNumber: 29
                                                                             }, this)
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                            lineNumber: 400,
+                                                                            lineNumber: 392,
                                                                             columnNumber: 27
                                                                         }, this)
                                                                     ]
                                                                 }, index, true, {
                                                                     fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                    lineNumber: 382,
+                                                                    lineNumber: 374,
                                                                     columnNumber: 25
                                                                 }, this))
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                            lineNumber: 380,
+                                                            lineNumber: 372,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                    lineNumber: 366,
+                                                    lineNumber: 358,
                                                     columnNumber: 19
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 365,
+                                                lineNumber: 357,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                        lineNumber: 343,
+                                        lineNumber: 335,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                lineNumber: 261,
+                                lineNumber: 255,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1483,7 +1483,7 @@ function Dashboard() {
                                         children: "Recent Transactions"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                        lineNumber: 434,
+                                        lineNumber: 425,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1507,17 +1507,17 @@ function Dashboard() {
                                                                 className: "jsx-80b7db41fdf29c9d"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 450,
+                                                                lineNumber: 440,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                            lineNumber: 443,
+                                                            lineNumber: 433,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 442,
+                                                        lineNumber: 432,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1527,23 +1527,23 @@ function Dashboard() {
                                                         className: "jsx-80b7db41fdf29c9d" + " " + "form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border-none bg-[#382935] focus:border-none h-full placeholder:text-[#b79eb2] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal transition-all duration-300 focus:ring-2 focus:ring-[#9c167f]/50"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                        lineNumber: 453,
+                                                        lineNumber: 443,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 441,
+                                                lineNumber: 431,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                            lineNumber: 440,
+                                            lineNumber: 430,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                        lineNumber: 439,
+                                        lineNumber: 429,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1559,17 +1559,17 @@ function Dashboard() {
                                                     children: filter
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                    lineNumber: 480,
+                                                    lineNumber: 469,
                                                     columnNumber: 21
                                                 }, this)
                                             }, filter, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 466,
+                                                lineNumber: 455,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                        lineNumber: 464,
+                                        lineNumber: 453,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1591,7 +1591,7 @@ function Dashboard() {
                                                                         children: "Date"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                        lineNumber: 494,
+                                                                        lineNumber: 482,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1599,7 +1599,7 @@ function Dashboard() {
                                                                         children: "Category"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                        lineNumber: 497,
+                                                                        lineNumber: 485,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1607,7 +1607,7 @@ function Dashboard() {
                                                                         children: "Description"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                        lineNumber: 500,
+                                                                        lineNumber: 488,
                                                                         columnNumber: 27
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("th", {
@@ -1615,18 +1615,18 @@ function Dashboard() {
                                                                         children: "Amount"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                        lineNumber: 503,
+                                                                        lineNumber: 491,
                                                                         columnNumber: 27
                                                                     }, this)
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                lineNumber: 493,
+                                                                lineNumber: 481,
                                                                 columnNumber: 25
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                            lineNumber: 492,
+                                                            lineNumber: 480,
                                                             columnNumber: 23
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tbody", {
@@ -1643,7 +1643,7 @@ function Dashboard() {
                                                                             children: transaction.date
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                            lineNumber: 522,
+                                                                            lineNumber: 510,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1651,7 +1651,7 @@ function Dashboard() {
                                                                             children: transaction.category
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                            lineNumber: 525,
+                                                                            lineNumber: 513,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1659,7 +1659,7 @@ function Dashboard() {
                                                                             children: transaction.description
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                            lineNumber: 528,
+                                                                            lineNumber: 516,
                                                                             columnNumber: 29
                                                                         }, this),
                                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("td", {
@@ -1667,45 +1667,45 @@ function Dashboard() {
                                                                             children: transaction.amount
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                            lineNumber: 531,
+                                                                            lineNumber: 519,
                                                                             columnNumber: 29
                                                                         }, this)
                                                                     ]
                                                                 }, index, true, {
                                                                     fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                                    lineNumber: 510,
+                                                                    lineNumber: 498,
                                                                     columnNumber: 27
                                                                 }, this))
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                            lineNumber: 508,
+                                                            lineNumber: 496,
                                                             columnNumber: 23
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                    lineNumber: 491,
+                                                    lineNumber: 479,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                                lineNumber: 490,
+                                                lineNumber: 478,
                                                 columnNumber: 19
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/dashboard/page.js",
-                                            lineNumber: 489,
+                                            lineNumber: 477,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/pages/dashboard/page.js",
-                                        lineNumber: 488,
+                                        lineNumber: 476,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/pages/dashboard/page.js",
-                                lineNumber: 427,
+                                lineNumber: 418,
                                 columnNumber: 13
                             }, this)
                         ]

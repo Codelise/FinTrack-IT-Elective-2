@@ -362,7 +362,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/auth-service.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useOnboarding.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/supabase.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/useMutation.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$react$2d$query$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/react-query.js [app-client] (ecmascript)");
 var _s = __turbopack_context__.k.signature();
+;
+;
 ;
 ;
 ;
@@ -373,6 +377,37 @@ const useAuth = ()=>{
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const { checkOnboardingStatus, markAsOnboarded, loading: onboardingLoading, error: onboardingError } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useOnboarding"])();
+    const signUpMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["authService"].signUp,
+        onSuccess: {
+            "useAuth.useMutation[signUpMutation]": (result)=>{
+                var _result_data;
+                if ((_result_data = result.data) === null || _result_data === void 0 ? void 0 : _result_data.user) {
+                    setUser(result.data.user);
+                }
+            }
+        }["useAuth.useMutation[signUpMutation]"]
+    });
+    const signInMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["authService"].signIn,
+        onSuccess: {
+            "useAuth.useMutation[signInMutation]": (result)=>{
+                var _result_data;
+                if ((_result_data = result.data) === null || _result_data === void 0 ? void 0 : _result_data.user) {
+                    setUser(result.data.user);
+                }
+            }
+        }["useAuth.useMutation[signInMutation]"]
+    });
+    const signOutMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["authService"].signOut,
+        onSuccess: {
+            "useAuth.useMutation[signOutMutation]": ()=>{
+                setUser(null);
+                __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$react$2d$query$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["queryClient"].clear();
+            }
+        }["useAuth.useMutation[signOutMutation]"]
+    });
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "useAuth.useEffect": ()=>{
             const checkUserSession = {
@@ -502,9 +537,12 @@ const useAuth = ()=>{
         user
     };
 };
-_s(useAuth, "imUjdslvfT3h+7EszBDRAIuccUQ=", false, function() {
+_s(useAuth, "bR4ihJB2PE13iFo78kGRr2BSXPc=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useOnboarding"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useOnboarding"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
@@ -663,209 +701,166 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "use strict";
 
 __turbopack_context__.s([
+    "goalKeys",
+    ()=>goalKeys,
     "useGoal",
     ()=>useGoal
 ]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/useQuery.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/useMutation.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/goal-service.js [app-client] (ecmascript)");
 var _s = __turbopack_context__.k.signature();
 ;
 ;
+const goalKeys = {
+    all: [
+        "goals"
+    ],
+    lists: ()=>[
+            ...goalKeys.all,
+            "list"
+        ],
+    list: (filters)=>[
+            ...goalKeys.lists(),
+            {
+                filters
+            }
+        ],
+    details: ()=>[
+            ...goalKeys.all,
+            "detail"
+        ],
+    detail: (id)=>[
+            ...goalKeys.details(),
+            id
+        ]
+};
 const useGoal = ()=>{
     _s();
-    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [goals, setGoals] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
-    const getGoals = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "useGoal.useCallback[getGoals]": async (userId)=>{
-            if (!userId) return {
-                data: null,
-                error: "No user ID provided"
-            };
-            setLoading(true);
-            setError(null);
-            try {
-                const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].getGoals(userId);
-                if (result.error) {
-                    setError(result.error.message);
-                    return {
-                        data: null,
-                        error: result.error
-                    };
-                }
-                setGoals(result.data || []);
-                return {
-                    data: result.data,
-                    error: null
-                };
-            } catch (err) {
-                setError(err.message);
-                return {
-                    data: null,
-                    error: err
-                };
-            } finally{
-                setLoading(false);
-            }
-        }
-    }["useGoal.useCallback[getGoals]"], []);
-    const createGoal = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "useGoal.useCallback[createGoal]": async (goalData)=>{
-            setLoading(true);
-            setError(null);
-            try {
-                const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].createGoal(goalData);
-                if (result.error) {
-                    setError(result.error.message);
-                    return {
-                        data: null,
-                        error: result.error
-                    };
-                }
+    var _s1 = __turbopack_context__.k.signature();
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    const getGoals = (userId)=>{
+        _s1();
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+            queryKey: goalKeys.list({
+                userId
+            }),
+            queryFn: {
+                "useGoal.getGoals.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].getGoals(userId)
+            }["useGoal.getGoals.useQuery"],
+            enabled: !!userId,
+            staleTime: 2 * 60 * 1000
+        });
+    };
+    _s1(getGoals, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+        return [
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+        ];
+    });
+    const createGoalMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].createGoal,
+        onSuccess: {
+            "useGoal.useMutation[createGoalMutation]": (result)=>{
                 if (result.data) {
-                    setGoals({
-                        "useGoal.useCallback[createGoal]": (prev)=>[
-                                ...prev,
-                                result.data[0]
-                            ]
-                    }["useGoal.useCallback[createGoal]"]);
+                    queryClient.invalidateQueries({
+                        queryKey: goalKeys.lists()
+                    });
                 }
-                return {
-                    data: result.data,
-                    error: null
-                };
-            } catch (err) {
-                setError(err.message);
-                return {
-                    data: null,
-                    error: err
-                };
-            } finally{
-                setLoading(false);
             }
-        }
-    }["useGoal.useCallback[createGoal]"], []);
-    const createMultipleGoals = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "useGoal.useCallback[createMultipleGoals]": async (goalsArray)=>{
-            setLoading(true);
-            setError(null);
-            try {
-                const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].createMultipleGoals(goalsArray);
-                if (result.error) {
-                    setError(result.error.message);
-                    return {
-                        data: null,
-                        error: result.error
-                    };
-                }
+        }["useGoal.useMutation[createGoalMutation]"]
+    });
+    const createMultipleGoalsMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].createMultipleGoals,
+        onSuccess: {
+            "useGoal.useMutation[createMultipleGoalsMutation]": (result)=>{
                 if (result.data) {
-                    setGoals({
-                        "useGoal.useCallback[createMultipleGoals]": (prev)=>[
-                                ...prev,
-                                ...result.data
-                            ]
-                    }["useGoal.useCallback[createMultipleGoals]"]);
+                    queryClient.invalidateQueries({
+                        queryKey: goalKeys.lists()
+                    });
                 }
-                return {
-                    data: result.data,
-                    error: null
-                };
-            } catch (err) {
-                setError(err.message);
-                return {
-                    data: null,
-                    error: err
-                };
-            } finally{
-                setLoading(false);
             }
-        }
-    }["useGoal.useCallback[createMultipleGoals]"], []);
-    const updateGoal = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "useGoal.useCallback[updateGoal]": async (goalId, updates)=>{
-            setLoading(true);
-            setError(null);
-            try {
-                const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].updateGoal(goalId, updates);
-                if (result.error) {
-                    setError(result.error.message);
-                    return {
-                        data: null,
-                        error: result.error
-                    };
-                }
+        }["useGoal.useMutation[createMultipleGoalsMutation]"]
+    });
+    const updateGoalMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: {
+            "useGoal.useMutation[updateGoalMutation]": (param)=>{
+                let { goalId, updates } = param;
+                return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].updateGoal(goalId, updates);
+            }
+        }["useGoal.useMutation[updateGoalMutation]"],
+        onSuccess: {
+            "useGoal.useMutation[updateGoalMutation]": (result, variables)=>{
                 if (result.data) {
-                    setGoals({
-                        "useGoal.useCallback[updateGoal]": (prev)=>prev.map({
-                                "useGoal.useCallback[updateGoal]": (goal)=>goal.id === goalId ? result.data[0] : goal
-                            }["useGoal.useCallback[updateGoal]"])
-                    }["useGoal.useCallback[updateGoal]"]);
+                    queryClient.setQueryData(goalKeys.lists(), {
+                        "useGoal.useMutation[updateGoalMutation]": (old)=>old === null || old === void 0 ? void 0 : old.map({
+                                "useGoal.useMutation[updateGoalMutation]": (goal)=>goal.id === variables.goalId ? result.data[0] : goal
+                            }["useGoal.useMutation[updateGoalMutation]"])
+                    }["useGoal.useMutation[updateGoalMutation]"]);
                 }
-                return {
-                    data: result.data,
-                    error: null
-                };
-            } catch (err) {
-                setError(err.message);
-                return {
-                    data: null,
-                    error: err
-                };
-            } finally{
-                setLoading(false);
             }
-        }
-    }["useGoal.useCallback[updateGoal]"], []);
-    const deleteGoal = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "useGoal.useCallback[deleteGoal]": async (goalId)=>{
-            setLoading(true);
-            setError(null);
-            try {
-                const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].deleteGoal(goalId);
-                if (result.error) {
-                    setError(result.error.message);
-                    return {
-                        error: result.error
-                    };
-                }
-                setGoals({
-                    "useGoal.useCallback[deleteGoal]": (prev)=>prev.filter({
-                            "useGoal.useCallback[deleteGoal]": (goal)=>goal.id !== goalId
-                        }["useGoal.useCallback[deleteGoal]"])
-                }["useGoal.useCallback[deleteGoal]"]);
-                return {
-                    error: null
-                };
-            } catch (err) {
-                setError(err.message);
-                return {
-                    error: err
-                };
-            } finally{
-                setLoading(false);
+        }["useGoal.useMutation[updateGoalMutation]"]
+    });
+    const deleteGoalMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$goal$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["goalService"].deleteGoal,
+        onSuccess: {
+            "useGoal.useMutation[deleteGoalMutation]": (result, variables)=>{
+                queryClient.setQueryData(goalKeys.lists(), {
+                    "useGoal.useMutation[deleteGoalMutation]": (old)=>old === null || old === void 0 ? void 0 : old.filter({
+                            "useGoal.useMutation[deleteGoalMutation]": (goal)=>goal.id !== variables
+                        }["useGoal.useMutation[deleteGoalMutation]"])
+                }["useGoal.useMutation[deleteGoalMutation]"]);
             }
-        }
-    }["useGoal.useCallback[deleteGoal]"], []);
-    const clearError = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "useGoal.useCallback[clearError]": ()=>{
-            setError(null);
-        }
-    }["useGoal.useCallback[clearError]"], []);
+        }["useGoal.useMutation[deleteGoalMutation]"]
+    });
+    const createGoal = (goalData)=>{
+        return createGoalMutation.mutateAsync(goalData);
+    };
+    const createMultipleGoals = (goalsArray)=>{
+        return createMultipleGoalsMutation.mutateAsync(goalsArray);
+    };
+    const updateGoal = (goalId, updates)=>{
+        return updateGoalMutation.mutateAsync({
+            goalId,
+            updates
+        });
+    };
+    const deleteGoal = (goalId)=>{
+        return deleteGoalMutation.mutateAsync(goalId);
+    };
+    const clearError = ()=>{
+        createGoalMutation.reset();
+        createMultipleGoalsMutation.reset();
+        updateGoalMutation.reset();
+        deleteGoalMutation.reset();
+    };
     return {
-        // Methods
+        // Query methods
         getGoals,
+        // Mutation methods
         createGoal,
         createMultipleGoals,
         updateGoal,
         deleteGoal,
         clearError,
-        // State
-        loading,
-        error,
-        goals
+        // Mutation states
+        mutations: {
+            createGoal: createGoalMutation,
+            createMultipleGoals: createMultipleGoalsMutation,
+            updateGoal: updateGoalMutation,
+            deleteGoal: deleteGoalMutation
+        }
     };
 };
-_s(useGoal, "p5qOE7eRjb6C5cYd6RfFT2CJw0I=");
+_s(useGoal, "I7Fo8PY7r4gCx934KQmKJqT6aVU=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
+    ];
+});
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -878,6 +873,7 @@ __turbopack_context__.s([
     ()=>SetGoals
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/styled-jsx/style.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useAuth$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useAuth.js [app-client] (ecmascript)");
@@ -889,16 +885,17 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
 function SetGoals() {
     _s();
     const [selectedGoal, setSelectedGoal] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [goalAmount, setGoalAmount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [goalDeadline, setGoalDeadline] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [goals, setGoals] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({});
-    const [saving, setSaving] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isModalOpen, setIsModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const { user, markAsOnboarded } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useAuth$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"])();
-    const { createMultipleGoals, loading: goalLoading, error: goalError } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useGoal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGoal"])();
+    const { createMultipleGoals, mutations: { createMultipleGoals: createMutation } } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useGoal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useGoal"])();
     const goalCategories = [
         {
             name: "Emergency Fund",
@@ -916,12 +913,12 @@ function SetGoals() {
                     d: "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
                 }, void 0, false, {
                     fileName: "[project]/src/app/pages/setGoal/page.js",
-                    lineNumber: 36,
+                    lineNumber: 35,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                lineNumber: 25,
+                lineNumber: 24,
                 columnNumber: 9
             }, this),
             description: "3-6 months of expenses"
@@ -943,14 +940,14 @@ function SetGoals() {
                         d: "M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H8.4"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 55,
+                        lineNumber: 54,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M18 8h1a1 1 0 0 1 1 1v1.15"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 56,
+                        lineNumber: 55,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
@@ -961,7 +958,7 @@ function SetGoals() {
                         rx: "1"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 57,
+                        lineNumber: 56,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -970,7 +967,7 @@ function SetGoals() {
                         r: "2"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 58,
+                        lineNumber: 57,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -979,13 +976,13 @@ function SetGoals() {
                         r: "2"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 59,
+                        lineNumber: 58,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                lineNumber: 44,
+                lineNumber: 43,
                 columnNumber: 9
             }, this),
             description: "Vehicle purchase"
@@ -1006,12 +1003,12 @@ function SetGoals() {
                     d: "M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 1 3 1 2-2.3 3.3 3.3c.5.5 1.2.3 1.5-.3l.5-.7c.2-.5.1-1-.3-1.2Z"
                 }, void 0, false, {
                     fileName: "[project]/src/app/pages/setGoal/page.js",
-                    lineNumber: 78,
+                    lineNumber: 77,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                lineNumber: 67,
+                lineNumber: 66,
                 columnNumber: 9
             }, this),
             description: "Travel and holidays"
@@ -1033,20 +1030,20 @@ function SetGoals() {
                         d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 97,
+                        lineNumber: 96,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 98,
+                        lineNumber: 97,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                lineNumber: 86,
+                lineNumber: 85,
                 columnNumber: 9
             }, this),
             description: "Buying a house"
@@ -1068,20 +1065,20 @@ function SetGoals() {
                         d: "M22 10v6M2 10l10-5 10 5-10 5z"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 117,
+                        lineNumber: 116,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M6 12v5c0 2 2 2 4 1 2 1 4 1 4-1v-5"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 118,
+                        lineNumber: 117,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                lineNumber: 106,
+                lineNumber: 105,
                 columnNumber: 9
             }, this),
             description: "School or courses"
@@ -1105,35 +1102,35 @@ function SetGoals() {
                         r: "10"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 137,
+                        lineNumber: 136,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "m4.93 4.93 4.24 4.24"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 138,
+                        lineNumber: 137,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "m14.83 9.17 4.24-4.24"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 139,
+                        lineNumber: 138,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "m14.83 14.83 4.24 4.24"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 140,
+                        lineNumber: 139,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "m9.17 14.83-4.24 4.24"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 141,
+                        lineNumber: 140,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1142,13 +1139,13 @@ function SetGoals() {
                         r: "4"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 142,
+                        lineNumber: 141,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                lineNumber: 126,
+                lineNumber: 125,
                 columnNumber: 9
             }, this),
             description: "Long-term savings"
@@ -1170,20 +1167,20 @@ function SetGoals() {
                         d: "M12 2v20"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 161,
+                        lineNumber: 160,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 162,
+                        lineNumber: 161,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                lineNumber: 150,
+                lineNumber: 149,
                 columnNumber: 9
             }, this),
             description: "Clear existing debts"
@@ -1205,20 +1202,20 @@ function SetGoals() {
                         d: "M3 3v18h18"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 181,
+                        lineNumber: 180,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "m19 9-5 5-4-4-3 3"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 182,
+                        lineNumber: 181,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                lineNumber: 170,
+                lineNumber: 169,
                 columnNumber: 9
             }, this),
             description: "Grow your wealth"
@@ -1228,6 +1225,7 @@ function SetGoals() {
         setSelectedGoal(goal);
         setGoalAmount("");
         setGoalDeadline("");
+        setIsModalOpen(true);
     };
     const handleConfirmGoal = ()=>{
         if (selectedGoal && goalAmount && goalDeadline) {
@@ -1243,13 +1241,13 @@ function SetGoals() {
         setSelectedGoal(null);
         setGoalAmount("");
         setGoalDeadline("");
+        setIsModalOpen(false);
     };
     const handleSetAllGoals = async ()=>{
         if (!user) {
             console.error("No user found");
             return;
         }
-        setSaving(true);
         try {
             const goalsArray = Object.values(goals).map((goal)=>({
                     user_id: user.id,
@@ -1264,6 +1262,7 @@ function SetGoals() {
                 const result = await createMultipleGoals(goalsArray);
                 if (result.error) {
                     console.error("Error saving goals:", result.error);
+                    return;
                 } else {
                     console.log("Goals saved successfully:", result.data);
                 }
@@ -1272,8 +1271,6 @@ function SetGoals() {
             router.push("./dashboard");
         } catch (error) {
             console.error("Error in goal saving:", error);
-        } finally{
-            setSaving(false);
         }
     };
     const handleSkip = async ()=>{
@@ -1284,235 +1281,313 @@ function SetGoals() {
     };
     const today = new Date().toISOString().split("T")[0];
     const maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 5)).toISOString().split("T")[0];
+    const saving = createMutation.isPending;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "relative flex h-auto min-h-screen w-full flex-col bg-[#171116] dark group/design-root overflow-x-hidden",
+        className: "jsx-4198e0e3cde1015f" + " " + "relative flex h-auto min-h-screen w-full flex-col bg-[#171116] overflow-x-hidden",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "layout-container flex h-full grow flex-col",
+                className: "jsx-4198e0e3cde1015f" + " " + "absolute top-1/3 right-1/4 w-28 h-28 bg-[#9b177e]/10 rounded-full blur-xl animate-pulse-slow"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/setGoal/page.js",
+                lineNumber: 265,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-4198e0e3cde1015f" + " " + "absolute bottom-1/4 left-1/3 w-20 h-20 bg-[#9b177e]/5 rounded-full blur-lg animate-pulse-slow animation-delay-1500"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/setGoal/page.js",
+                lineNumber: 266,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-4198e0e3cde1015f" + " " + "layout-container flex h-full grow flex-col z-10",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-1 justify-center px-5 py-50",
+                    className: "jsx-4198e0e3cde1015f" + " " + "flex flex-1 justify-center px-5 py-50",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col w-full max-w-2xl mx-auto px-4",
+                        className: "jsx-4198e0e3cde1015f" + " " + "flex flex-col w-full max-w-2xl mx-auto px-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "text-white tracking-light text-3xl font-bold leading-tight text-center pb-2",
+                                className: "jsx-4198e0e3cde1015f" + " " + "text-white tracking-light text-3xl font-bold leading-tight text-center pb-2 animate-fade-in-up",
                                 children: "Step 2 of 2"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                                lineNumber: 267,
+                                lineNumber: 271,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                className: "text-white tracking-light text-2xl font-medium leading-tight text-center pb-8",
+                                className: "jsx-4198e0e3cde1015f" + " " + "text-white tracking-light text-2xl font-medium leading-tight text-center pb-8 animate-fade-in-up animation-delay-200",
                                 children: "Set Your Financial Goals"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                                lineNumber: 270,
+                                lineNumber: 274,
                                 columnNumber: 13
                             }, this),
-                            goalError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-red-500/20 border border-red-500 text-white px-4 py-3 rounded text-sm mb-4",
+                            createMutation.error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "jsx-4198e0e3cde1015f" + " " + "bg-red-500/20 border border-red-500 text-white px-4 py-3 rounded text-sm mb-4 animate-shake",
                                 children: [
                                     "Error saving goals: ",
-                                    goalError
+                                    createMutation.error.message
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                                lineNumber: 275,
+                                lineNumber: 279,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "grid grid-cols-2 md:grid-cols-4 gap-4 mb-8",
-                                children: goalCategories.map((goal)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                className: "jsx-4198e0e3cde1015f" + " " + "grid grid-cols-2 md:grid-cols-4 gap-4 mb-8",
+                                children: goalCategories.map((goal, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>handleGoalSelect(goal),
-                                        className: "flex flex-col items-center justify-center p-4 rounded-lg border-2 transition-all ".concat(goals[goal.name] ? "border-[#9b177e] bg-[#9b177e]/20" : "border-[#382935] bg-[#382935] hover:border-[#9b177e]"),
+                                        style: {
+                                            animationDelay: "".concat(index * 100 + 600, "ms")
+                                        },
+                                        className: "jsx-4198e0e3cde1015f" + " " + "group relative flex flex-col items-center justify-center p-4 rounded-lg border-2 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[#9b177e]/20 ".concat(goals[goal.name] ? "border-[#9b177e] bg-[#9b177e]/20 shadow-lg shadow-[#9b177e]/30" : "border-[#382935] bg-[#382935] hover:border-[#9b177e]", " animate-fade-in-up"),
                                         children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "jsx-4198e0e3cde1015f" + " " + "absolute inset-0 bg-gradient-to-br from-transparent via-[#9b177e]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/setGoal/page.js",
+                                                lineNumber: 296,
+                                                columnNumber: 19
+                                            }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-white mb-2 w-6 h-6",
+                                                className: "jsx-4198e0e3cde1015f" + " " + "text-white mb-2 w-6 h-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3",
                                                 children: goal.icon
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                                                lineNumber: 291,
+                                                lineNumber: 298,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-white text-sm font-medium text-center",
+                                                className: "jsx-4198e0e3cde1015f" + " " + "text-white text-sm font-medium text-center relative z-10",
                                                 children: goal.name
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                                                lineNumber: 292,
+                                                lineNumber: 301,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[#b79eb0] text-xs text-center mt-1",
+                                                className: "jsx-4198e0e3cde1015f" + " " + "text-[#b79eb0] text-xs text-center mt-1 relative z-10",
                                                 children: goal.description
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                                                lineNumber: 295,
+                                                lineNumber: 304,
                                                 columnNumber: 19
                                             }, this),
                                             goals[goal.name] && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "text-[#9b177e] text-xs mt-2 text-center",
+                                                className: "jsx-4198e0e3cde1015f" + " " + "text-[#9b177e] text-xs mt-2 text-center font-semibold relative z-10 animate-pulse",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        children: "✓ Selected"
+                                                        className: "jsx-4198e0e3cde1015f",
+                                                        children: "Selected"
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                                                        lineNumber: 300,
+                                                        lineNumber: 309,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "jsx-4198e0e3cde1015f",
                                                         children: [
                                                             "₱",
                                                             goals[goal.name].target_amount.toLocaleString()
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                                                        lineNumber: 301,
+                                                        lineNumber: 310,
                                                         columnNumber: 23
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "jsx-4198e0e3cde1015f",
                                                         children: new Date(goals[goal.name].deadline).toLocaleDateString()
                                                     }, void 0, false, {
                                                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                                                        lineNumber: 304,
+                                                        lineNumber: 313,
                                                         columnNumber: 23
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                                                lineNumber: 299,
+                                                lineNumber: 308,
+                                                columnNumber: 21
+                                            }, this),
+                                            goals[goal.name] && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "jsx-4198e0e3cde1015f" + " " + "absolute -top-2 -right-2 w-6 h-6 bg-[#9b177e] rounded-full flex items-center justify-center animate-bounce",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                    fill: "currentColor",
+                                                    viewBox: "0 0 20 20",
+                                                    className: "jsx-4198e0e3cde1015f" + " " + "w-3 h-3 text-white",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                        fillRule: "evenodd",
+                                                        d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                                                        clipRule: "evenodd",
+                                                        className: "jsx-4198e0e3cde1015f"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/pages/setGoal/page.js",
+                                                        lineNumber: 328,
+                                                        columnNumber: 25
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/setGoal/page.js",
+                                                    lineNumber: 323,
+                                                    columnNumber: 23
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/setGoal/page.js",
+                                                lineNumber: 322,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, goal.name, true, {
                                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                                        lineNumber: 282,
+                                        lineNumber: 286,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                                lineNumber: 280,
+                                lineNumber: 284,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex justify-center gap-3 mt-8",
+                                className: "jsx-4198e0e3cde1015f" + " " + "flex justify-center gap-3 mt-8",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: handleSetAllGoals,
-                                        disabled: Object.keys(goals).length === 0 || saving || goalLoading,
-                                        className: "flex cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-[#9b177e] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 disabled:cursor-not-allowed",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            children: saving || goalLoading ? "Saving..." : "Complete Setup"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/pages/setGoal/page.js",
-                                            lineNumber: 323,
-                                            columnNumber: 17
-                                        }, this)
-                                    }, void 0, false, {
+                                        disabled: Object.keys(goals).length === 0 || saving,
+                                        className: "jsx-4198e0e3cde1015f" + " " + "group relative flex cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-[#9b177e] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[#9b177e]/40 overflow-hidden",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "jsx-4198e0e3cde1015f" + " " + "absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/setGoal/page.js",
+                                                lineNumber: 346,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "jsx-4198e0e3cde1015f" + " " + "relative z-10 flex items-center gap-2",
+                                                children: saving ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "jsx-4198e0e3cde1015f" + " " + "w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/pages/setGoal/page.js",
+                                                            lineNumber: 351,
+                                                            columnNumber: 23
+                                                        }, this),
+                                                        "Saving..."
+                                                    ]
+                                                }, void 0, true) : "Complete Setup"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/setGoal/page.js",
+                                                lineNumber: 348,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                                        lineNumber: 316,
+                                        lineNumber: 341,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: handleSkip,
-                                        disabled: saving || goalLoading,
-                                        className: "flex cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-[#382935] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50",
+                                        disabled: saving,
+                                        className: "jsx-4198e0e3cde1015f" + " " + "group flex cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-[#382935] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 transition-all duration-300 transform hover:scale-105 hover:bg-[#4a3547] border border-transparent hover:border-[#9b177e]/30",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "jsx-4198e0e3cde1015f",
                                             children: "Skip Goals"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/setGoal/page.js",
-                                            lineNumber: 332,
+                                            lineNumber: 365,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                                        lineNumber: 327,
+                                        lineNumber: 360,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                                lineNumber: 315,
+                                lineNumber: 340,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-[#b79eb0] text-center mt-4 text-sm",
+                                className: "jsx-4198e0e3cde1015f" + " " + "text-[#b79eb0] text-center mt-4 text-sm animate-fade-in animation-delay-1200",
                                 children: "You can add more goals later in the goals section"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                                lineNumber: 336,
+                                lineNumber: 369,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/pages/setGoal/page.js",
-                        lineNumber: 266,
+                        lineNumber: 270,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/pages/setGoal/page.js",
-                    lineNumber: 265,
+                    lineNumber: 269,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                lineNumber: 264,
+                lineNumber: 268,
                 columnNumber: 7
             }, this),
-            selectedGoal && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4",
+            isModalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-4198e0e3cde1015f" + " " + "fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 animate-fade-in",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-[#261c23] rounded-lg p-6 max-w-md w-full border border-[#523d4c]",
+                    onClick: (e)=>e.stopPropagation(),
+                    className: "jsx-4198e0e3cde1015f" + " " + "bg-[#261c23] rounded-xl p-6 max-w-md w-full border border-[#523d4c] shadow-2xl shadow-black/50 transform animate-scale-in",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "text-center mb-4",
+                            className: "jsx-4198e0e3cde1015f" + " " + "text-center mb-4",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                    className: "text-white mb-3 block w-12 h-12 mx-auto",
-                                    children: selectedGoal.icon
+                                    className: "jsx-4198e0e3cde1015f" + " " + "text-white mb-3 block w-12 h-12 mx-auto transition-transform duration-300 hover:scale-110",
+                                    children: selectedGoal === null || selectedGoal === void 0 ? void 0 : selectedGoal.icon
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/pages/setGoal/page.js",
-                                    lineNumber: 347,
+                                    lineNumber: 383,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                    className: "text-white text-xl font-bold mb-2",
+                                    className: "jsx-4198e0e3cde1015f" + " " + "text-white text-xl font-bold mb-2",
                                     children: [
                                         "Set ",
-                                        selectedGoal.name,
+                                        selectedGoal === null || selectedGoal === void 0 ? void 0 : selectedGoal.name,
                                         " Goal"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/pages/setGoal/page.js",
-                                    lineNumber: 350,
+                                    lineNumber: 386,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-[#b79eb0]",
-                                    children: selectedGoal.description
+                                    className: "jsx-4198e0e3cde1015f" + " " + "text-[#b79eb0]",
+                                    children: selectedGoal === null || selectedGoal === void 0 ? void 0 : selectedGoal.description
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/pages/setGoal/page.js",
-                                    lineNumber: 353,
+                                    lineNumber: 389,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/pages/setGoal/page.js",
-                            lineNumber: 346,
+                            lineNumber: 382,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "space-y-4 mb-6",
+                            className: "jsx-4198e0e3cde1015f" + " " + "space-y-4 mb-6",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "jsx-4198e0e3cde1015f",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "text-white text-sm font-medium block mb-2",
+                                            className: "jsx-4198e0e3cde1015f" + " " + "text-white text-sm font-medium block mb-2",
                                             children: "Target Amount (₱)"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/setGoal/page.js",
-                                            lineNumber: 358,
+                                            lineNumber: 394,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1520,27 +1595,28 @@ function SetGoals() {
                                             placeholder: "0",
                                             value: goalAmount,
                                             onChange: (e)=>setGoalAmount(e.target.value),
-                                            className: "form-input flex w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#382935] focus:border-[#9b177e] h-12 placeholder:text-[#b79eb2] p-4 text-lg font-normal leading-normal",
-                                            autoFocus: true
+                                            autoFocus: true,
+                                            className: "jsx-4198e0e3cde1015f" + " " + "form-input flex w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#382935] focus:border-[#9b177e] h-12 placeholder:text-[#b79eb2] p-4 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9b177e]/20"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/setGoal/page.js",
-                                            lineNumber: 361,
+                                            lineNumber: 397,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/pages/setGoal/page.js",
-                                    lineNumber: 357,
+                                    lineNumber: 393,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "jsx-4198e0e3cde1015f",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                            className: "text-white text-sm font-medium block mb-2",
+                                            className: "jsx-4198e0e3cde1015f" + " " + "text-white text-sm font-medium block mb-2",
                                             children: "Target Date"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/setGoal/page.js",
-                                            lineNumber: 372,
+                                            lineNumber: 408,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1549,71 +1625,91 @@ function SetGoals() {
                                             onChange: (e)=>setGoalDeadline(e.target.value),
                                             min: today,
                                             max: maxDate,
-                                            className: "form-input flex w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#382935] focus:border-[#9b177e] h-12 placeholder:text-[#b79eb2] p-4 text-lg font-normal leading-normal"
+                                            className: "jsx-4198e0e3cde1015f" + " " + "form-input flex w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#382935] focus:border-[#9b177e] h-12 placeholder:text-[#b79eb2] p-4 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9b177e]/20"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/setGoal/page.js",
-                                            lineNumber: 375,
+                                            lineNumber: 411,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/pages/setGoal/page.js",
-                                    lineNumber: 371,
+                                    lineNumber: 407,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/pages/setGoal/page.js",
-                            lineNumber: 356,
+                            lineNumber: 392,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex gap-3",
+                            className: "jsx-4198e0e3cde1015f" + " " + "flex gap-3",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: handleConfirmGoal,
                                     disabled: !goalAmount || !goalDeadline,
-                                    className: "flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#9b177e] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 disabled:cursor-not-allowed",
-                                    children: "Save Goal"
-                                }, void 0, false, {
+                                    className: "jsx-4198e0e3cde1015f" + " " + "group flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#9b177e] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-[#9b177e]/30 overflow-hidden",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "jsx-4198e0e3cde1015f" + " " + "absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/setGoal/page.js",
+                                            lineNumber: 428,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "jsx-4198e0e3cde1015f" + " " + "relative z-10",
+                                            children: "Save Goal"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/setGoal/page.js",
+                                            lineNumber: 429,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/src/app/pages/setGoal/page.js",
-                                    lineNumber: 387,
+                                    lineNumber: 423,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: ()=>setSelectedGoal(null),
-                                    className: "flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#382935] text-white text-base font-bold leading-normal tracking-[0.015em]",
+                                    onClick: ()=>setIsModalOpen(false),
+                                    className: "jsx-4198e0e3cde1015f" + " " + "flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#382935] text-white text-base font-bold leading-normal tracking-[0.015em] transition-all duration-300 transform hover:scale-105 hover:bg-[#4a3547]",
                                     children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/pages/setGoal/page.js",
-                                    lineNumber: 394,
+                                    lineNumber: 431,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/pages/setGoal/page.js",
-                            lineNumber: 386,
+                            lineNumber: 422,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/pages/setGoal/page.js",
-                    lineNumber: 345,
+                    lineNumber: 378,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/pages/setGoal/page.js",
-                lineNumber: 344,
+                lineNumber: 377,
                 columnNumber: 9
-            }, this)
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                id: "4198e0e3cde1015f",
+                children: "@keyframes fadeInUp{0%{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes scaleIn{0%{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}@keyframes shake{0%,to{transform:translate(0)}25%{transform:translate(-5px)}75%{transform:translate(5px)}}@keyframes pulse-slow{0%,to{opacity:.1}50%{opacity:.2}}.animate-fade-in-up.jsx-4198e0e3cde1015f{opacity:0;animation:.6s ease-out forwards fadeInUp}.animate-fade-in.jsx-4198e0e3cde1015f{opacity:0;animation:.4s ease-out forwards fadeIn}.animate-scale-in.jsx-4198e0e3cde1015f{animation:.3s ease-out forwards scaleIn}.animate-shake.jsx-4198e0e3cde1015f{animation:.5s ease-in-out shake}.animate-pulse-slow.jsx-4198e0e3cde1015f{animation:3s ease-in-out infinite pulse-slow}.animation-delay-200.jsx-4198e0e3cde1015f{animation-delay:.2s}.animation-delay-600.jsx-4198e0e3cde1015f{animation-delay:.6s}.animation-delay-1200.jsx-4198e0e3cde1015f{animation-delay:1.2s}.animation-delay-1500.jsx-4198e0e3cde1015f{animation-delay:1.5s}"
+            }, void 0, false, void 0, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/pages/setGoal/page.js",
-        lineNumber: 263,
+        lineNumber: 264,
         columnNumber: 5
     }, this);
 }
-_s(SetGoals, "o8yw4u7PX/csXVNQw0+G88VGL1k=", false, function() {
+_s(SetGoals, "yjvgCVCwWJH8bYRFaKRowngnZOU=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useAuth$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"],

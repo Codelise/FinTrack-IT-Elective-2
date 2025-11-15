@@ -64,3 +64,12 @@ Nov 15:
 - remove Header.js from sign up and login
 - added budget and goal links to dashboard Navbar.js
 - created Budget page
+
+Activity 6:
+- npm install @tanstack/react-query
+- created lib/react-query.js
+- created app/Provider.js for react query
+- modified main layout.js for Provider.js
+- modified hooks/Auth.js 
+- modified hooks/useBudget.js
+- modified set Budget and set Goal page

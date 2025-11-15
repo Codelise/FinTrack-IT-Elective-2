@@ -362,7 +362,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/auth-service.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useOnboarding.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$supabase$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/supabase.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/useMutation.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$react$2d$query$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/react-query.js [app-client] (ecmascript)");
 var _s = __turbopack_context__.k.signature();
+;
+;
 ;
 ;
 ;
@@ -373,6 +377,37 @@ const useAuth = ()=>{
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const { checkOnboardingStatus, markAsOnboarded, loading: onboardingLoading, error: onboardingError } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useOnboarding"])();
+    const signUpMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["authService"].signUp,
+        onSuccess: {
+            "useAuth.useMutation[signUpMutation]": (result)=>{
+                var _result_data;
+                if ((_result_data = result.data) === null || _result_data === void 0 ? void 0 : _result_data.user) {
+                    setUser(result.data.user);
+                }
+            }
+        }["useAuth.useMutation[signUpMutation]"]
+    });
+    const signInMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["authService"].signIn,
+        onSuccess: {
+            "useAuth.useMutation[signInMutation]": (result)=>{
+                var _result_data;
+                if ((_result_data = result.data) === null || _result_data === void 0 ? void 0 : _result_data.user) {
+                    setUser(result.data.user);
+                }
+            }
+        }["useAuth.useMutation[signInMutation]"]
+    });
+    const signOutMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$auth$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["authService"].signOut,
+        onSuccess: {
+            "useAuth.useMutation[signOutMutation]": ()=>{
+                setUser(null);
+                __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$react$2d$query$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["queryClient"].clear();
+            }
+        }["useAuth.useMutation[signOutMutation]"]
+    });
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "useAuth.useEffect": ()=>{
             const checkUserSession = {
@@ -502,9 +537,12 @@ const useAuth = ()=>{
         user
     };
 };
-_s(useAuth, "imUjdslvfT3h+7EszBDRAIuccUQ=", false, function() {
+_s(useAuth, "bR4ihJB2PE13iFo78kGRr2BSXPc=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useOnboarding"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useOnboarding$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useOnboarding"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
     ];
 });
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
@@ -665,209 +703,170 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "use strict";
 
 __turbopack_context__.s([
+    "budgetKeys",
+    ()=>budgetKeys,
     "useBudget",
     ()=>useBudget
 ]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/useQuery.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/useMutation.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@tanstack/react-query/build/modern/QueryClientProvider.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$budget$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/budget-service.js [app-client] (ecmascript)");
 var _s = __turbopack_context__.k.signature();
 ;
 ;
+const budgetKeys = {
+    all: [
+        "budgets"
+    ],
+    lists: ()=>[
+            ...budgetKeys.all,
+            "list"
+        ],
+    list: (filters)=>[
+            ...budgetKeys.lists(),
+            {
+                filters
+            }
+        ],
+    details: ()=>[
+            ...budgetKeys.all,
+            "detail"
+        ],
+    detail: (id)=>[
+            ...budgetKeys.details(),
+            id
+        ]
+};
 const useBudget = ()=>{
     _s();
-    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
-    const [budgets, setBudgets] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
-    const getBudgets = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "useBudget.useCallback[getBudgets]": async (userId)=>{
-            if (!userId) return {
-                data: null,
-                error: "No user ID provided"
-            };
-            setLoading(true);
-            setError(null);
-            try {
-                const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$budget$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["budgetService"].getBudgets(userId);
-                if (result.error) {
-                    setError(result.error.message);
-                    return {
-                        data: null,
-                        error: result.error
-                    };
-                }
-                setBudgets(result.data || []);
-                return {
-                    data: result.data,
-                    error: null
-                };
-            } catch (err) {
-                setError(err.message);
-                return {
-                    data: null,
-                    error: err
-                };
-            } finally{
-                setLoading(false);
-            }
-        }
-    }["useBudget.useCallback[getBudgets]"], []);
-    const createBudget = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "useBudget.useCallback[createBudget]": async (budgetData)=>{
-            setLoading(true);
-            setError(null);
-            try {
-                const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$budget$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["budgetService"].createBudget(budgetData);
-                if (result.error) {
-                    setError(result.error.message);
-                    return {
-                        data: null,
-                        error: result.error
-                    };
-                }
+    var _s1 = __turbopack_context__.k.signature();
+    const queryClient = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"])();
+    const getBudgets = (userId)=>{
+        _s1();
+        return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"])({
+            queryKey: budgetKeys.list({
+                userId
+            }),
+            queryFn: {
+                "useBudget.getBudgets.useQuery": ()=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$budget$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["budgetService"].getBudgets(userId)
+            }["useBudget.getBudgets.useQuery"],
+            enabled: !!userId,
+            staleTime: 2 * 60 * 1000
+        });
+    };
+    _s1(getBudgets, "4ZpngI1uv+Uo3WQHEZmTQ5FNM+k=", false, function() {
+        return [
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useQuery$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQuery"]
+        ];
+    });
+    const createBudgetMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$budget$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["budgetService"].createBudget,
+        onSuccess: {
+            "useBudget.useMutation[createBudgetMutation]": (result)=>{
                 if (result.data) {
-                    setBudgets({
-                        "useBudget.useCallback[createBudget]": (prev)=>[
-                                ...prev,
-                                result.data[0]
-                            ]
-                    }["useBudget.useCallback[createBudget]"]);
+                    queryClient.invalidateQueries({
+                        queryKey: budgetKeys.lists()
+                    });
                 }
-                return {
-                    data: result.data,
-                    error: null
-                };
-            } catch (err) {
-                setError(err.message);
-                return {
-                    data: null,
-                    error: err
-                };
-            } finally{
-                setLoading(false);
             }
-        }
-    }["useBudget.useCallback[createBudget]"], []);
-    const createMultipleBudgets = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "useBudget.useCallback[createMultipleBudgets]": async (budgetsArray)=>{
-            setLoading(true);
-            setError(null);
-            try {
-                const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$budget$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["budgetService"].createMultipleBudgets(budgetsArray);
-                if (result.error) {
-                    setError(result.error.message);
-                    return {
-                        data: null,
-                        error: result.error
-                    };
-                }
+        }["useBudget.useMutation[createBudgetMutation]"],
+        onError: {
+            "useBudget.useMutation[createBudgetMutation]": (error)=>{
+                console.error("Error creating budget:", error);
+            }
+        }["useBudget.useMutation[createBudgetMutation]"]
+    });
+    const createMultipleBudgetsMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$budget$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["budgetService"].createMultipleBudgets,
+        onSuccess: {
+            "useBudget.useMutation[createMultipleBudgetsMutation]": (result)=>{
                 if (result.data) {
-                    setBudgets({
-                        "useBudget.useCallback[createMultipleBudgets]": (prev)=>[
-                                ...prev,
-                                ...result.data
-                            ]
-                    }["useBudget.useCallback[createMultipleBudgets]"]);
+                    queryClient.invalidateQueries({
+                        queryKey: budgetKeys.lists()
+                    });
                 }
-                return {
-                    data: result.data,
-                    error: null
-                };
-            } catch (err) {
-                setError(err.message);
-                return {
-                    data: null,
-                    error: err
-                };
-            } finally{
-                setLoading(false);
             }
-        }
-    }["useBudget.useCallback[createMultipleBudgets]"], []);
-    const updateBudget = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "useBudget.useCallback[updateBudget]": async (budgetId, updates)=>{
-            setLoading(true);
-            setError(null);
-            try {
-                const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$budget$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["budgetService"].updateBudget(budgetId, updates);
-                if (result.error) {
-                    setError(result.error.message);
-                    return {
-                        data: null,
-                        error: result.error
-                    };
-                }
+        }["useBudget.useMutation[createMultipleBudgetsMutation]"]
+    });
+    const updateBudgetMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: {
+            "useBudget.useMutation[updateBudgetMutation]": (param)=>{
+                let { budgetId, updates } = param;
+                return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$budget$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["budgetService"].updateBudget(budgetId, updates);
+            }
+        }["useBudget.useMutation[updateBudgetMutation]"],
+        onSuccess: {
+            "useBudget.useMutation[updateBudgetMutation]": (result, variables)=>{
                 if (result.data) {
-                    setBudgets({
-                        "useBudget.useCallback[updateBudget]": (prev)=>prev.map({
-                                "useBudget.useCallback[updateBudget]": (budget)=>budget.id === budgetId ? result.data[0] : budget
-                            }["useBudget.useCallback[updateBudget]"])
-                    }["useBudget.useCallback[updateBudget]"]);
+                    queryClient.setQueryData(budgetKeys.lists(), {
+                        "useBudget.useMutation[updateBudgetMutation]": (old)=>old === null || old === void 0 ? void 0 : old.map({
+                                "useBudget.useMutation[updateBudgetMutation]": (budget)=>budget.id === variables.budgetId ? result.data[0] : budget
+                            }["useBudget.useMutation[updateBudgetMutation]"])
+                    }["useBudget.useMutation[updateBudgetMutation]"]);
                 }
-                return {
-                    data: result.data,
-                    error: null
-                };
-            } catch (err) {
-                setError(err.message);
-                return {
-                    data: null,
-                    error: err
-                };
-            } finally{
-                setLoading(false);
             }
-        }
-    }["useBudget.useCallback[updateBudget]"], []);
-    const deleteBudget = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "useBudget.useCallback[deleteBudget]": async (budgetId)=>{
-            setLoading(true);
-            setError(null);
-            try {
-                const result = await __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$budget$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["budgetService"].deleteBudget(budgetId);
-                if (result.error) {
-                    setError(result.error.message);
-                    return {
-                        error: result.error
-                    };
-                }
-                setBudgets({
-                    "useBudget.useCallback[deleteBudget]": (prev)=>prev.filter({
-                            "useBudget.useCallback[deleteBudget]": (budget)=>budget.id !== budgetId
-                        }["useBudget.useCallback[deleteBudget]"])
-                }["useBudget.useCallback[deleteBudget]"]);
-                return {
-                    error: null
-                };
-            } catch (err) {
-                setError(err.message);
-                return {
-                    error: err
-                };
-            } finally{
-                setLoading(false);
+        }["useBudget.useMutation[updateBudgetMutation]"]
+    });
+    const deleteBudgetMutation = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"])({
+        mutationFn: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$budget$2d$service$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["budgetService"].deleteBudget,
+        onSuccess: {
+            "useBudget.useMutation[deleteBudgetMutation]": (result, variables)=>{
+                queryClient.setQueryData(budgetKeys.lists(), {
+                    "useBudget.useMutation[deleteBudgetMutation]": (old)=>old === null || old === void 0 ? void 0 : old.filter({
+                            "useBudget.useMutation[deleteBudgetMutation]": (budget)=>budget.id !== variables
+                        }["useBudget.useMutation[deleteBudgetMutation]"])
+                }["useBudget.useMutation[deleteBudgetMutation]"]);
             }
-        }
-    }["useBudget.useCallback[deleteBudget]"], []);
-    const clearError = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
-        "useBudget.useCallback[clearError]": ()=>{
-            setError(null);
-        }
-    }["useBudget.useCallback[clearError]"], []);
+        }["useBudget.useMutation[deleteBudgetMutation]"]
+    });
+    const createBudget = (budgetData)=>{
+        return createBudgetMutation.mutateAsync(budgetData);
+    };
+    const createMultipleBudgets = (budgetsArray)=>{
+        return createMultipleBudgetsMutation.mutateAsync(budgetsArray);
+    };
+    const updateBudget = (budgetId, updates)=>{
+        return updateBudgetMutation.mutateAsync({
+            budgetId,
+            updates
+        });
+    };
+    const deleteBudget = (budgetId)=>{
+        return deleteBudgetMutation.mutateAsync(budgetId);
+    };
+    const clearError = ()=>{
+        createBudgetMutation.reset();
+        createMultipleBudgetsMutation.reset();
+        updateBudgetMutation.reset();
+        deleteBudgetMutation.reset();
+    };
     return {
-        // Methods
+        // Query methods
         getBudgets,
+        // Mutation methods
         createBudget,
         createMultipleBudgets,
         updateBudget,
         deleteBudget,
         clearError,
-        // State
-        loading,
-        error,
-        budgets
+        mutations: {
+            createBudget: createBudgetMutation,
+            createMultipleBudgets: createMultipleBudgetsMutation,
+            updateBudget: updateBudgetMutation,
+            deleteBudget: deleteBudgetMutation
+        }
     };
 };
-_s(useBudget, "o+BUeEZeECtmyCq3jg0ibuBMPVI=");
+_s(useBudget, "S1j8snNiaAbG4PnEdzuNcp2AiIU=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$QueryClientProvider$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useQueryClient"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$tanstack$2f$react$2d$query$2f$build$2f$modern$2f$useMutation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMutation"]
+    ];
+});
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -880,6 +879,7 @@ __turbopack_context__.s([
     ()=>SetBudget
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/styled-jsx/style.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/navigation.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useAuth$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/hooks/useAuth.js [app-client] (ecmascript)");
@@ -891,15 +891,16 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
+;
 function SetBudget() {
     _s();
     const [selectedCategory, setSelectedCategory] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [budgetAmount, setBudgetAmount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [budgets, setBudgets] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({});
-    const [saving, setSaving] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [isModalOpen, setIsModalOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const { user, markAsOnboarded } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useAuth$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"])();
-    const { createMultipleBudgets, loading: budgetLoading, error: budgetError } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useBudget$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useBudget"])();
+    const { createMultipleBudgets, mutations: { createMultipleBudgets: createMutation } } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useBudget$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useBudget"])();
     const categories = [
         {
             name: "Groceries",
@@ -918,27 +919,27 @@ function SetBudget() {
                         d: "M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 36,
+                        lineNumber: 35,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M3 6h18"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 37,
+                        lineNumber: 36,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M16 10a4 4 0 0 1-8 0"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 38,
+                        lineNumber: 37,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                lineNumber: 25,
+                lineNumber: 24,
                 columnNumber: 9
             }, this)
         },
@@ -959,20 +960,20 @@ function SetBudget() {
                         d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 56,
+                        lineNumber: 55,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 57,
+                        lineNumber: 56,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                lineNumber: 45,
+                lineNumber: 44,
                 columnNumber: 9
             }, this)
         },
@@ -993,14 +994,14 @@ function SetBudget() {
                         d: "M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H8.4"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 75,
+                        lineNumber: 74,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M18 8h1a1 1 0 0 1 1 1v1.15"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 76,
+                        lineNumber: 75,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
@@ -1011,7 +1012,7 @@ function SetBudget() {
                         rx: "1"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 77,
+                        lineNumber: 76,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1020,7 +1021,7 @@ function SetBudget() {
                         r: "2"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 78,
+                        lineNumber: 77,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1029,13 +1030,13 @@ function SetBudget() {
                         r: "2"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 79,
+                        lineNumber: 78,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                lineNumber: 64,
+                lineNumber: 63,
                 columnNumber: 9
             }, this)
         },
@@ -1056,7 +1057,7 @@ function SetBudget() {
                         d: "M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 97,
+                        lineNumber: 96,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -1065,27 +1066,27 @@ function SetBudget() {
                         r: "1"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 98,
+                        lineNumber: 97,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "m15 10-1 4"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 99,
+                        lineNumber: 98,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "m9 10 1 4"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 100,
+                        lineNumber: 99,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                lineNumber: 86,
+                lineNumber: 85,
                 columnNumber: 9
             }, this)
         },
@@ -1106,27 +1107,27 @@ function SetBudget() {
                         d: "M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 118,
+                        lineNumber: 117,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M9 18h6"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 119,
+                        lineNumber: 118,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M10 22h4"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 120,
+                        lineNumber: 119,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                lineNumber: 107,
+                lineNumber: 106,
                 columnNumber: 9
             }, this)
         },
@@ -1147,27 +1148,27 @@ function SetBudget() {
                         d: "M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 138,
+                        lineNumber: 137,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M7 2v20"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 139,
+                        lineNumber: 138,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 140,
+                        lineNumber: 139,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                lineNumber: 127,
+                lineNumber: 126,
                 columnNumber: 9
             }, this)
         },
@@ -1188,14 +1189,14 @@ function SetBudget() {
                         d: "M12 8v8"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 158,
+                        lineNumber: 157,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M16 12H8"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 159,
+                        lineNumber: 158,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
@@ -1206,13 +1207,13 @@ function SetBudget() {
                         rx: "2"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 160,
+                        lineNumber: 159,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                lineNumber: 147,
+                lineNumber: 146,
                 columnNumber: 9
             }, this)
         },
@@ -1233,27 +1234,27 @@ function SetBudget() {
                         d: "M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 178,
+                        lineNumber: 177,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M3 6h18"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 179,
+                        lineNumber: 178,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                         d: "M16 10a4 4 0 0 1-8 0"
                     }, void 0, false, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 180,
+                        lineNumber: 179,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                lineNumber: 167,
+                lineNumber: 166,
                 columnNumber: 9
             }, this)
         }
@@ -1261,6 +1262,7 @@ function SetBudget() {
     const handleCategorySelect = (category)=>{
         setSelectedCategory(category);
         setBudgetAmount(budgets[category] || "");
+        setIsModalOpen(true);
     };
     const handleSaveBudget = ()=>{
         if (selectedCategory && budgetAmount) {
@@ -1271,13 +1273,13 @@ function SetBudget() {
         }
         setSelectedCategory(null);
         setBudgetAmount("");
+        setIsModalOpen(false);
     };
     const handleSetAllBudgets = async ()=>{
         if (!user) {
             console.error("No user found");
             return;
         }
-        setSaving(true);
         try {
             const budgetsArray = Object.entries(budgets).map((param)=>{
                 let [category, amount] = param;
@@ -1293,23 +1295,23 @@ function SetBudget() {
                 const result = await createMultipleBudgets(budgetsArray);
                 if (result.error) {
                     console.error("Error saving budgets:", result.error);
+                    return;
                 } else {
                     console.log("Budgets saved successfully:", result.data);
                 }
             }
-            console.log("🔧 Setting budgets - marking user as onboarded");
+            console.log("Setting budgets - marking user as onboarded");
             const onboardResult = await markAsOnboarded(user.id);
-            console.log("🔧 markAsOnboarded result:", onboardResult);
+            console.log("markAsOnboarded result:", onboardResult);
             if (onboardResult.success) {
-                console.log("✅ User successfully marked as onboarded");
+                console.log("User successfully marked as onboarded");
+                router.push("./setGoal");
             } else {
-                console.error("❌ Failed to mark user as onboarded:", onboardResult.error);
+                console.error("Failed to mark user as onboarded:", onboardResult.error);
+                router.push("./setGoal");
             }
-            router.push("./setGoal");
         } catch (error) {
             console.error("Error in budget saving:", error);
-        } finally{
-            setSaving(false);
         }
     };
     const handleSkip = async ()=>{
@@ -1317,92 +1319,143 @@ function SetBudget() {
             console.error("No user found");
             return;
         }
-        console.log("🔧 Skipping budgets - marking user as onboarded");
+        console.log("Skipping budgets - marking user as onboarded");
         const onboardResult = await markAsOnboarded(user.id);
-        console.log("🔧 markAsOnboarded result:", onboardResult);
+        console.log("markAsOnboarded result:", onboardResult);
         if (onboardResult.success) {
-            console.log("✅ User successfully marked as onboarded");
+            console.log("User successfully marked as onboarded");
         } else {
-            console.error("❌ Failed to mark user as onboarded:", onboardResult.error);
+            console.error("Failed to mark user as onboarded:", onboardResult.error);
         }
-        router.push("./setGoals");
+        router.push("./setGoal");
     };
+    const saving = createMutation.isPending;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "relative flex h-auto min-h-screen w-full flex-col bg-[#171116] dark group/design-root overflow-x-hidden",
+        className: "jsx-b21a25a16babf827" + " " + "relative flex h-auto min-h-screen w-full flex-col bg-[#171116] overflow-x-hidden",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "layout-container flex h-full grow flex-col",
+                className: "jsx-b21a25a16babf827" + " " + "absolute top-1/4 left-1/4 w-32 h-32 bg-[#9b177e]/10 rounded-full blur-xl animate-pulse-slow"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/setBudget/page.js",
+                lineNumber: 271,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-b21a25a16babf827" + " " + "absolute bottom-1/3 right-1/4 w-24 h-24 bg-[#9b177e]/5 rounded-full blur-lg animate-pulse-slow animation-delay-1000"
+            }, void 0, false, {
+                fileName: "[project]/src/app/pages/setBudget/page.js",
+                lineNumber: 272,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-b21a25a16babf827" + " " + "layout-container flex h-full grow flex-col z-10",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex flex-1 justify-center px-5 py-50",
+                    className: "jsx-b21a25a16babf827" + " " + "flex flex-1 justify-center px-5 py-50",
                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col w-full max-w-2xl mx-auto px-4",
+                        className: "jsx-b21a25a16babf827" + " " + "flex flex-col w-full max-w-2xl mx-auto px-4",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "text-white tracking-light text-3xl font-bold leading-tight text-center pb-2",
+                                className: "jsx-b21a25a16babf827" + " " + "text-white tracking-light text-3xl font-bold leading-tight text-center pb-2 animate-fade-in-up",
                                 children: "Step 1 of 2"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                                lineNumber: 279,
+                                lineNumber: 278,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                className: "text-white tracking-light text-2xl font-medium leading-tight text-center pb-8",
+                                className: "jsx-b21a25a16babf827" + " " + "text-white tracking-light text-2xl font-medium leading-tight text-center pb-8 animate-fade-in-up animation-delay-200",
                                 children: "Set Your Monthly Budgets"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                                lineNumber: 282,
+                                lineNumber: 281,
                                 columnNumber: 13
                             }, this),
-                            budgetError && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-red-500/20 border border-red-500 text-white px-4 py-3 rounded text-sm mb-4",
+                            createMutation.error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "jsx-b21a25a16babf827" + " " + "bg-red-500/20 border border-red-500 text-white px-4 py-3 rounded text-sm mb-4 animate-shake",
                                 children: [
                                     "Error saving budgets: ",
-                                    budgetError
+                                    createMutation.error.message
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                                lineNumber: 287,
+                                lineNumber: 286,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-[#b79eb0] text-center mb-8",
+                                className: "jsx-b21a25a16babf827" + " " + "text-[#b79eb0] text-center mb-8 animate-fade-in-up animation-delay-400",
                                 children: "Set spending limits for different categories (optional)"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                                lineNumber: 292,
+                                lineNumber: 291,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "grid grid-cols-2 md:grid-cols-4 gap-4 mb-8",
-                                children: categories.map((category)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                className: "jsx-b21a25a16babf827" + " " + "grid grid-cols-2 md:grid-cols-4 gap-4 mb-8",
+                                children: categories.map((category, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: ()=>handleCategorySelect(category.name),
-                                        className: "flex flex-col items-center justify-center p-4 rounded-lg border-2 transition-all ".concat(budgets[category.name] ? "border-[#9b177e] bg-[#9b177e]/20" : "border-[#382935] bg-[#382935] hover:border-[#9b177e]"),
+                                        style: {
+                                            animationDelay: "".concat(index * 100 + 600, "ms")
+                                        },
+                                        className: "jsx-b21a25a16babf827" + " " + "group relative flex flex-col items-center justify-center p-4 rounded-lg border-2 transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[#9b177e]/20 ".concat(budgets[category.name] ? "border-[#9b177e] bg-[#9b177e]/20 shadow-lg shadow-[#9b177e]/30" : "border-[#382935] bg-[#382935] hover:border-[#9b177e]", " animate-fade-in-up"),
                                         children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "jsx-b21a25a16babf827" + " " + "absolute inset-0 bg-gradient-to-br from-transparent via-[#9b177e]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/setBudget/page.js",
+                                                lineNumber: 309,
+                                                columnNumber: 19
+                                            }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-2xl mb-2",
+                                                className: "jsx-b21a25a16babf827" + " " + "text-2xl mb-2 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6",
                                                 children: category.icon
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                                                lineNumber: 307,
+                                                lineNumber: 311,
                                                 columnNumber: 19
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-white text-sm font-medium text-center",
+                                                className: "jsx-b21a25a16babf827" + " " + "text-white text-sm font-medium text-center relative z-10",
                                                 children: category.name
                                             }, void 0, false, {
                                                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                                                lineNumber: 308,
+                                                lineNumber: 314,
                                                 columnNumber: 19
                                             }, this),
                                             budgets[category.name] && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-[#9b177e] text-xs mt-1",
+                                                className: "jsx-b21a25a16babf827" + " " + "text-[#9b177e] text-xs mt-1 font-semibold relative z-10 animate-pulse",
                                                 children: [
                                                     "₱",
                                                     budgets[category.name]
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                                                lineNumber: 312,
+                                                lineNumber: 318,
+                                                columnNumber: 21
+                                            }, this),
+                                            budgets[category.name] && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "jsx-b21a25a16babf827" + " " + "absolute -top-2 -right-2 w-6 h-6 bg-[#9b177e] rounded-full flex items-center justify-center animate-bounce",
+                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+                                                    fill: "currentColor",
+                                                    viewBox: "0 0 20 20",
+                                                    className: "jsx-b21a25a16babf827" + " " + "w-3 h-3 text-white",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                                                        fillRule: "evenodd",
+                                                        d: "M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z",
+                                                        clipRule: "evenodd",
+                                                        className: "jsx-b21a25a16babf827"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/pages/setBudget/page.js",
+                                                        lineNumber: 331,
+                                                        columnNumber: 25
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/pages/setBudget/page.js",
+                                                    lineNumber: 326,
+                                                    columnNumber: 23
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/setBudget/page.js",
+                                                lineNumber: 325,
                                                 columnNumber: 21
                                             }, this)
                                         ]
@@ -1417,160 +1470,203 @@ function SetBudget() {
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex justify-center gap-3 mt-8 px-10",
+                                className: "jsx-b21a25a16babf827" + " " + "flex justify-center gap-3 mt-8 px-10",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: handleSetAllBudgets,
-                                        disabled: Object.keys(budgets).length === 0 || saving || budgetLoading,
-                                        className: "flex cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-[#9b177e] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 disabled:cursor-not-allowed",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            children: saving || budgetLoading ? "Saving..." : "Continue to Goals"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/app/pages/setBudget/page.js",
-                                            lineNumber: 328,
-                                            columnNumber: 17
-                                        }, this)
-                                    }, void 0, false, {
+                                        disabled: Object.keys(budgets).length === 0 || saving,
+                                        className: "jsx-b21a25a16babf827" + " " + "group relative flex cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-[#9b177e] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-[#9b177e]/40 overflow-hidden",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "jsx-b21a25a16babf827" + " " + "absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/setBudget/page.js",
+                                                lineNumber: 351,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "jsx-b21a25a16babf827" + " " + "relative z-10 flex items-center gap-2",
+                                                children: saving ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "jsx-b21a25a16babf827" + " " + "w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/pages/setBudget/page.js",
+                                                            lineNumber: 356,
+                                                            columnNumber: 23
+                                                        }, this),
+                                                        "Saving..."
+                                                    ]
+                                                }, void 0, true) : "Continue to Goals"
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/pages/setBudget/page.js",
+                                                lineNumber: 353,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                                        lineNumber: 321,
+                                        lineNumber: 345,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: handleSkip,
-                                        disabled: saving || budgetLoading,
-                                        className: "flex cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-[#382935] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50",
+                                        disabled: saving,
+                                        className: "jsx-b21a25a16babf827" + " " + "group flex cursor-pointer items-center justify-center rounded-lg h-12 px-8 bg-[#382935] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 transition-all duration-300 transform hover:scale-105 hover:bg-[#4a3547] border border-transparent hover:border-[#9b177e]/30",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "jsx-b21a25a16babf827",
                                             children: "Skip Budgeting"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/pages/setBudget/page.js",
-                                            lineNumber: 337,
+                                            lineNumber: 370,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                                        lineNumber: 332,
+                                        lineNumber: 365,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                                lineNumber: 320,
+                                lineNumber: 344,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-[#b79eb0] text-center mt-4 text-sm",
+                                className: "jsx-b21a25a16babf827" + " " + "text-[#b79eb0] text-center mt-4 text-sm animate-fade-in animation-delay-1200",
                                 children: "You can always set budgets later in settings"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                                lineNumber: 341,
+                                lineNumber: 374,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/pages/setBudget/page.js",
-                        lineNumber: 278,
+                        lineNumber: 276,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/src/app/pages/setBudget/page.js",
-                    lineNumber: 277,
+                    lineNumber: 275,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                lineNumber: 276,
+                lineNumber: 274,
                 columnNumber: 7
             }, this),
-            selectedCategory && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4",
+            isModalOpen && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "jsx-b21a25a16babf827" + " " + "fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 animate-fade-in",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "bg-[#261c23] rounded-lg p-6 max-w-md w-full border border-[#523d4c]",
+                    onClick: (e)=>e.stopPropagation(),
+                    className: "jsx-b21a25a16babf827" + " " + "bg-[#261c23] rounded-xl p-6 max-w-md w-full border border-[#523d4c] shadow-2xl shadow-black/50 transform animate-scale-in",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                            className: "text-white text-xl font-bold mb-2",
+                            className: "jsx-b21a25a16babf827" + " " + "text-white text-xl font-bold mb-2",
                             children: [
                                 "Set Budget for ",
                                 selectedCategory
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/pages/setBudget/page.js",
-                            lineNumber: 352,
+                            lineNumber: 388,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                            className: "text-[#b79eb0] mb-4",
+                            className: "jsx-b21a25a16babf827" + " " + "text-[#b79eb0] mb-4",
                             children: "Enter your monthly budget amount"
                         }, void 0, false, {
                             fileName: "[project]/src/app/pages/setBudget/page.js",
-                            lineNumber: 355,
+                            lineNumber: 391,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "relative mb-6",
+                            className: "jsx-b21a25a16babf827" + " " + "relative mb-6",
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                 type: "number",
                                 placeholder: "₱0",
                                 value: budgetAmount,
                                 onChange: (e)=>setBudgetAmount(e.target.value),
-                                className: "form-input flex w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#382935] focus:border-[#9b177e] h-14 placeholder:text-[#b79eb2] p-4 text-lg font-normal leading-normal",
-                                autoFocus: true
+                                autoFocus: true,
+                                className: "jsx-b21a25a16babf827" + " " + "form-input flex w-full resize-none overflow-hidden rounded-lg text-white focus:outline-0 focus:ring-0 border border-[#523d4c] bg-[#382935] focus:border-[#9b177e] h-14 placeholder:text-[#b79eb2] p-4 text-lg font-normal leading-normal transition-all duration-300 focus:scale-105 focus:shadow-lg focus:shadow-[#9b177e]/20"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                                lineNumber: 360,
+                                lineNumber: 396,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/app/pages/setBudget/page.js",
-                            lineNumber: 359,
+                            lineNumber: 395,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex gap-3",
+                            className: "jsx-b21a25a16babf827" + " " + "flex gap-3",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: handleSaveBudget,
                                     disabled: !budgetAmount,
-                                    className: "flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#9b177e] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 disabled:cursor-not-allowed",
-                                    children: "Save Amount"
-                                }, void 0, false, {
+                                    className: "jsx-b21a25a16babf827" + " " + "group flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#9b177e] text-white text-base font-bold leading-normal tracking-[0.015em] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-[#9b177e]/30 overflow-hidden",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "jsx-b21a25a16babf827" + " " + "absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/setBudget/page.js",
+                                            lineNumber: 412,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "jsx-b21a25a16babf827" + " " + "relative z-10",
+                                            children: "Save Amount"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/pages/setBudget/page.js",
+                                            lineNumber: 413,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
                                     fileName: "[project]/src/app/pages/setBudget/page.js",
-                                    lineNumber: 371,
+                                    lineNumber: 407,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                    onClick: ()=>setSelectedCategory(null),
-                                    className: "flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#382935] text-white text-base font-bold leading-normal tracking-[0.015em]",
+                                    onClick: ()=>setIsModalOpen(false),
+                                    className: "jsx-b21a25a16babf827" + " " + "flex-1 cursor-pointer items-center justify-center rounded-lg h-12 bg-[#382935] text-white text-base font-bold leading-normal tracking-[0.015em] transition-all duration-300 transform hover:scale-105 hover:bg-[#4a3547]",
                                     children: "Cancel"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/pages/setBudget/page.js",
-                                    lineNumber: 378,
+                                    lineNumber: 415,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/pages/setBudget/page.js",
-                            lineNumber: 370,
+                            lineNumber: 406,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/pages/setBudget/page.js",
-                    lineNumber: 351,
+                    lineNumber: 384,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/pages/setBudget/page.js",
-                lineNumber: 350,
+                lineNumber: 383,
                 columnNumber: 9
-            }, this)
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                id: "b21a25a16babf827",
+                children: "@keyframes fadeInUp{0%{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes scaleIn{0%{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}@keyframes shake{0%,to{transform:translate(0)}25%{transform:translate(-5px)}75%{transform:translate(5px)}}@keyframes pulse-slow{0%,to{opacity:.1}50%{opacity:.2}}.animate-fade-in-up.jsx-b21a25a16babf827{opacity:0;animation:.6s ease-out forwards fadeInUp}.animate-fade-in.jsx-b21a25a16babf827{opacity:0;animation:.4s ease-out forwards fadeIn}.animate-scale-in.jsx-b21a25a16babf827{animation:.3s ease-out forwards scaleIn}.animate-shake.jsx-b21a25a16babf827{animation:.5s ease-in-out shake}.animate-pulse-slow.jsx-b21a25a16babf827{animation:3s ease-in-out infinite pulse-slow}.animation-delay-200.jsx-b21a25a16babf827{animation-delay:.2s}.animation-delay-400.jsx-b21a25a16babf827{animation-delay:.4s}.animation-delay-600.jsx-b21a25a16babf827{animation-delay:.6s}.animation-delay-1200.jsx-b21a25a16babf827{animation-delay:1.2s}.animation-delay-1000.jsx-b21a25a16babf827{animation-delay:1s}"
+            }, void 0, false, void 0, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/pages/setBudget/page.js",
-        lineNumber: 275,
+        lineNumber: 269,
         columnNumber: 5
     }, this);
 }
-_s(SetBudget, "At4MKpVylw/VO9ZHn1hQVccsZEE=", false, function() {
+_s(SetBudget, "Jnv97QrqtgaMTVvWTucazhatiUo=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$hooks$2f$useAuth$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"],

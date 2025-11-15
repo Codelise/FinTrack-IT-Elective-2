@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { authService } from "../services/auth-service";
 import { useOnboarding } from "./useOnboarding";
 import { supabase } from "@/lib/supabase";
+import { useMutation } from "@tanstack/react-query";
+import { queryClient } from "@/lib/react-query";
 export const useAuth = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -13,6 +15,32 @@ export const useAuth = () => {
     loading: onboardingLoading,
     error: onboardingError,
   } = useOnboarding();
+
+  const signUpMutation = useMutation({
+    mutationFn: authService.signUp,
+    onSuccess: (result) => {
+      if (result.data?.user) {
+        setUser(result.data.user);
+      }
+    },
+  });
+
+  const signInMutation = useMutation({
+    mutationFn: authService.signIn,
+    onSuccess: (result) => {
+      if (result.data?.user) {
+        setUser(result.data.user);
+      }
+    },
+  });
+
+  const signOutMutation = useMutation({
+    mutationFn: authService.signOut,
+    onSuccess: () => {
+      setUser(null);
+      queryClient.clear();
+    },
+  });
 
   useEffect(() => {
     const checkUserSession = async () => {

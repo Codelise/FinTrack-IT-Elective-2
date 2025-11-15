@@ -1,153 +1,109 @@
-import { useState, useCallback } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { budgetService } from "@/services/budget-service";
 
+export const budgetKeys = {
+  all: ["budgets"],
+  lists: () => [...budgetKeys.all, "list"],
+  list: (filters) => [...budgetKeys.lists(), { filters }],
+  details: () => [...budgetKeys.all, "detail"],
+  detail: (id) => [...budgetKeys.details(), id],
+};
+
 export const useBudget = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [budgets, setBudgets] = useState([]);
+  const queryClient = useQueryClient();
 
-  const getBudgets = useCallback(async (userId) => {
-    if (!userId) return { data: null, error: "No user ID provided" };
+  const getBudgets = (userId) => {
+    return useQuery({
+      queryKey: budgetKeys.list({ userId }),
+      queryFn: () => budgetService.getBudgets(userId),
+      enabled: !!userId,
+      staleTime: 2 * 60 * 1000, // 2 minutes
+    });
+  };
 
-    setLoading(true);
-    setError(null);
-
-    try {
-      const result = await budgetService.getBudgets(userId);
-
-      if (result.error) {
-        setError(result.error.message);
-        return { data: null, error: result.error };
-      }
-
-      setBudgets(result.data || []);
-      return { data: result.data, error: null };
-    } catch (err) {
-      setError(err.message);
-      return { data: null, error: err };
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const createBudget = useCallback(async (budgetData) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const result = await budgetService.createBudget(budgetData);
-
-      if (result.error) {
-        setError(result.error.message);
-        return { data: null, error: result.error };
-      }
-
+  const createBudgetMutation = useMutation({
+    mutationFn: budgetService.createBudget,
+    onSuccess: (result) => {
       if (result.data) {
-        setBudgets((prev) => [...prev, result.data[0]]);
+        queryClient.invalidateQueries({ queryKey: budgetKeys.lists() });
       }
+    },
+    onError: (error) => {
+      console.error("Error creating budget:", error);
+    },
+  });
 
-      return { data: result.data, error: null };
-    } catch (err) {
-      setError(err.message);
-      return { data: null, error: err };
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const createMultipleBudgets = useCallback(async (budgetsArray) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const result = await budgetService.createMultipleBudgets(budgetsArray);
-
-      if (result.error) {
-        setError(result.error.message);
-        return { data: null, error: result.error };
-      }
-
+  const createMultipleBudgetsMutation = useMutation({
+    mutationFn: budgetService.createMultipleBudgets,
+    onSuccess: (result) => {
       if (result.data) {
-        setBudgets((prev) => [...prev, ...result.data]);
+        queryClient.invalidateQueries({ queryKey: budgetKeys.lists() });
       }
+    },
+  });
 
-      return { data: result.data, error: null };
-    } catch (err) {
-      setError(err.message);
-      return { data: null, error: err };
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const updateBudget = useCallback(async (budgetId, updates) => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const result = await budgetService.updateBudget(budgetId, updates);
-
-      if (result.error) {
-        setError(result.error.message);
-        return { data: null, error: result.error };
-      }
-
+  const updateBudgetMutation = useMutation({
+    mutationFn: ({ budgetId, updates }) =>
+      budgetService.updateBudget(budgetId, updates),
+    onSuccess: (result, variables) => {
       if (result.data) {
-        setBudgets((prev) =>
-          prev.map((budget) =>
-            budget.id === budgetId ? result.data[0] : budget
+        queryClient.setQueryData(budgetKeys.lists(), (old) =>
+          old?.map((budget) =>
+            budget.id === variables.budgetId ? result.data[0] : budget
           )
         );
       }
+    },
+  });
 
-      return { data: result.data, error: null };
-    } catch (err) {
-      setError(err.message);
-      return { data: null, error: err };
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const deleteBudgetMutation = useMutation({
+    mutationFn: budgetService.deleteBudget,
+    onSuccess: (result, variables) => {
+      queryClient.setQueryData(budgetKeys.lists(), (old) =>
+        old?.filter((budget) => budget.id !== variables)
+      );
+    },
+  });
 
-  const deleteBudget = useCallback(async (budgetId) => {
-    setLoading(true);
-    setError(null);
+  const createBudget = (budgetData) => {
+    return createBudgetMutation.mutateAsync(budgetData);
+  };
 
-    try {
-      const result = await budgetService.deleteBudget(budgetId);
+  const createMultipleBudgets = (budgetsArray) => {
+    return createMultipleBudgetsMutation.mutateAsync(budgetsArray);
+  };
 
-      if (result.error) {
-        setError(result.error.message);
-        return { error: result.error };
-      }
+  const updateBudget = (budgetId, updates) => {
+    return updateBudgetMutation.mutateAsync({ budgetId, updates });
+  };
 
-      setBudgets((prev) => prev.filter((budget) => budget.id !== budgetId));
+  const deleteBudget = (budgetId) => {
+    return deleteBudgetMutation.mutateAsync(budgetId);
+  };
 
-      return { error: null };
-    } catch (err) {
-      setError(err.message);
-      return { error: err };
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  const clearError = useCallback(() => {
-    setError(null);
-  }, []);
+  const clearError = () => {
+    createBudgetMutation.reset();
+    createMultipleBudgetsMutation.reset();
+    updateBudgetMutation.reset();
+    deleteBudgetMutation.reset();
+  };
 
   return {
-    // Methods
+    // Query methods
     getBudgets,
+
+    // Mutation methods
     createBudget,
     createMultipleBudgets,
     updateBudget,
     deleteBudget,
     clearError,
 
-    // State
-    loading,
-    error,
-    budgets,
+    mutations: {
+      createBudget: createBudgetMutation,
+      createMultipleBudgets: createMultipleBudgetsMutation,
+      updateBudget: updateBudgetMutation,
+      deleteBudget: deleteBudgetMutation,
+    },
   };
 };

@@ -70,7 +70,6 @@ export default function Dashboard() {
       <div className="layout-container flex h-full grow flex-col">
         <div className="px-4 sm:px-6 md:px-10 lg:px-20 xl:px-40 flex flex-1 justify-center py-5">
           <div className="layout-content-container flex flex-col flex-1 w-full">
-            {/* Header Section */}
             <div
               className={`flex flex-wrap justify-between gap-3 p-4 transition-all duration-700 ${
                 isLoaded
@@ -88,7 +87,6 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Summary Cards */}
             <div className="flex flex-wrap gap-4 p-4">
               <div
                 className={`flex min-w-[158px] flex-1 flex-col gap-2 rounded-lg p-6 bg-[#382935] transition-all duration-700 delay-200 ${
@@ -126,9 +124,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Charts Section - Hidden on mobile, shown on desktop */}
             <div className="hidden lg:flex flex-col lg:flex-row gap-4 px-4 py-6">
-              {/* Spending Over Time Chart - Desktop Only */}
               <div
                 className={`flex min-w-72 flex-1 flex-col gap-2 rounded-lg border border-[#523d4d] p-6 transition-all duration-700 delay-400 ${
                   isLoaded
@@ -204,7 +200,6 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Spending by Category Chart - Desktop Only */}
               <div
                 className={`flex min-w-72 flex-1 flex-col gap-2 rounded-lg border border-[#523d4d] p-6 transition-all duration-700 delay-500 ${
                   isLoaded
@@ -257,9 +252,7 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Mobile Tables Section - Shown only on mobile/tablet */}
             <div className="lg:hidden flex flex-col gap-4 px-4 py-6">
-              {/* Monthly Spending Table - Mobile */}
               <div
                 className={`flex flex-col gap-2 rounded-lg border border-[#523d4d] p-6 transition-all duration-700 delay-400 ${
                   isLoaded
@@ -339,7 +332,6 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              {/* Category Spending Table - Mobile */}
               <div
                 className={`flex flex-col gap-2 rounded-lg border border-[#523d4d] p-6 transition-all duration-700 delay-500 ${
                   isLoaded
@@ -423,7 +415,6 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Recent Transactions Section */}
             <div
               className={`transition-all duration-700 delay-600 ${
                 isLoaded
@@ -435,7 +426,6 @@ export default function Dashboard() {
                 Recent Transactions
               </h2>
 
-              {/* Search Bar */}
               <div className="px-4 py-3">
                 <label className="flex flex-col min-w-40 h-12 w-full">
                   <div className="flex w-full flex-1 items-stretch rounded-lg h-full">
@@ -460,7 +450,6 @@ export default function Dashboard() {
                 </label>
               </div>
 
-              {/* Filters */}
               <div className="flex gap-3 p-3 flex-wrap pr-4">
                 {filters.map((filter, index) => (
                   <button
@@ -484,7 +473,6 @@ export default function Dashboard() {
                 ))}
               </div>
 
-              {/* Transactions Table */}
               <div className="px-4 py-3">
                 <div className="flex overflow-hidden rounded-lg border border-[#523d4d] bg-[#171116] transition-all duration-500 hover:shadow-xl hover:shadow-[#9c167f]/10">
                   <div className="flex-1 overflow-x-auto">
@@ -549,7 +537,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Custom CSS for animations */}
       <style jsx>{`
         @keyframes fadeInUp {
           from {
